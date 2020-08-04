@@ -1,0 +1,138 @@
+# javaScriptAlgorithmsDataStructuresFreecodecamp
+## Basic JavaScript
+Start:  04/08/2020
+Pomodoros:  
+Notas: 
+    - "Better Comments" ; Visual Studio Code
+    - Uso comentarios con colores 
+    
+
+*==MAP========================================================-->
+todo --funciones--
+Math.floor()
+console.log()
+
+todo --properties--
+.length
+
+todo --tipos--
+undefined 
+null
+boolean
+string
+symbol
+bigint
+number
+object 
+
+todo --operators--
+= -> asignación
++ -> adición/concatenation : number/string
+- -> substraction
+:* -> multiplication
+/ -> division
+++ -> increment
+-- -> decrement
+% -> remainder
++= -> 
+-=
+:*=
+/=
+
+todo --escape chracters--
+\"
+\'
+\\
+\n
+\r
+\t
+\b
+\f
+
+todo --postfix/prefix increment
+++i -> prefix increment
+i++ -> postfix increment
+--i -> prefix decrement
+i-- -> postfix decrement
+
+//?==SINTAXIS===================================================-->
+* declarar una variable
+var varName;
+* declarar y asignar valor a una variable
+var varName = value;
+* incrementar en 1 una variable
+i++;
+* estas dos asignaciones de string literals son equivalentes
+var myStr = "<a href=\"http://www.example.com\" target=\"_blank\">Link</a>";
+var myStr = '<a href="http://www.example.com" target="_blank">Link</a>';
+* Conocer el número de caracteres de un string
+"String".length
+myString.length
+* Bracket notation to access the value of the the 'index'
+var firstName = "Boy"
+firstname[0] = "B"
+
+todo==TEORIA==================================================-->
+
+todo --suelta--
+
+* Si no asignamos valor a una variable declarada, esta valdrá undefined
+* Si intentamos hacer una operación matemática con una variable que tenga como valor undefined el resultado será NaN
+* Nan : not a number
+* si tratamos de concatenar un string con otro string undefined el resultado será undefined
+* Al declarar una variable en javaScript no hay que declarar el tipo de dato como en java
+* i++ => i = i + 1
+    * i++ se llama  postfix increment: si lo usamos en una asignación, primer se asigna y después i incrementa en 1 su valor
+* ++i => se llama prefix increment: si lo usamos en una asingación, se asignará el valor de la variable ya aumentada en 1
+* float : o valores con coma flotante son los decimales
+* se pueden multiplicar decimales
+* Si el resto de dividir un numero entre 2 es distinto de cero, el número es impar
+* resto (%) no es lo mismo que módulo porque el operador resto no funciona con números negativos.
+* myVar += 5 es lo mismo que escribir myVar = myVar + 5
+* myVar -= 5 es lo mismo que myVar = myVar - 5
+* string literal = cero o más caracteres entre comillas dobles o simples.
+* comillas simples o dobles da igual en javaScript
+* \ esto es un "backslash" y sirve para hacer escape de algunos símbolos como las comillas -> \" ó \'
+* Podemos concatenar string con variables como en java "hola" + mundoVar = "hola mundo"
+* JavaScript es Zero-based index programming language lo que significa que empieza a contar por el cero.
+* En JavaScript los string son inmutables
+    * Esto no se puede hacer
+        var myStr = "Bob";
+        myStr[0] = "J";
+    * Hay que asignar a la variable un nuevo string
+        var myStr = "Bob";
+        myStr = "Job";
+
+
+
+todo --escape--
+\" 
+\'
+\\ backslash
+\n nueva línea
+\r retorno de carro
+\t tabulador
+\b
+\f
+ 
+
+//!=SNIPPETS===================================================-->
+
+* Concatenar varios string en distintas líneas
+var myStr = "This is the first sentence. "
+myStr += "This is the second sentence.";
+
+* Concatenar usando variables
+var someAdjective = "entertaining";
+var myStr = "Learning to code is ";
+myStr += someAdjective;
+
+* Asignar a una variable el número de caracteres que tiene el string the otra variable
+var lastNameLength = 0;
+var lastName = "Lovelace";
+lastNameLength = lastName.length;
+
+* Encontrar el última caracter de un string usando corchetes
+var firstLetterOfLastName = "";
+var lastName = "Lovelace";
+firstLetterOfLastName = lastName[0]; 
