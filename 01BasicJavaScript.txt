@@ -8,9 +8,16 @@ Notas:
     
 
 *==MAP========================================================-->
+todo --memory structures--
+[]
+
 todo --funciones--
 Math.floor()
 console.log()
+.push()
+.pop()
+.shift()
+.unshift()
 
 todo --properties--
 .length
@@ -55,7 +62,7 @@ i++ -> postfix increment
 --i -> prefix decrement
 i-- -> postfix decrement
 
-//?==SINTAXIS===================================================-->
+?==SINTAXIS===================================================-->
 * declarar una variable
 var varName;
 * declarar y asignar valor a una variable
@@ -71,6 +78,29 @@ myString.length
 * Bracket notation to access the value of the the 'index'
 var firstName = "Boy"
 firstname[0] = "B"
+* Declarar e inicializar un array
+var myArray = [ "premio", 5];
+* Declarar e inicializar un array multi-dimensional
+var myArray = [[2,"huevos"], [4, "saltos"]];
+* Acceder al valor de un array
+var myArray = [50,60,70];
+var myData = myArray[0];
+* Cambiar el valor de un lugar del array
+var myArray = [18,64,99];
+myArray[0] = 45;
+* .push()
+var myArray = [["John", 23], ["cat", 2]];
+myArray.push(["dog",3]); // myArray = [["John", 23], ["cat", 2] ,["dog",3]]
+* .pop()
+var myArray = [["John", 23], ["cat", 2]];
+var removedFromMyArray = myArray.pop(); //removedFromMyArray = ["cat",2]
+* .shift()
+var myArray = [["John", 23], ["dog", 3]];
+var removedFromMyArray = myArray.shift() ; // removedFromMyArray = ["John", 23]
+* .unshift()
+var myArray = [["John", 23], ["dog", 3]];
+myArray.shift();
+myArray.unshift(["Paul",35]); // myArray = [["Paul", 35] , ["dog", 3]]
 
 todo==TEORIA==================================================-->
 
@@ -101,7 +131,18 @@ todo --suelta--
         myStr[0] = "J";
     * Hay que asignar a la variable un nuevo string
         var myStr = "Bob";
-        myStr = "Job";
+        myStr = "Job"; // Aquí se está creando un nuevo string que luego se asigna a la variable.
+* Al usar variable[variable.length -1] estamos accediendo al último caracter ya que si tiene 8 
+    * el último será 7 que es 8 -1
+* En JavaScript un array puede contener números y Strings
+* No dejar espacio entre el nombre de variable de array y el corchete para acceder al valor de una posicion,
+    * aunque JavaScript te deja hacerlo confunde y no son buenas prácticas.
+* Los arrays son mutables
+* Con la funcion .push() podemos añadir al final de un array tanto números, como strings como arrays.
+* pop() saca el último valor de un array, además, lo podemos usar para otra cosa como almacenarlo en otra parte.
+* No hace falta declarar el tipo de variable en JavaScript, así que si al declararla la inicializamos metiendo un array
+    * se lo va a tragar enterito.
+* shift() es como pop() pero saca un elemento del primer lugar de array en lugar del último
 
 
 
@@ -132,7 +173,12 @@ var lastNameLength = 0;
 var lastName = "Lovelace";
 lastNameLength = lastName.length;
 
-* Encontrar el última caracter de un string usando corchetes
+* Encontrar el primer caracter de un string usando corchetes
 var firstLetterOfLastName = "";
 var lastName = "Lovelace";
 firstLetterOfLastName = lastName[0]; 
+
+* Acceder al último caracter del string almacenado en una variable
+var lastName = "Lovelace";
+var lastLetterOfLastName = lastName[lastName.length -1]; // Change this line
+
