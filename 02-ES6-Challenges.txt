@@ -1,0 +1,221 @@
+# javaScriptAlgorithmsDataStructuresFreecodecamp
+## ES6
+Start:  11/08/2020
+Pomodoros:  
+Notas: 
+    - "Better Comments" ; Visual Studio Code
+    - Uso comentarios con colores 
+    - Map: copiado de la lección anterior, se va arrastrando.
+    
+
+*==iMAP========================================================-->
+todo variables
+const
+var
+let
+
+
+todo --ternary conditional--
+condition ? code-true : code-false
+
+todo --loops--
+while(cond){}
+for ([initialization]; [condition]; [final-expression]){}
+do{}while(condition);
+if(){}else{}else return;
+
+
+todo -object
+var object = {att=value};
+.
+["']
+delete
+
+
+todo --regex
+/ /
+
+todo --flux--
+if
+else if
+else
+switch
+case
+break
+default
+
+todo --funciones (definición)-- 
+function
+return
+
+todo --memory structures--
+[[],[]]
+
+todo --funciones--
+Math.floor()
+Math.random()
+console.log()
+parseInt()
+  :* parseInt("")
+  :* parseInt ("", radix)
+
+
+todo --métodos
+.hasOwnProperty(propname) 
+.push()
+.pop()
+.shift()
+.unshift()
+.match()
+.splice()
+.concat()
+
+
+todo --properties--
+'vale para strings y para arrays (borrame cuando me entiendas bien)
+.length 
+
+todo --tipos--
+undefined 
+null
+boolean
+string
+symbol
+bigint
+number
+object 
+
+todo --operators--
+: ! -> not
+= -> asignación
++ -> adición/concatenation : number/string
+- -> substraction
+:* -> multiplication
+/ -> division
+++ -> increment
+-- -> decrement
+% -> remainder
++= -> 
+-=
+:*=
+/=
+typeof
+
+todo --comparison operators--
+'ojo todos los comparadores devuelven true/false --> borrar esto cuando esté asimilado.
+==
+=== [strict]
+:!=
+:!== [strict]
+>
+>=
+<
+<=
+
+
+todo --escape chracters--
+\"
+\'
+\\
+\n
+\r
+\t
+\b
+\f
+
+todo --postfix/prefix increment
+++i -> prefix increment
+i++ -> postfix increment
+--i -> prefix decrement
+i-- -> postfix decrement
+
+todo --logical operators--
+&&
+||
+
+todo --6--
+let
+"use strict"
+*==fMAP========================================================-->
+
+?==iSINTAXIS===================================================-->
+* Function()
+var myFunction = new ("a", "b", "return a * b");
+* var x = function
+var x = function function (a,b){return a*b};
+var Myfucntion = function function (a,b){return a*b};
+* const
+    const FAV_PET = "Dogs";
+?==fSINTAXIS===================================================-->
+
+todo==iTeoría==================================================-->
+* 1. Para pasar de ECMASCRIPT6 (ES6) a ES5 hace falta un programa
+    * llamado transpiler.
+* 2. Las variables let sólo pueden declararse una vez
+* 3. "Use stric" no deja usar variables que no han sido declaradas
+    * previamente
+* 4. En javaScript podemos declarar una variable global con let y
+    * luego usarla dentro de una función.
+* 5. Si declaramos una variable con "var" fuera de una función la
+    * variable se hace global. Si lo hacemos dentro de una función
+    * la variable será local.
+* 6. Con "let" al declarar una variable dentro de un bloque, el 
+    * ámbito de dicha variable es ese bloque.
+* 7. Las funciones en javaScript se pueden almacenar en una variable
+    * conviertiéndose así en funciones anónimas.
+        var x = function(a,b){return a*b};
+        var z = x(4,3);
+* 8. Se puede definir funciones usando el constructor de funciones
+    * Function()
+        var myFunction = new Function("a", "b", "return a * b")
+* 9. Se puede evitar tener que usar "new" y escribir directamente:
+        var Myfunction = function (a,b){return a * b};
+* 10. Cada vez que usamos let se crea una variable nueva
+        //en este caso además cuando tratemos de invocar la variable
+        //i fuera del bucle for, no podremos porque sólo está definida
+        //dentro.
+    for(let i=0; i<3;i++){}
+* 11. Se puede declarar una variable con let fuera de un bloque, 
+    * después, se puede declarar que esa variable es una función dentro
+    * de un bloque de código y que, dicha función, devuelve por ejemplo
+    * el valor de i. 
+    * Cuando más tarde invoquemos la función(a través de la variable que
+        * apunta a dicha función) y ésta función devolverá el valor de i
+    *¿Por qué?, porque si en un bucle for usamos let para declarar la variable i
+        * se crea una variable por cada vuelta del bucle.
+  :        'use strict';
+            let printNumTwo;
+            for (let i = 0; i < 3; i++) {
+            if (i === 2) {
+                printNumTwo = function() {
+                return i;
+                };
+            }
+            }
+            console.log(printNumTwo());
+            // returns 2
+            console.log(i);
+            // returns "i is not defined"
+* 12. Lo mejor es usar siempre let y, en realidad, lo mejor es también no usar
+    * el mismo nombre para las variables.
+* 13. const -> las variables declaradas así no pueden ser reasignadas, además tienen
+    * las mismas propiedades que let (ámbito). Se suele usar mayúsculas separadas por
+    * underscore para ponerle nombre
+* 14. Se puede declarar una función como const pero dejar una parte de su contenido a otra
+    * variable
+        const SENTENCE = str + " is cool!";
+* 15. Muchos desarrolladores usan const para todas las variables a menos que necesitan cambiar
+    * la asignación al objeto. Conviene recordar que el objeto al que referencian puede cambiar
+    * no así la asignación.
+    "use strict";
+    const s = [5, 6, 7];    
+    s = [1, 2, 3]; //esto devuelve error porque estamos intentando asignar un nuevo array a 
+        la variable s.
+    s[2] = 45; // esto funciona porque lo que está variando son los atributos del objeto pero 
+        no la asignación.
+
+
+todo==fTeoría==================================================-->
+
+!=iSNIPPETS===================================================-->
+!=fSNIPPETS===================================================-->
