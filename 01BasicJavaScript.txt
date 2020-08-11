@@ -1,26 +1,79 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## Basic JavaScript
 Start:  04/08/2020
-Pomodoros:  
+Pomodoros:  43
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - Uso comentarios con colores 
+    - img/ contiene imágenes útiles para comprender/repasar
+img
+  - recursionCountUp
     
 
-*==MAP========================================================-->
+*==iMAP========================================================-->
+todo variables
+const
+var
+let
+
+todo --ternary conditional--
+condition ? code-true : code-false
+
+todo --loops--
+while(cond){}
+for ([initialization]; [condition]; [final-expression]){}
+do{}while(condition);
+if(){}else{}else return;
+
+
+todo -object
+var object = {att=value};
+.
+["']
+delete
+
+todo --regex
+/ /
+
+todo --flux--
+if
+else if
+else
+switch
+case
+break
+default
+
+todo --funciones (definición)-- 
+function
+return
+
 todo --memory structures--
-[]
+[[],[]]
 
 todo --funciones--
 Math.floor()
+Math.random()
 console.log()
+parseInt()
+  :* parseInt("")
+  :* parseInt ("", radix)
+
+
+todo --métodos
+.hasOwnProperty(propname) 
 .push()
 .pop()
 .shift()
 .unshift()
+.match()
+.splice()
+.concat()
+
 
 todo --properties--
-.length
+'vale para strings y para arrays (borrame cuando me entiendas bien)
+.length 
 
 todo --tipos--
 undefined 
@@ -33,6 +86,7 @@ number
 object 
 
 todo --operators--
+: ! -> not
 = -> asignación
 + -> adición/concatenation : number/string
 - -> substraction
@@ -45,6 +99,19 @@ todo --operators--
 -=
 :*=
 /=
+typeof
+
+todo --comparison operators--
+'ojo todos los comparadores devuelven true/false --> borrar esto cuando esté asimilado.
+==
+=== [strict]
+:!=
+:!== [strict]
+>
+>=
+<
+<=
+
 
 todo --escape chracters--
 \"
@@ -62,30 +129,30 @@ i++ -> postfix increment
 --i -> prefix decrement
 i-- -> postfix decrement
 
-?==SINTAXIS===================================================-->
-* declarar una variable
+todo --logical operators--
+&&
+||
+*==iMAP========================================================-->
+
+?==iSINTAXIS===================================================-->
+* declarar una variable "local"
 var varName;
 * declarar y asignar valor a una variable
 var varName = value;
-* incrementar en 1 una variable
-i++;
-* estas dos asignaciones de string literals son equivalentes
-var myStr = "<a href=\"http://www.example.com\" target=\"_blank\">Link</a>";
-var myStr = '<a href="http://www.example.com" target="_blank">Link</a>';
-* Conocer el número de caracteres de un string
+* declarar una variable global
+varName = "value";
+* declarar un array vacío
+var myArray = [];
+* .length
 "String".length
 myString.length
-* Bracket notation to access the value of the the 'index'
+* string[]
 var firstName = "Boy"
 firstname[0] = "B"
-* Declarar e inicializar un array
-var myArray = [ "premio", 5];
-* Declarar e inicializar un array multi-dimensional
-var myArray = [[2,"huevos"], [4, "saltos"]];
-* Acceder al valor de un array
+* myArray[]
 var myArray = [50,60,70];
 var myData = myArray[0];
-* Cambiar el valor de un lugar del array
+* Mutar array
 var myArray = [18,64,99];
 myArray[0] = 45;
 * .push()
@@ -99,10 +166,138 @@ var myArray = [["John", 23], ["dog", 3]];
 var removedFromMyArray = myArray.shift() ; // removedFromMyArray = ["John", 23]
 * .unshift()
 var myArray = [["John", 23], ["dog", 3]];
-myArray.shift();
+myArray.shift(); // myArray = [ ["dog", 3]]
 myArray.unshift(["Paul",35]); // myArray = [["Paul", 35] , ["dog", 3]]
+* definir función
+function myFunction(param1, param2){
+    code(param1,param2);
+    return myVar;
+}
+* invocar funcion
+myFunction(argument1, argument2);
 
-todo==TEORIA==================================================-->
+todo --functions--
+* define and call a function
+function reusableFunction(){
+  console.log("Hi World")
+}
+reusableFunction();
+* define una función que use parámetros, después invoca la función pasándole argumentos
+function functionWithArgs(param1, param2){
+  console.log(param1 + param2);
+}
+functionWithArgs(5 , 6);
+
+todo --otros--
+* == vs ===
+  1  == '1' //true
+ "3" == 3   //true
+  1  == '1' //false
+ "3" == 3   //false
+
+* typeof
+    typeof 3 // number
+    typeof '3' // string
+    typeof 
+* && 
+if (val <= 50 && val >= 25)
+
+todo --flux--
+* switch
+  switch(condition){
+    case "a":
+      code;
+      break;
+    case 1:
+      code;
+      break;
+    default:
+      code;
+      break;
+  }
+}
+
+* Uso de ===
+  return a === b ; // true /false;
+* definición de una expresión regular
+  var nombreVariable = /expresionRegular/;
+    Ej: var regex = /[JQKA]/;
+* evaluación de una expresión regular
+  tipo(variableEvaluada).match(expresionRegular) // true/false
+    Ej: String(card).match(regex)
+
+todo --objetos
+* definir un objeto
+var myObj = {
+  prop1: "val1",
+  prop2: "val2",
+  prop 3: "val3"
+};
+* acceder a un objeto cuando sabemos de antemano el nombre de sus propiedades
+myObj.prop1; // val1
+* acceder cuando el atributo tiene espacio entre dos palabras
+myObj["prop 3"];
+* cambiar el valor del atributo de un objeto 2 formas:
+myObj["prop 3"] = "val4";
+myObj.prop2 = "val5";
+* añadir una propiedad a un objeto y darle valor, 3 formas.
+myDog.bark = "woof";
+myDog["bark"] = "woof";
+* añadir una propiedad y darle un valor(array en el ejemplo) sólo si no exisitía dicha propiedad previamente.
+var prop = "bark";
+myDog[bark] = myDog[bark] || [];
+* Eliminar la propiedad de un objeto, 2 formas;
+delete myDog.bark;
+delete myDog["bark"];
+* hasOwnProperty: 
+Ejemplo pasándole un string a la función: myObj.hasOwnProperty("top");
+Ejemplo pasándole una variable que contiene un string a la función: myObj.hasOwnProperty(varName);
+* accessing att of nested objects
+myStorage.car.inside["glove box"];
+* accessing att of nested arrays
+myPlants[1].list[1]; 
+* conversion entre objetos javaScript y JSON
+JSON.stringify(javascriptObj)->  javaScript a Json
+JSON.parse(jsonObj)          ->  JSON a javaScript
+* si el valor de una propiedad tipo string
+If value is non-blank (value !== “”)
+* incrementar en 2 una variable
+i += 2;
+* reducir en 2 una variable
+i -= 2;
+* tamaño de un array
+array.length
+* math.random
+return Math.floor(Math.random() * 20);
+* parseInt("",radix)
+parseInt("11",2) // 3 (binary)
+* ternary operator / operador ternario 
+return a === b ? "Equal" : "Not Equal";
+* multiple ternary operator/ operador ternario múltiple
+ (num === 0)    ? "zero"
+    : (num > 0) ? "positive"
+    : "negative";
+* splice(index,how-many,item1,itemX)
+  arr.splice(0,0,1,X);
+* .concat()
+  var str1 = "Hello";
+  var str2 = "world!";
+  var str3 = str1.concat(str2); // "Hello World!"
+* if () code;
+* concat() with arrays
+  arr = [1];
+  arr2 = [2];
+  arr2.concat(arr) = [2,1];
+  
+
+  
+
+
+
+
+?==fSINTAXIS===================================================-->
+
+todo==iTEORIA==================================================-->
 
 todo --suelta--
 
@@ -143,6 +338,248 @@ todo --suelta--
 * No hace falta declarar el tipo de variable en JavaScript, así que si al declararla la inicializamos metiendo un array
     * se lo va a tragar enterito.
 * shift() es como pop() pero saca un elemento del primer lugar de array en lugar del último
+* Si declaramos una variable sin poner 'var' delante, se convierte en global y puede estropear el resto del código. !ojo
+    function fun1() {
+        oopsGlobal = 5;
+    }
+* Podemos declarar variables globales declarando una función con 'var' poniéndola fuera de un bloque de código de una función
+* Las variables declaradas con var dentro de una función tienen un alcance local. También ocurre así con los parámetros.
+* Es posible usar variables globales y variables locales con el mismo nombre.
+    var outerWear = "T-Shirt";
+
+    function myOutfit() {
+    var outerWear = "sweater";
+    return outerWear;
+    }
+
+    myOutfit(); //
+* Si una función no tiene un return, devolverá un 'undefined'
+* Se puede modificar el valor de una variable global dentro del código de una función, aunque no estemos pasando esa variable por parámetro ni
+    * nada. No sé si esto se podía hacer en java pero sospecho que no.
+* shift() arranca el primer elemento del array
+* pop() arranca el último elemento del array
+* push() añade un elemto al array por detrás
+* unshift() añade un elemento al array por la cabeza
+* Una cola(queue) es una estructura de memoria en el que los elementos llegan por el final y se van por el principio.
+* true y false booleanos se escriben sin comillas en javaScript
+* en javaScript una función puede devolver un booleano sin necesidad de declarar una variable primero, como hacíamos
+    * en los métodos de java.
+* curly braces = llaves
+* en javaScript se pueden comparar tipos distintos con ==, se llama type coertion
+    1   == '1'  // true
+    "3" ==  3   // true
+* === strict equality no intenta convertir ambos operadores al mismo
+* != es justo lo contrario que ==
+* atento porque 1 == true y 0 == false
+    * por eso 
+        1 != true   // false
+        0 != false  // false
+* Tanto > como >= convierten los tipos al comparar
+* Tener cuidado con el orden en los if, else if else. El orden importa. Por ejemplo si estamos comparando numeros menor a otros
+    * empezar por los números más pequeños para cometer un menor error. Ésta sería la manera correcta.
+    function orderMyLogic(val) {
+        if (val < 5) {
+            return "Less than 5";
+        } else if (val < 10) {
+            return "Less than 10";
+        } else {
+            return "Greater than or equal to 10";
+        }
+    }
+* En javaScript una función puede devolver un boolean o una cadena sin tener que previamente declarar una variable de dicho 
+    *tipo
+        if(num <5){
+            return "Tiny";
+        }
+* En Switch
+  * Se evalua de manera estricta ===
+  * Si se entra en un case y no hay break, el resto de bloques del resto de case también se ejecutarán.
+        switch(val) {
+      case 1:
+      case 2:
+      case 3:
+        result = "1, 2, or 3";
+        break;
+      case 4:
+        result = "4 alone";
+      }
+
+  * en el case si se está evaluando un valor numérico no se ponen comillas, las comillas no forman parte de la sintaxis
+    * se utilizan cuando se quieren evaluar Strings.
+  * Si no se entra en ningún case, se va al default
+  * Cuando tenemos muchas opciones es mejor usar switch que encadenar if else, aunque hay que tener en cuenta que que la evaluación
+     en el switch es siempre estricta ===
+  * Ojo todos los comparadores devuelven true/false
+    a === b;
+    a <= b; etc
+    * sólo hay que estar atento de usar return; 
+  * Como en java, en las funciones cuando se llega al return; se acabó el bloque killo
+  * Se puede usar la palabra reservada 'undefined' en el return de una función para que devuelva este tipo.
+  * default: el bloque dentro en el swith sólo se ejecuta si no se activa ningún case.
+  * Expresiones regulares (sólo un poquito)
+    * / -> slash or forward slash
+    * Las expresiones regulares se escriben entre slashes 
+      /abc/ -> patron abc en ese orden
+    * /[JQKA]/
+      J o Q o K o A -> cualquiera de esas letras en cualquier orden
+  todo --objetos--
+  * Los objetos tienen propiedades en JavaScript. Ejemplo de objeto en javaScript:
+    * Los objetos sirven para almacenar información de manera estructurada
+    * Los objetos pueden representar un objeto de la realidad
+    * Se puden usar números y strings como propiedades. 
+    * Se pueden usar strings de una sola palabra omitiendo las comillas
+    * javaScript sin embargo convierte todas las propiedades que no son strings en strings.
+    * sólo se puede poner un string sin comillas al nombre de un atributo, pero no a su valor.
+      var cat = {
+      "name": "Whiskers",
+      "legs": 4,
+      tail : 1,
+      5: "five",
+      "enemies": ["Water", "Dogs"],
+      "the color" : "green"
+    };
+    * si usamos el punto para acceder al valor del atributo de un objeto no podemos usar comillas
+    * Si accedemos a las propiedades de un objeto usando el corchete tenemos que usar comillas, ya sean dobles o simples
+    * Para acceder a atributos con nombres que contengan espacios tenemos que usar corchetes a la fuerza
+    * Se puede usar el valor de una variable para acceder al atributo de un objeto
+        var testObj = {
+          12: "Namath",
+          16: "Montana",
+          19: "Unitas"
+        };
+          var playerNumber = 16;       
+          var player = testObj[playerNumber];  
+    * Se puede usar la notación [] así como . para actualizar el valor del atributo de un objeto
+      ourDog.name = "Felipe";
+      ourDog["name"] = "Felipe":
+    ' Atentos señores, cuando accedemos usando el corchete, usamos las comillas que no se olvide
+    * Sólo van sin comillas cuando estamos metiendo el nombre de una variable
+    * Un objeto es como un diccionario que almacena key/value
+    * Sólo se puede poner sin comillas el nombre de una variable y no su valor.
+    * Para acceder al valor del atributo de un objeto usando una variable intermedia ,sólo se puede usar corchete
+      result = lookup[val];  
+      result = lookup[val]; 
+    * En JavaScript un método es una función que pertenece a un objeto
+    * Mira que cosa tan mona. Es un array que contiene un objetos que contienen un array (y otras cosas) no es precioso?
+      var myMusic = [
+            {
+              "artist": "Billy Joel",
+              "title": "Piano Man",
+              "release_year": 1973,
+              "formats": [
+                "CD",
+                "8T",
+                "LP"
+              ],
+              "gold": true
+            },
+            {
+              artist: "Green Day",
+              title: "Nimrod",
+              release_year: 1997,
+              formats: ["CD", "Cassette", "Minidisc"]
+            }
+          ];
+* Para acceder a distintas capas de nuestro objeto simplemente vamos encadenando con . y cuando no se pueda
+  * (propiedades con espacio) se usa corchete con comillas.
+    Ej: myStorage.car.inside["glove box"];
+* La única diferencia entre acceder a arrays u objetos anidados es que para los arrays usamos los corchetes
+  * con índices y para los objetos podemos usar punto (mejor) u corchete (cuando no se pueda punto.)
+* La única diferencia entre un objeto de Json y javaScript es que hay que poner entre comillas incluso los att
+  * de una sola palabra. Lo demás es igual.
+    JSON.stringify(javascriptObj)-> convierte un objeto javaScript a Json
+    JSON.parse(jsonObj)-> convierte un objeto json en uno javaScript
+    * También podemos tener la precaución de escribir siempre en javaScript los objetos con losa att con comillas
+      * pero puede que diferenciar entre idioma nativo sea bueno.
+* Recuerda, usar corchetes cuando se accede al valor del atributo de un objeto, y además sin comillas
+* Recuerda, que cuando usamos hasOwnProperty tenemos que poner el nombre de la propiedad entre comillas
+  .hasOwnProperty("property")
+* Un momento, estoy llamando todo el rato atributos a las PROPIEDADES de los objetos? posiblemente. Cambiar.
+* Señores para preguntar si el valor de una propiedad de un objeto tipo string está vacío
+     if (value !== “”)
+* Señores para acceder al valor de las propiedades de un elemento a traves de variables se usa siempre corchete! y sin poner puntos entre los corchetes
+  collection[id][prop]
+* Se puede crear una propiedad tipo array vacía así:
+  collection[id].tracks = [];
+* Para usar hasOwnProperty(prop) lo que va dentro del paréntesis no lleva comillas si lo estamos pasando como una variable
+* javaScript es un zero-indexing language por lo que el índice final de un array será length -1, no length.      
+* array.length empieza a contar desde el 1.
+* la parte más interesante de anidar fors es que cada sub-for se refiere al for anterior.
+  for(var i = 0; i < arr.length; i++){
+      for ( var j = 0; j < arr[i].length ; j++){
+        * nota: La clave está en (j < arr[i].length). Fijémonos en que la condición del segundo for, lo que hace que se detenga, será la longitud
+          * del array cuyo índice sea "i". Es decir la longitud del subarray en el que nos encontremos en ese momento.
+          * cuando ese subarray termina, i suma 1 y se pasa al siguiente subarray, y así sucesivamente.
+* con un do while nos aseguramos que el código se ejecute al menos una vez.
+* Recursion: Cuando una función puede ser expresada en términos de la propia función.
+  * English: when a function can be expressed in terms of itself
+  todo recursion
+  * La recursión nos permite evitar usar bucles, ya que es la propia función la que se invoca a sí misma hasta que llega
+     * a una condición final. 
+  * No hay ninguna ventaja en usar recursión en lugar de bucles iterativos, solo que cuando los entiendes son más fáciles de
+    * leer.
+  * En una función recursiva siempre hay 2 partes:
+    - El caso recursivo
+    - El caso base
+
+  * 1. Encontrar una manera de expresar una función en términos de sí misma.
+  * 2. Buscar una condición tope que detenga la recursión -> caso base/case base
+    * return cte
+  * 3. Con control de flujo establecemos.
+    * Si caso límite = devuelve una constante
+      * return cte
+    * En cualquier otro caso: vuelve a ejecutar la función haciendo variar una variable
+      * return f(x)(n-1)
+  
+  * Se puede poner, al final de un if(){}else return X; un " else return "comentario" que equivaldría a
+    * if()else{return X;}
+  * Math.random genera valores decimales aleatorios de 0 inclusivo a 1 no inclusivo
+  * Todo se resuelve antes del return, así que podemos hacer return de una función.
+  * Una adición curiosa, si no queremos que devuelva 0 podemos poner un bucle:
+    * mientras el resultado sea cero
+    * luego devolvemos dicho resultado
+  * Para generar un número aleatorio dentro de un rango
+      return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+        * El primer 1 que está en el paréntesis evita que salga el cero y hace que llegue hasta max
+        * Sumarle el mínimo al final es para que los números sean desde el mínimo  y no desde el cero. 
+  * parseInt() toma un string y lo convierte a entero
+    * si no puede convertir la primera cifra, devuelve NaN
+    * Los ceros a la izquierda los elimina
+  * const -> no define un valor constante, sino una referencia constante. Podemos cambiar el objeto pero no la referencia.
+  * El método splice añade elementos a un array
+    * splice(index,how-many,item1,itemX)
+        arr.splice(0,0,1,X);
+        * index: dónde añade
+        * how-many: cuántos eltos elimina
+        * el resto son los elementos que añadirá
+  * Cuando añadimos el paréntesis al nombre de una función deja de ser una función para ser el
+    * resultado de una función
+      function fortyTwo(){
+        return 42;
+      }
+      typeof fortyTwo; //"function"
+      typeof fortyTwo; //"number"
+  * if () code; No hace falta poner las llaves si sólo queremos que se ejecute una línea después del if.
+  * Usando concat con arrays.
+   [2].concat[1] = [2,1];
+  todo recursion
+   
+  * LIFO: Last In First Out
+  * 1. Precedence:
+      // La función externa no devuelve la función interna sino el resultado de la función interna
+      // Primero se resuelve recurseForever(a + 1) y luego se ejecuta el return
+      function recurseForever(a){
+        return recurseForever(a + 1);
+      }
+  * 2. Call stack
+    // Tiene un tamaño limitado.
+  * 3. Iteration
+  * 4. Base case
+
+
+
+
+todo==fTEORIA==================================================-->
 
 
 
@@ -157,7 +594,7 @@ todo --escape--
 \f
  
 
-//!=SNIPPETS===================================================-->
+//!=iSNIPPETS===================================================-->
 
 * Concatenar varios string en distintas líneas
 var myStr = "This is the first sentence. "
@@ -182,3 +619,485 @@ firstLetterOfLastName = lastName[0];
 var lastName = "Lovelace";
 var lastLetterOfLastName = lastName[lastName.length -1]; // Change this line
 
+* estas dos asignaciones de string literals son equivalentes
+var myStr = "<a href=\"http://www.example.com\" target=\"_blank\">Link</a>";
+var myStr = '<a href="http://www.example.com" target="_blank">Link</a>';
+
+* una función que suma 5 a una variable global 'sum'
+function addFive(){
+    sum += 5;
+}
+
+* Una función que toma como argumentos un array y un número. Añade el número al final de la cola y elimina el primer elemento de la cola.
+function nextInLine(arr, item) {
+  arr.push(item);
+  item = arr.shift();
+  return item;
+}
+
+* Una función que devuelve un booleano true
+function welcomeToBooleans() {
+  return true;
+}
+
+* Una función que devuelva not equal cuando el argumento no es 99
+    * nota: como != no es estricto 99 es equivalente a '99'
+    function testNotEqual(val) {
+    if (val!= '99') { // Change this line
+        return "Not Equal";
+    }
+    return "Equal";
+    }
+
+* Si un número está fuera de 10-20 inclusivos dice outside
+function testLogicalOr(val) {
+  if (val<10 || val>20) {
+    return "Outside";
+  }
+  return "Inside";
+}
+
+* else if
+function testElseIf(val) {
+  if (val > 10) {
+    return "Greater than 10";  
+  } else if (val < 5) {
+    return "Smaller than 5";
+  }else{
+    return "Between 5 and 10";
+  }
+}
+
+* gol problem
+var names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home!"];
+function golfScore(par, strokes) {
+  
+  if(strokes === 1){
+    return names[0];
+  }else if(strokes >= par + 3){
+    return names[6];
+  }else if(strokes == par + 2){
+    return names[5];
+  }else if(strokes == par + 1){
+    return names[4];
+  }else if (strokes <= par -2){
+    return names[1];
+  }else if(strokes <= par - 1){
+    return names[2];
+  }else if(strokes == par){
+    return names[3];
+  }
+}
+
+* Función que usa un switch para devolver un string según el valor numérico de una variable
+function caseInSwitch(val) {
+  var answer = "";
+  switch(val){
+    case 1:
+      answer = "alpha";
+      break;
+    case 2:
+      answer = "beta";
+      break;
+    case 3:
+      answer = "gamma";
+      break;
+    case 4:
+      answer = "delta";
+      break;
+  }
+
+  return answer;
+}
+
+* Una función que evalua 9 casos que están agrupados en 3 soluciones disintas. Usa switch + break;
+function sequentialSizes(val) {
+  var answer = "";
+  switch(val){
+    case 1:
+    case 2:
+    case 3: 
+      answer = "Low";
+      break;
+    case 4:
+    case 5:
+    case 6:
+      answer = "Mid";
+      break;
+    case 7:
+    case 8:
+    case 9:
+      answer = "High";
+      break;
+
+  }
+  return answer;
+}
+
+* Una función que devuelve el tipo undefined si los parámetros que le pasamos por argumento no cumplen ciertas condiciones
+function abTest(a, b) {
+  if(a < 0 || b < 0){
+    return undefined;
+  }
+  return Math.round(Math.pow(Math.sqrt(a) + Math.sqrt(b), 2));
+}
+
+* Problema Blackjack
+--version 1
+var count = 0;
+
+function cc(card) {
+  var decision;
+
+  switch(card){
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      count++;
+      break;
+    case 10:
+    case 'J':
+    case 'Q':
+    case 'K':
+    case 'A':
+      count--;
+      break;
+  }
+  
+  if(count > 0){
+    decision = "Bet";
+  }else{
+    decision = "Hold";
+  }
+
+  return count + " " + decision;
+}
+
+--version2
+function cc(card) {
+  var regex = /[JQKA]/;
+  if (card > 1 && card < 7) {
+    count++;
+  } else if (card === 10 || String(card).match(regex)) {
+    count--;
+  }
+
+  if (count > 0) return count + " Bet";
+  return count + " Hold";
+}
+
+* Una función que devuelve el valor del atributo de un objeto pero sólo si éste atributo existe
+function checkObj(obj, checkProp) {
+  if(obj.hasOwnProperty(checkProp)){
+    return obj[checkProp];
+  }else{
+    return "Not Found";
+  }
+}
+  - Como le estamos estamos usando una variable intermediaria "checkProp" cuyo valor almacena el nombre de la propiedad
+    tenemos que usar la notación de corchete. (creo)
+
+* problema de los álbumes
+
+-Solución Edu
+var collection = {
+  2548: {
+    album: "Slippery When Wet",
+    artist: "Bon Jovi",
+    tracks: [
+      "Let It Rock",
+      "You Give Love a Bad Name"
+    ]
+  },
+  2468: {
+    album: "1999",
+    artist: "Prince",
+    tracks: [
+      "1999",
+      "Little Red Corvette"
+    ]
+  },
+  1245: {
+    artist: "Robert Palmer",
+    tracks: [ ]
+  },
+  5439: {
+    album: "ABBA Gold"
+  }
+};
+
+function updateRecords(id, prop, value) {
+
+  if(value !== ""){
+    if(prop === "tracks"){
+        if(!collection[id].hasOwnProperty("tracks")){
+          collection[id].tracks = [];
+        }
+        if(value.length > 0){
+          collection[id].tracks.push(value);
+        }
+    }else{
+      collection[id][prop] = value;
+    }
+  }else{
+    if(collection[id].hasOwnProperty(prop)){
+      delete collection[id][prop];
+    }
+   }
+  return collection;
+}
+
+* añadir una propiedad y darle un valor(array en el ejemplo) sólo si no exisitía dicha propiedad previamente.
+  * Explicación: myDog[bark] || []; significa. Que si existe ya la propiedad "bark" del objeto myDog valdrá lo mismo que ya vale,
+    ' pero si no existe (si da false) se creará la proiedad (lado izquierdo de la igualdad crea la propiedad) y le dará como valor
+    ' [] (lado derecho de la propiedad)
+    ' Pensemos como funciona ||->
+var prop = "bark";
+myDog[bark] = myDog[bark] || [];
+
+* Un array que cuenta números impares
+var myArray = [];
+for(var i = 1; i<= 9; i+= 2){
+  myArray.push(i);
+}
+
+* Almacenar la suma de valores de un array en una variable usando un bucle for
+var myArr = [ 2, 3, 4, 5, 6];
+var total = 0;
+for (var i=0; i < myArr.length; i++){
+  total += myArr[i];
+}
+
+* Una función que devuelve la adición de los productos de todos los números contenidos en subarrays de un array
+function multiplyAll(arr) {
+      var product = 1;
+    for(var i = 0; i < arr.length; i++){
+      for ( var j = 0; j < arr[i].length ; j++){
+        product *= arr[i][j];
+      }
+    }
+      return product;
+}
+
+* Una función recursiva que suma los primeros n números de un array
+function sum(arr, n) {
+  if(n<=0){
+    return 0;
+  } else{
+    return sum(arr,n-1) + arr[n-1];
+  }
+}
+
+* Una función recursiva que muliplica los primeros n números de un array
+  function multiply(arr, n) {
+    if (n <= 0) {
+      return 1;
+    } else {
+      return multiply(arr, n - 1) * arr[n - 1];
+    }
+  }
+
+* Una solución iterativa al promeblema anterior
+  function multiply(arr, n) {
+    var product = 1;
+    for (var i = 0; i < n; i++) {
+        product *= arr[i];
+    }
+    return product;
+  }
+
+* Crea una función que dado un array de objetos checkee si existe un contacto, si tiene una propiedad
+  * y si ambos son ciertos, que devuelva el valor de la propiedad
+
+ * --objeto
+  var contacts = [
+    {
+        "firstName": "Akira",
+        "lastName": "Laine",
+        "number": "0543236543",
+        "likes": ["Pizza", "Coding", "Brownie Points"]
+    },
+    {
+        "firstName": "Harry",
+        "lastName": "Potter",
+        "number": "0994372684",
+        "likes": ["Hogwarts", "Magic", "Hagrid"]
+    },
+    {
+        "firstName": "Sherlock",
+        "lastName": "Holmes",
+        "number": "0487345643",
+        "likes": ["Intriguing Cases", "Violin"]
+    },
+    {
+        "firstName": "Kristian",
+        "lastName": "Vos",
+        "number": "unknown",
+        "likes": ["JavaScript", "Gaming", "Foxes"]
+    }
+];
+
+*  --función(Solución Edu)
+
+
+function lookUpProfile(name, prop){
+// Only change code below this line
+    //booleans
+    var contactExist;
+    var propExist;
+    var theValue;
+
+    //check
+    for( var i = 0; i < contacts.length; i++){
+        if(contacts[i].firstName === name){
+            contactExist = true;
+            if(contacts[i].hasOwnProperty(prop)){
+                propExist = true;
+                theValue = contacts[i][prop];
+            }
+        }
+    }
+
+    //return part
+    if(contactExist){
+        if(propExist){
+            return theValue;
+        }else{
+            return "No such property";
+        }
+        
+    }else{
+        return "No such contact";
+    }
+    
+
+
+// Only change code above this line
+}
+
+* -- función freecodecamp
+  function lookUpProfile(name, prop) {
+    for (var i = 0; i < contacts.length; i++) {
+      if (contacts[i].firstName === name) {
+        if (prop in contacts[i]) {
+          return contacts[i][prop];
+        '} else return "No such property";
+      }
+    }
+    return "No such contact";
+  }
+
+* Una función que devuelva un número aleatorio del 0 al 9
+function randomWholeNum() {
+  return Math.floor(Math.random() * 10);
+}
+
+* Genera una función que devuelva un número aleatorio dentro de un rango
+function randomRange(myMin, myMax) {
+  return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+}
+
+* Una función que recibe como parámetro un string y devuelve el significado del número 
+  * como si el string que le pasamos fuera un número en binario
+  function convertToInteger(str) {
+    return parseInt(str,2);
+  }
+
+* Una función que usando el condicional ternario múltiple nos dice si un número es positivo
+  * negativo o cero.
+
+  function checkSign(num) {
+  return (num === 0) ? "zero"
+          : (num > 0) ? "positive"
+          : "negative";
+}
+
+* Una función recursiva que rellene un array de números enteros haciendo una cuenta atrás
+
+todo --solución edu
+function countdown(n){
+  if (n < 1){
+    return [];
+  }else{
+    const array = countdown(n - 1 );
+    array.unshift(n);
+    return array;
+  }
+  
+}
+
+todo --solución snigo
+
+function countdown(n){
+  if ( n < 1) return [];
+  if ( n === 1) return [1];
+  
+
+  const output = [n]; //[2]
+  return output.concat(countdown(n-1)); //[2].concat[1] = [2,1];
+}
+
+todo --solución snigo refactorizada 1
+function countdown(n){
+  if ( n < 1) return [];
+
+  return [n].concat(countdown(n-1)); 
+}
+todo -solución snigo refactorizada 2 (ternary operator)
+function countdown(n){
+  return (n < 1) ? [] : [n].concat(countdown(n - 1));
+}
+
+* Una función que si le damos (inicio, fin) genera un array con inicio y fin y todos los números enteros 
+  * intermedios
+
+todo --solución Edu
+function rangeOfNumbers(startNum, endNum) {
+  //base case
+  if(endNum - startNum === 0){
+    return [startNum]; //[]
+  } 
+  //si metemos (1,2) queremos que salga [1,2]
+  //[1] es el caso base
+  //queremos, primero [2] y luego concatenar
+  const output = [endNum]; //[2]
+  return (rangeOfNumbers(startNum,endNum - 1)).concat(output);//[1].concat[2] = [1,2]
+};
+
+todo --solución Edu refactorizando 1
+function rangeOfNumbers(startNum, endNum) {
+  if(endNum === startNum ){
+    return [startNum];
+  } 
+  return (rangeOfNumbers(startNum,endNum - 1)).concat(endNum);
+};
+
+todo --solución Edu refactorizando 2
+
+function rangeOfNumbers(startNum, endNum) {
+  return (endNum === startNum ) 
+    ? [startNum] 
+    : (rangeOfNumbers(startNum,endNum - 1)).concat([endNum]);    
+  }
+
+
+todo --solución freecodecamp
+//para poder usar push en lugar de concat declara una variable numbers 
+function rangeOfNumbers(startNum, endNum) {
+  if (endNum - startNum === 0) {
+    return [startNum];
+  } else {
+    var numbers = rangeOfNumbers(startNum, endNum - 1);
+    numbers.push(endNum);
+    return numbers;
+  }
+}
+
+
+
+
+
+
+//!=fSNIPPETS===================================================-->
