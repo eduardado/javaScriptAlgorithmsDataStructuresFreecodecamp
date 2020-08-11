@@ -14,9 +14,9 @@ img
 todo variables
 const
 var
-let
 
-todo --ternary conditional--
+
+todo --ternary operator--
 condition ? code-true : code-false
 
 todo --loops--
