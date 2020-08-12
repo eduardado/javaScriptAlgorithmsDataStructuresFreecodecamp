@@ -47,11 +47,13 @@ default
 todo --funciones (definición)-- 
 function
 return
+let/var/const = function(a,b){};
 
 todo --memory structures--
-[[],[]]
+[[{}],[{}]]
 
 todo --funciones--
+Object.freeze()
 Math.floor()
 Math.random()
 console.log()
@@ -146,6 +148,8 @@ var x = function function (a,b){return a*b};
 var Myfucntion = function function (a,b){return a*b};
 * const
     const FAV_PET = "Dogs";
+* Object.freeze()
+
 ?==fSINTAXIS===================================================-->
 
 todo==iTeoría==================================================-->
@@ -213,7 +217,25 @@ todo==iTeoría==================================================-->
         la variable s.
     s[2] = 45; // esto funciona porque lo que está variando son los atributos del objeto pero 
         no la asignación.
+* 16 Si congelamos un objeto al intentar modificar/añadir atributos no da error pero no cambian.
+* 17 Si un objeto sólo tiene un par key: value no lleva como al final, se cierra la llave y ya
+    * está.
+* 18 Como el intentar cambiar un objeto congelado no da error, tenemos que capturar la excepción
+    * para mostrarla por pantalla.
+    'use strict';
+  const MATH_CONSTANTS = {
+    PI: 3.14
+  };
+  Object.freeze(MATH_CONSTANTS);
+                                //aquí intenta cambiar el atributo "PI"
+  try {
+    MATH_CONSTANTS.PI = 99; 
+                                //recoge la excepción y la muestra por la consola   
+  } catch(ex) {
+    console.log(ex);
+  }
 
+//Excepción: [TypeError: "PI" is read-only]
 
 todo==fTeoría==================================================-->
 
