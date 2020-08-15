@@ -1,7 +1,7 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## ES6
 Start:  11/08/2020
-Pomodoros:  
+Pomodoros:  25
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - Uso comentarios con colores 
@@ -9,7 +9,50 @@ Notas:
     
 
 *==iMAP========================================================-->
-todo variables
+todo --promise--
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+  
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+todo --built in Objects--
+Date()
+String()
+Number()
+Boolean()
+Array()
+RegExp()
+Function()
+
+
+
+todo --variables--
 const
 var
 let
@@ -25,7 +68,7 @@ do{}while(condition);
 if(){}else{}else return;
 
 
-todo -object
+todo --object
 var object = {att=value};
 .
 ["']
@@ -44,33 +87,63 @@ case
 break
 default
 
-todo --funciones (definición)-- 
-function
-return
+todo --definición de funciones--  
+function myFunction(){}
 let/var/const = function(a,b){};
+x = Function()
+//arrow functions
+const x = () => {}
+const x = () => "value"
+const x = item => item * 2;
+const x = (item1, item2) => item1 * item2;
+//arrow function + object property shorthand
+const x = (item1, item2) => ({item1 , item2}); 
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
 
 todo --memory structures--
 [[{}],[{}]]
 
-todo --funciones--
-Object.freeze()
+todo --methods of Global? Object--
+Math.min()
+Math.max()
 Math.floor()
 Math.random()
+Math.round()
 console.log()
 parseInt()
   :* parseInt("")
   :* parseInt ("", radix)
+Object.freeze()
 
 
-todo --métodos
-.hasOwnProperty(propname) 
-.push()
-.pop()
-.shift()
-.unshift()
-.match()
-.splice()
-.concat()
+todo --methods of objects--
+//--string + array methods
+hasOwnProperty(propname) 
+push()
+pop()
+shift()
+unshift()
+match()
+splice()
+concat()
+tuUpperCase()
+
+//--array methods
+map()
+filter()
+reduce()
+slice()
+ 
+//especiales
+call()
+apply()
+
+
 
 
 todo --properties--
@@ -135,20 +208,283 @@ todo --logical operators--
 &&
 ||
 
-todo --6--
-let
+todo --ES6--
+let 
 "use strict"
+...
+// destructuring assignment
+const {key1,key2} = var
+// template literals
+${}
+``
+./
+export
+import
+get
+set
+
+
 *==fMAP========================================================-->
 
+¡==iSummary/review====================================================-->
+todo ES6 summary
+var vs let vs const
+"use strict"
+...
+Object.freeze()
+() =>
+default parameters in functions
+destructuring assignment
+    1. from objects
+    2. from nested objects
+    3. arrays
+    4. pasar un objeto a una función como si fueran parámetros
+template literals
+Object Property Shorthand
+Declaración de métodos de objetos corta
+Declaración de constructor usando la sintaxis "class"
+
+
+repasando
+* var te deja reasignar y let lanza un error
+* poner en mayúsculas las constantes
+* const hace que no puede cambiar la asignación al objeto pero el objeto puede seguir mutando.
+* no hace falta poner mayúsculas a las variables que van a almacenar una función
+* escribir siempre const para variables que almacenan funciones
+¡==fSummary====================================================-->
 ?==iSINTAXIS===================================================-->
-* Function()
-var myFunction = new ("a", "b", "return a * b");
-* var x = function
-var x = function function (a,b){return a*b};
-var Myfucntion = function function (a,b){return a*b};
+* definir función : function
+function myFunction(param1, param2){
+    code(param1,param2);
+    return myVar;
+}
+* Definir función mediante una expresión asignándola a una variable y usando el constructor: Function()
+var myFunction = new Function("a", "b", "return a * b");
+* Definir función asignándola a una variable usando : function
+var x =  function (a,b){return a*b};
+var Myfucntion =  function (a,b){return a*b};
 * const
     const FAV_PET = "Dogs";
 * Object.freeze()
+Object.freeze(obj);
+//no haría falta almacenar la arrow function en una variable, se puede usar en cualquier parte borrar variables??
+* Arrow function w/ body
+const x = (par1,par2) => {}
+* Arrow function w/o body
+const x = (par1,par2) => "value"
+* Arrow function w/ only 1 param
+const x =word => word.length <= 3
+* spread operator
+    //1
+    var arr1 = ['edu','juan'];
+    var arr2 = ['carlos', ...arr1, 'pepe'];
+    //2
+    function add(x,y,z){
+            console.log(x+y+z)
+            }
+    var args = [0,1,2];
+    add(...args);
+    //3
+    var arr = [1,2];
+    var arr2 = [...arr];
+    //4
+    arr1 = [1,3];
+    arr2 = [2,4];
+    arr3 = [...arr1,"edu", arr2];
+* rest parameter
+function myFunction(...args){}
+* map()
+var newArray= arr.map(myFunction);
+function MyFunction(num){ return num * 10}
+* filter()
+const filtered = [2,4,-3,-2].filter(isPositive);
+function isPositive(value){return value > 0}
+* reduce()
+const reduced = [2,3,4].reduce(getSum,0);
+function getSum(total,num){return total + Math.round(num)}
+* definir el método de una función
+    const person = {
+        firstName : "Eduardo",
+        lastName : "Diaz",
+        fullName : function() {return this.firstName + " " + this.lastName;}
+    }
+* invocar el método de una función
+    //sobre ejemplo anterior
+    person.fullname(); // "Eduardo Díaz"
+* Acceder a la definición de un método de una función
+    //sobre ejemplo anterior
+    person.fullname; //function() {return this.firstName + " " + this.lastName;}
+* Añadir un método a un objeto
+    person.name = function(){
+        return this.firstName;
+    }
+* call()
+    //setup
+    const person = {
+        fullName : function(){
+            return this.firstName + " " + this.lastName;
+        }
+    }
+    const person1 = {
+        firstname: "Eduardo",
+        lastName: "Diaz"
+    }
+    //use
+    person.fullName.call(person1); // "Eduardo Díaz"
+* call() with arguments
+    //setup
+    const person = {
+        fullName : function(city){
+            return this.firstName + " " + this.lastName + ", " + city + ", " + country;
+        }
+    }
+    const person1 = {
+        firstname: "Eduardo",
+        lastName: "Diaz"
+    }
+    //use
+    person.call(fullName,"Sevilla", "España"); // "Eduardo Díaz, Sevilla, España"
+* apply()
+    //sobre el ejemplo anterior
+    person.apply(fullName,["Sevilla","España";)
+* Math.max()
+    Math.max(1,2,3); //3
+* Math.max() sobre un array usando apply()
+    Math.max.apply(null,[1,2,3]);//3
+* Math.max() sobre un array usando spread operator
+const arr = [1,2,3];
+Math.max(...arr);
+* asignación desestructurada
+const user = { name: 'John Doe', age: 34 };
+const {name: userName, age: userAge} = user; // const userName = "John doe"; const userAge = 34;
+* asignación destructurada desde un objeto anidado
+    //setup
+    const LOCAL_FORECAST = {
+        yesterday: { low: 61, high: 75 },
+        today: { low: 64, high: 77 },
+        tomorrow: { low: 68, high: 80 }
+    };
+    //solución
+    const { today:{ low: lowToday, high:highToday}} = LOCAL_FORECAST;
+* asignación desestructurada con arrays
+const [a, b] = [1, 2, 3, 4, 5, 6]; // //a = 1; a = 2;
+//ej2
+let a = 8, b = 6;
+[a,b] = [b,a] // a = 6; b = 8  
+* declaración de 2 variables en la misma línea
+let a = 8, b = 6;
+* slice()
+var names =['edu','mata','luz','maria'];
+var males = names.slice(2,3); //females= ['luz','maria']
+* array desctructuring assignment + rest parameter
+const [a,b,...arr] = [1,2,3,4,5];
+console.log(a,b); //1,2
+console.log(arr); // [3,4,5]
+* destructuring assignment: pasar un objeto a una función
+//setup
+const stats = {
+        max: 56.78,
+        min: -0.75,
+        average: 35.85
+    };
+//definition1
+const half = (stats) =>{
+    const{max,min} = stats;
+    return (max + min) / 2.0; 
+} 
+//definition2
+const half = ({max,min}) => (max + min) / 2.0; 
+}
+//use
+console.log(half(stats));
+
+* Object property shorthand
+
+//normal2
+const getMousePosition = (x,y) => (
+    {
+        x: x,
+        y: y
+    }
+);
+//object property shorthand
+const getMousePosition = (x, y) => ({x , y}); 
+//use
+getMousePosition(); // produce un objeto tal que objeto = {x=coordenada x del raton, y=coordenada y del ratón}
+* new Object()
+// crear un objeto usando object literal
+var person = {firstName:Eduardo, lastName: Diaz}
+// usando new Object();
+var person = new Object();
+person.firstName = "Eduardo";
+person.lastName = "Diaz";
+* función constructora de objetos 
+    function Person(first, last, age, eye){
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyecolor = eye;
+    }
+* class constructor
+    class Person{
+        constructor(first, last, age, eye){
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyecolor = eye;
+        }
+    }
+* getters and setters
+    class Person{
+        constructor(name,age){
+            this._name = name;
+            this._age = age;
+        }
+
+        get name(){
+            return this._name;
+        }
+        get age(){
+            return this._age;
+        }
+        get birthYear(){
+            return 2000 - this._age;
+        }
+        set name(name){
+            this._name = name;
+        }
+        set age(age){
+            this._age = age;
+        }
+    }
+* import javascript module
+<script type="module" src="filename.js"></script>
+* export (named export)
+//variant1
+ const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+const lowercaseString = (string) => {
+  return string.toLowerCase()
+}
+
+export {uppercaseString, lowercaseString};
+
+//variant 2
+export const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+export const lowercaseString = (string) => {
+  return string.toLowerCase()
+}
+* import
+import {function1,function2} from './index.js';
+* import * as
+import * as stringFunctions from "./string_functions.js";
+
+
 
 ?==fSINTAXIS===================================================-->
 
@@ -236,8 +572,543 @@ todo==iTeoría==================================================-->
   }
 
 //Excepción: [TypeError: "PI" is read-only]
+* 19. A veces no interesa nombrar una función porque la usamos una vez solamente.
+    * Se haría así:
+    //Aquí estamos declarando una función que simplemente devuelve un valor cuando
+    //se la invoca. 
+    const myFunc = function (){
+        const myVar = "value";
+        return myVar;
+    }
+todo objects
+* 20 Todo en javaScript son objetos salvo los primitivos
+    * Booleans, Numbers y Strings pueden ser también objetos si se definen usando
+        * "new"
+    * primitives data types(immutable)
+        * string
+        * number
+        * boolean
+        * null
+        * undefined
+    * los objetos también son variables pero pueden contener múltiples valores
+        var person = {firstName:Eduardo, lastName: Diaz}
+    * methods: acciones que se pueden hacer en objetos
+    * las propiedades de un objeto pueden ser: primitivos, objetos y funciones!
+        var person = {firstName:Eduardo, lastName: Diaz, fullName = function(){return this.firstName + " " + this.lastName;}}
+* 21. Cómo crear objetos en javaScript:
+    * 1. Usando object literal: define y crea un objeto en una sola  declaración
+        f
+    * 3. Definir un constructor y crear objetos usándolo.
+    * 4. ES5-> Object.create()
+todo fin objects
+* 22. Se le pueden pasar argumentos a una arrow function
+    const doubler = (item) => item * 2;
+* 23. Si una arrow function tiene un solo parámetro se pueden omitir los paréntesis
+    const doubler = item => item * 2;
+* 24. se puede pasar más de un argumento a una arrow function
+    const double = (item, multi) => item * multi;
+* 25. Al declarar una arrow function o una función se pueden establecer parámetros
+    * por defecto.
+    const greeting = (name = "Anonymus") =>{ "Hello" + name;
+    // recuerda, como le pasa un string como argumento a la función la pone con comillas ""
+    console.log(greeting("John")); //Hello John
+    console.log(greeting()); // Hellow Anonymus
+* 26 métodos de objetos: 
+    * Declaración
+    const person = {
+        firstName : "Eduardo",
+        lastName : "Diaz",
+        fullName : function() {return this.firstName + " " + this.lastName;}
+    }
+    console.log(person.fullName()); //"Eduardo Díaz"
+
+
+
+todo spread/rest operator
+* 27 spread operator: ...
+    ¡ expande los elementos de un array
+    * Añade elementos de un array a otro array
+        var arr1 = ['edu','juan'];
+        var arr2 = ['carlos', ...arr1, 'pepe'];
+        console.log(arr2); //['carlos', 'edu','juan', 'pepe'];
+        //si hubiésemos puesto arr1 en lugar de ...arr1 hubiese metido el array entero
+        //pero al poner el spread operator (...) sólo introduce los elementos.
+    * Pasar elementos de un array como argumentos a una función
+        //Si args tuviese un cuarto elemento, éste sería ignorado porque la función solo acepta 3 parámetros
+        //notese que estamos usando spread y no rest porque estamos usando ... para pasar  argumentos a una función
+        // y no para pasar parámetros a una definición de función (como haríamos con rest operator)
+        function add(x,y,z){
+            console.log(x+y+z)
+            }
+        var args = [0,1,2];
+        add(...args); //3
+    * Para copiar arays
+        //arr y arr2 son objetos distintos, sólo se está copiando el contenido
+        var arr = [1,2];
+        var arr2 = [...arr]; //arr2 = [1,2];
+    * Concatenar arrays
+        arr1 = [1,3];
+        arr2 = [2,4];
+        arr3 = [...arr1,"edu", arr2]; //arr3 = [1,3,"edu",2,4];
+    * Pasarle el contenido de un array a una función que no acepta arrays sin necesidar de usar apply()
+        const arr = [ 1,2,3,4]:
+        Math.max(...arr);//4
+todo --rest parameter
+* 28 rest parameter: ...
+    ¡ expresa un número indefinido de parámetros en un array
+    * Al tener los argumentos en un array podemos usar reduce(), map() y filter() que son métodos de los array en javaScript.
+    1. reduce(): 
+        ¡ejecuta una función reductora (la que le pasemos) en cada elemento del array y devuelve un sólo elemento.
+        // Sintaxis: arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
+        //index, array y initialvalue son opcionales
+        * Explicación: la función ejecuta el "callback" (function/arrow) una vez por cada elto del array. Y toma 4 argumentos:
+            * 1. accumulator: 
+                // si hay initialValue accumulator toma dicho valor y currentValue será el primer valor del array.
+                // Si no hay initialValue accumulator toma el primer valor del array y currentValue el segundo.
+            * 2. currentValue
+            * 3. currentIndex
+            * 4. array
+        //Ejemplo: suma todos los valores de una función (arrow function)
+        //En este ejemplo, callback es la arraow function que pasa dos argumentos que además se llaman como los eltos
+        //de la sintaxis (qué apropiado), la función siplemente los suma
+        // el valor inicial es cero
+        let total = [0,1,2,3].reduce(
+            (accumulator, currentValue) = > accumulator + currentValue,
+            0
+        )
+        //Mimo ejemplo usando sintaxis de function
+        let sum = [0,1,2,3].reduce(function(accumulator,currentValue){
+                                        return accumulator + currentvalue;
+                                        }, 0
+                                    )
+    2. map(): 
+        ¡Crea un nuevo array al aplicar una función dada a cada uno de sus elementos
+            const arr=[1,2,3];
+            const double= (a,b)=> a*b;
+            const doubledArray= arr.map(double);
+            console.log(doubledArray); // [2,4,6]
+    3. filter():
+        ¡Crea un nuevo array con los elementos de un array que pasen un test implementado en la función dada
+        const words = ['edu','ale','eve','juan','paco'];
+        const shortWords = (word => word.length <= 3);
+        const filteredWords = words.filter(shortWords);
+        console.log(filteredWords); //["edu", "ale", "eve"]
+* 29 destructuring assignment: Lo que hace es "abrir" un objeto y crear variables con los atributos de dicho objeto
+    //setup
+    const user = { name: 'John Doe', age: 34 };
+    // destructuring assignment
+    const {name,age} = user;
+    // es lo mismo que escribir
+    const name = user.name;
+    const age = usern.age;
+* 30 Podemos usar la asignación desestructurada para asignar nuevos valores de variables
+    //sobre el ejemplo anterior
+    const {name: userName, age: userAge} = user;
+* 31. cuando hay anidamiento
+    // lo que se hace es poner primero el tipo de variable, se abren llaves, nombre del objeto + colon
+    // se abren llaves y así.
+    const LOCAL_FORECAST = {
+    yesterday: { low: 61, high: 75 },
+    today: { low: 64, high: 77 },
+    tomorrow: { low: 68, high: 80 }
+    };
+    const { today:{ low: lowToday, high:highToday}} = LOCAL_FORECAST;
+* 32. * array desctructuring assignment + rest parameter
+    //al usar rest parameter, la asignación de los elementos se hace a un array
+    const [a,b,...arr] = [1,2,3,4,5];
+    console.log(a,b); //1,2
+    console.log(arr); // [3,4,5]
+* 33. Se puede hacer un console.log() de varias variables separándolas por comas.
+    console.log(a,b);
+* 34. Se puede pasar un objeto con todos sus atributos a una función, para desestructurarlos
+    * ahí y hacer cosas con ellos
+    const profileUpdate = (profileData) => {
+        const {name,age, nationality, location} = profileData;
+        //code using attributes
+    }
+    //ejemplo
+    //objeto
+    const stats = {
+        max: 56.78,
+        standard_deviation: 4.34,
+        median: 34.54,
+        mode: 23.87,
+        min: -0.75,
+        average: 35.85
+    };
+    //pasamos el objeto como argumento a la arrow function
+    const half = (stats) =>{
+        //desenvolvemos las variables max y min del objeto
+        const{max,min} = stats;
+        //hacemos algo con el código
+        return (max + min) / 2.0; 
+    } 
+
+    console.log(half(stats));
+* 35. Se puede hacer todavía más reducido:
+    const profileUpdate = ({name, age, nationality, location}) =>{
+        //code;
+    }
+    //ejemplo
+    const stats = {
+        max: 56.78,
+        standard_deviation: 4.34,
+        median: 34.54,
+        mode: 23.87,
+        min: -0.75,
+        average: 35.85
+    };
+
+    //pasamos directamente, entre llaves los dos atributos del objeto que se usarán
+    //usando la sintaxis de arrow function decimos que devuelve la media
+    const half = ({max,min}) => (max + min) / 2.0; 
+
+    console.log(half(stats));
+
+* 36. La novedad con la asignación desestructurada con los arrays es que se pueden
+    * poner arrays a ambos lados de la igualdad que vienen a equivaler entre ellos.
+todo --template literals
+* 37. Una manera de crear strings más sencilla y potente:
+    *1. Se usan backsticks `` en lugar de '/" para encerrar los strings
+    *2. ${} para introducir expresiones como atributos de objetos u otras exp. matemáticas
+    *3. Respeta los saltos de línea por lo que no hay que poner \n
+* 38 Una función que devuelve un objeto persona
+    *1. Crea una constante que almacena una función
+    *2. La función usa sintaxis arrow por lo que no usa nombre
+    *3. Recibe 3 parámetros: name, age, gender
+    *4. la propia función lo que hace es devolver un objeto (mira las llaves Edu)
+    *5. El objeto tiene 3 atributos llamados: name, age y gender que van a recibir los valores
+        * que se llaman igual, que le llegarán como argumentos cuando se invoque la función.
+        const createPerson = (name, age, gender) => {
+        "use strict";
+            return {
+                name: name,
+                age: age,
+                gender: gender
+            };
+        };
+* 39. La función anterior se puede reducir usando object property shorthand
+        const createPerson = (name, age, gender) => {
+        "use strict";
+        return {
+            name,
+            age,
+            gender
+        };
+        };
+* 40. ECMASCRIPT5 creación de un objeto con un método
+const person = {
+    name: "Edu",
+    sayHello: function(){
+        //al usar this. se devuelve el nombre del propio objeto
+        return `Hello! My name is ${this.name}`;
+    }
+}
+* 41. Esto se puede hacer más corto con ES6
+const person = {
+    name: "Edu",
+    sayHello(){
+        return `Hello! My name is ${this.name}`;
+    }
+}
+
+todo constructores
+
+* 42. Función constructora de objetos
+    function Person(first, last, age, eye){
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyecolor = eye;
+    }
+* 43. Creación de objetos del mismo tipo
+    var myGirlfriend = new Person("Velvet","Red",38,"hazel");
+    var myMother = new Person("Luz","Dominguez",60,"brown");
+* 44. Para añadir una propiedad a un constructor hay que añadirlo a la función, no vale
+    * añadirlo como se añade un atributo a un objeto ya creado.
+* 45 Sintaxis Class para crear funciones constructoras
+    class Person{
+        constructor(first, last, age, eye){
+            this.firstName = first;
+            this.lastName = last;
+            this.age = age;
+            this.eyecolor = eye;
+        }
+    }
+* 46 class declara una función
+* 47 constructor() es invocado cuando se usa "new"
+* 48 UpperCamelCase se debe de usar al crear funciones constructoras
+* 49 Getters, setters & constructor
+    * 1. usar _ para las variables "privadas" que en realidad no lo son.
+    * al usar getter se simplifica la sintaxis para acceder a un valor del objeto
+        Thermostat.temperature //aquí estamos usando el getter
+        Thermostat.temperature() // esto es lo que tendríamos que usar si temperature fuera un método del objeto
+
+    //creación de objeto
+    class Thermostat{
+    constructor(f){
+        this._temperature = f;
+    }
+    //getter
+    get temperature(){
+        return  5/9 * (this._temperature - 32)
+    }
+    //setter
+    set temperature(celsius){
+        this._temperature = (celsius * 9) / (5 + 32);
+    }
+    }
+
+    //creación del objeto 
+    const thermos = new Thermostat(76); // Al pasarle una temperatura el objeto la almacena en Fahrenheit
+    //usando el getter. Al acceder a thermos.temperature es get temperature() lo que se está ejecutando 
+    let temp = thermos.temperature; // 24.44 in Celsius
+    //usando setter al asignar un valor con = el objeto usa set temperature 
+    //el setter actualiza la temperatura del objeto, que se almacena en Fahrenheit porque en el setter se
+    //realiza una conversión 
+    thermos.temperature = 26;
+
+    temp = thermos.temperature; // 26 in Celsius
+
+    //
+    const thermos = new Thermostat(80);
+    let temp = thermos.temperature;
+
+* 50 Par poder importar y exportar trozos de código entre archivos javaScript hay que introducir esta línea
+<html>
+  <body>
+  //esta
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
+
+*51 export default sirve como plan alternativo para cuando un módulo o archivo no se puede exportar
+    * No se puede usar con :
+        * var
+        * let
+        * const
+    export default function subtract(x, y) {
+         return x - y;
+    }
+* 52 Para importar una función que ha sido exportada con default
+    * Es importante recalcar que variableName puede tener cualquier nombre. 
+    * En esa variable quedará almacenado el expor defualt del archivo math_functions.js si que lo hubiere.
+    * Para usar esa función default no hay más que usar el nombre que le hemos puesto más los argumentos.
+    import variableName from "./math_functions.js";
+    variableName(arg1,arg2);
+todo Promise()
+* 53 Promise es un objeto de javascript que se usa cuando algo tarda mucho en ejercutarse.
+    * Cuando se termina de ejecutar, se cumple la promesa o no.
+    * La promesa es un constructor, que usa una función especial como argumento.
+    * Dicha función tendrá 2 métodos que se usan para determinar el resultado de la promesa
+        * resolve
+        * reject
+    * Una promesa tiene 3 estados:
+        * pending: cuando aun no se ha resuelto
+        * fulfilled: cuando se ha cumplido la promesa
+        * rejected: cuando se ha rechazado la promesa
+    * Normalmente a resolve y reject se le pasan como argumentos objetos que tienen una información que queremos mostrar.
+    * El método then del objeto Promise se ejecuta inmediatamente después de que una promesa cambia a estado fullfiled (resolve se ha ejecutado)
+    * El método catch se ejecuta cuando la promesa cambia a estado rejected (el método reject se ha ejecutado)
+    * result es el objeto que se le pasa al método resolve()
+    * error es el objeto que se le suele pasar al método reject()
+
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+  
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
 
 todo==fTeoría==================================================-->
 
 !=iSNIPPETS===================================================-->
+
+
+* 1. Una función que devuelve un objeto Date() usando arrow functions
+    const magic = () => {
+        "use strict";
+        return new Date();
+    };
+* 2. Una función que, incremente un número en la unidad que nosotros elijamos.
+    * Usa default parámeters para que, si no indicamos el incremento, aumente  en 1 unidad
+    const increment = (number, value = 1) => number + value;
+    console.log(increment(1)) //2
+    console.log(increment(1,2))//3
+* 3. Una función que toma un número indefinido de parámetros y devuelve la suma de los mismos, la
+    * función deberá usar "rest parameter" + el método reduce()
+    const sum = (...args) => {
+        return args.reduce((a, b) => a + b, 0);
+    }
+* 4. Una función que toma 3 números como argumento y devuelve la multiplicación de los mismos. Usará
+    * un array y el método reduce para hacerlo además de arrow function
+    //aquí el valor inicial es 1 para poder acumular los productos
+    const product = (n1,n2,n3) =>{
+        const args = [n1,n2,n3];
+        return args.reduce((a,b) => a * b,1);
+    }
+* 5. La misma función que la anterior pero pudiendo pasar cualquier argumento
+    const product = (...args) =>{
+        return args.reduce((a,b) => a * b,1);
+    }
+* 6. La misma función que la anterior pero usando sintaxis de function
+    //Aquí he querido separar "reducer" y luego invocar reduce() pasándole el callback como argumento porque así se ve más claro
+    // que initial value es igual a 1.
+    const reducer = function(a,b){return a*b;}
+
+    const product = function(...args){
+    return args.reduce(reducer,1);
+    }
+    console.log(product(1,2,3));
+* 7. Ahora el mismo código que el anterior pero usando arrow function
+    const reducer = (a,b)=>{return a*b;}
+    const product = (...args)=>{
+    return args.reduce(reducer,1);
+    }
+    console.log(product(1,2,3));
+* 8. Extrae, usando asignación desestructurada, los atributos low y high del objeto anidado today dentro del objeto
+    * LOCAL_FORECAST. Cámbiales el nombre a lowToday y highToday
+    //setup
+    const LOCAL_FORECAST = {
+        yesterday: { low: 61, high: 75 },
+        today: { low: 64, high: 77 },
+        tomorrow: { low: 68, high: 80 }
+    };
+    //solución
+    const { today:{ low: lowToday, high:highToday}} = LOCAL_FORECAST;
+* 9. Una función que extraiga a todos los elementos de un array salvo los dos primeros
+    * usa asignación desestructurada de array ES6 y rest parameter
+    
+        const source = [1,2,3,4,5,6,7,8,9,10];
+        function removeFirstTwo(list) {
+        "use strict";
+        //Explicación: las primeras dos comas se saltan los dos primeros elementos
+        //...arr = asigna a un array llamado arr el resto de elementos del array que le llega
+        //por parámetro
+        const [,,...arr] = list; // Change this line
+        return arr;
+        }
+        const arr = removeFirstTwo(source);
+
+* 10 Una función que extraiga los valores un array y los presente como en el siguiente array:
+    * Usa un bucle iterativo y template literals
+[
+  '<li class="text-warning">no-var</li>',
+  '<li class="text-warning">var-on-top</li>',
+  '<li class="text-warning">linebreak</li>'
+]
+todo --solución edu
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["id-blacklist", "no-dup-keys"]
+};
+function makeList(arr) {
+  "use strict";
+
+  const resultDisplayArray = [];
+  for(let i=0; i < arr.length; i++){
+    if(i === 0){
+      const resultDisplayArray = [];
+    }  
+    resultDisplayArray[i]= `<li class="text-warning">${arr[i]}</li>`;
+  }
+  
+
+  return resultDisplayArray;
+}
+
+const resultDisplayArray = makeList(result.failure);
+
+todo --solución con map() y sin bucle
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["id-blacklist", "no-dup-keys"]
+};
+function makeList(arr) {
+  "use strict";
+    //map() genera un array aplicando una función a cada elemento del array que le pasamos
+    // la función es crear un string template en cuyo interior simplemente se le pasa el elemento del array uno a uno
+    //que maravilla
+    const  resultDisplayArray = arr.map( blas => `<li class="text-warning">${blas}</li>`) ;
+
+  return resultDisplayArray;
+}
+
+const resultDisplayArray = makeList(result.failure);
+
+*11. Una función que incorpora un método que cambia el valor de uno de sus atributos
+    * Usa string template + declaración de método tipo ES6
+    const bicycle = {
+        gear: 2,
+        setGear(newGear) {
+            "use strict"
+            this.gear = newGear;
+        }
+    };
+
+        bicycle.setGear(3);
+        console.log(bicycle.gear);
+
+*12 Crea una constructor usando la sintaxis class. El objeto será de tipo Vegetable y al pasarle 
+    * un nombre al constructor, el objeto tomará ese nombre
+
+class Vegetable{
+  constructor(name){
+    this.name = name;
+  }
+}
+
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // Should display 'carrot'
+
+*13. Crea un constructor de un objeto Thermostat. Usando la sintaxis de class y getters y setters 
+* haz que devuelva la temperatura en Celsius.
+//creación de objeto
+class Thermostat{
+  constructor(f){
+    this._temperature = f;
+  }
+  //getter
+  get temperature(){
+    return  5/9 * (this._temperature - 32)
+  }
+  //setter
+  set temperature(celsius){
+    this._temperature = (celsius * 9) / (5 + 32);
+  }
+}
+
+//creación del objeto 
+const thermos = new Thermostat(76); // Al pasarle una temperatura el objeto la almacena en Fahrenheit
+//usando el getter
+let temp = thermos.temperature; // 24.44 in Celsius
+//usando setter
+thermos.temperature = 26;
+//usando getter de nuevo
+temp = thermos.temperature; // 26 in Celsius
+
+* Un variable que almacene una Promesa 
+    const makeServerRequest = new Promise((resolve, reject) => {
+    // responseFromServer represents a response from a server
+    let responseFromServer;
+        
+    if(responseFromServer) {
+        resolve("We got the data");
+    } else {  
+        reject("Data not received");
+    }
+    });
+
 !=fSNIPPETS===================================================-->
