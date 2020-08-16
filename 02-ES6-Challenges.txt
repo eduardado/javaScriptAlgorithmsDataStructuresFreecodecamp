@@ -9,37 +9,7 @@ Notas:
     
 
 *==iMAP========================================================-->
-todo --promise--
-const makeServerRequest = new Promise((resolve,reject) =>{
-    if(condition){
-        resolve("Promise fulfilled");
-    }else{
-        reject("Promise rejected");
-    }
-  
-});
 
-makeServerRequest.then(result => {
-  console.log(result);
-});
-
-ServerRequest.catch(error =>{
-  console.log(error);
-})
-
-//estados de una promesa
-pending
-fulfilled()
-rejected()
-
-todo --import/export--
-//file.js both in the same directory "./"
-export {function1,function2};
-import {function1,function2} from './index.js';
-import * as myObject from './index.js';
-//default fallback
-export default function(){}
-import variableName from "./index.js";
 
 todo --built in Objects--
 Date()
@@ -60,6 +30,10 @@ let
 
 todo --ternary conditional--
 condition ? code-true : code-false
+//multiple
+(a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
 
 todo --loops--
 while(cond){}
@@ -68,15 +42,13 @@ do{}while(condition);
 if(){}else{}else return;
 
 
-todo --object
+todo --objects--
 var object = {att=value};
 .
 ["']
-delete
+delete objectName.propertyName
 
 
-todo --regex
-/ /
 
 todo --flux--
 if
@@ -87,23 +59,6 @@ case
 break
 default
 
-todo --definición de funciones--  
-function myFunction(){}
-let/var/const = function(a,b){};
-x = Function()
-//arrow functions
-const x = () => {}
-const x = () => "value"
-const x = item => item * 2;
-const x = (item1, item2) => item1 * item2;
-//arrow function + object property shorthand
-const x = (item1, item2) => ({item1 , item2}); 
-
-todo --spread operator--
-...
-
-todo --rest parameter--
-...
 
 todo --memory structures--
 [[{}],[{}]]
@@ -208,20 +163,73 @@ todo --logical operators--
 &&
 ||
 
-todo --ES6--
-let 
+¡ --ES6--
 "use strict"
 ...
-// destructuring assignment
+todo --destructuring assignment
 const {key1,key2} = var
-// template literals
+todo --template literals--
 ${}
-``
+`` -> back ticks
+
 ./
-export
-import
-get
-set
+
+todo --promise--
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+  
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+todo --definición de funciones--  
+function myFunction(){}
+let/var/const = function(a,b){};
+x = Function()
+//arrow functions
+const x = () => {}
+const x = () => "value"
+const x = item => item * 2;
+const x = (item1, item2) => item1 * item2;
+//arrow function + object property shorthand
+const x = (item1, item2) => ({item1 , item2}); 
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
+
+todo --static reference/static object
+let
+const
+Object.freeze()
+
+
 
 
 *==fMAP========================================================-->
