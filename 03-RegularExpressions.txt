@@ -1,0 +1,390 @@
+# javaScriptAlgorithmsDataStructuresFreecodecamp
+## Regular Expressions
+Start:  16/08/2020
+Pomodoros:  
+Notas: 
+    - "Better Comments" ; Visual Studio Code
+    - MAP arrastrado de 02-ES6-Challenges.txt
+    
+¡---------------------------------------------------------------->  
+//--------------------------------------------------------------->
+
+*==iMAP========================================================-->
+todo --class, getters & setters--
+//class
+class ObjectName{
+  constructor(x){
+    this._attribute = x;
+  }
+  //getter
+  get attribute(){
+    return  this._attribute;
+  }
+  //setter
+  set temperature(y){
+    this._temperature = y;
+  }
+}
+//use
+const ObjectName = new ObjectName(z); //constructor use
+let temp = ObjectName.attribute; //getter use
+ObjectName.attribute = value; //setter use
+
+todo --promise--
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+todo --built in Objects--
+Date()
+String()
+Number()
+Boolean()
+Array()
+RegExp()
+Function()
+
+
+todo --variables--
+const
+var
+let
+
+
+todo --ternary conditional--
+condition ? code-true : code-false
+
+todo --loops--
+while(cond){}
+for ([initialization]; [condition]; [final-expression]){}
+do{}while(condition);
+if(){}else{}else return;
+
+
+todo --object
+var object = {att=value};
+.
+["']
+delete
+
+
+todo --regex
+/ /
+
+todo --flux--
+if
+else if
+else
+switch
+case
+break
+default
+
+todo --definición de funciones--  
+function myFunction(){}
+let/var/const = function(a,b){};
+x = Function()
+//arrow functions
+const x = () => {}
+const x = () => "value"
+const x = item => item * 2;
+const x = (item1, item2) => item1 * item2;
+//arrow function + object property shorthand
+const x = (item1, item2) => ({item1 , item2}); 
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
+
+todo --memory structures--
+[[{}],[{}]]
+
+todo --methods of Global? Object--
+Math.min()
+Math.max()
+Math.floor()
+Math.random()
+Math.round()
+console.log()
+parseInt()
+  :* parseInt("")
+  :* parseInt ("", radix)
+Object.freeze()
+
+
+todo --methods of objects--
+//--string + array methods
+hasOwnProperty(propname) 
+push()
+pop()
+shift()
+unshift()
+match()
+splice()
+concat()
+tuUpperCase()
+
+//--array methods
+map()
+filter()
+reduce()
+slice()
+ 
+//especiales
+call()
+apply()
+
+
+
+
+todo --properties--
+'vale para strings y para arrays (borrame cuando me entiendas bien)
+.length 
+
+todo --tipos--
+undefined 
+null
+boolean
+string
+symbol
+bigint
+number
+object 
+
+todo --operators--
+: ! -> not
+= -> asignación
++ -> adición/concatenation : number/string
+- -> substraction
+:* -> multiplication
+/ -> division
+++ -> increment
+-- -> decrement
+% -> remainder
++= -> 
+-=
+:*=
+/=
+typeof
+
+todo --comparison operators--
+'ojo todos los comparadores devuelven true/false --> borrar esto cuando esté asimilado.
+==
+=== [strict]
+:!=
+:!== [strict]
+>
+>=
+<
+<=
+
+
+todo --escape chracters--
+\"
+\'
+\\
+\n
+\r
+\t
+\b
+\f
+
+todo --postfix/prefix increment
+++i -> prefix increment
+i++ -> postfix increment
+--i -> prefix decrement
+i-- -> postfix decrement
+
+todo --logical operators--
+&&
+||
+
+¡ --ES6--
+
+todo --use strict--
+"use strict"
+
+todo --destructuring assignment
+const {key1,key2} = var
+todo --template literals--
+${}
+`` -> back ticks
+
+
+
+todo --Promise()--
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+  
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+todo --definición de funciones--  
+function myFunction(){}
+let/var/const = function(a,b){};
+x = Function()
+//arrow functions
+const x = () => {}
+const x = () => "value"
+const x = item => item * 2;
+const x = (item1, item2) => item1 * item2;
+//arrow function + object property shorthand
+const x = (item1, item2) => ({item1 , item2}); 
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
+
+todo --static reference/static object
+let
+const
+Object.freeze()
+let 
+"use strict"
+...
+// destructuring assignment
+const {key1,key2} = var
+// template literals
+${}
+`` ->template string
+./ 
+export
+import
+get
+set
+
+todo --Passing object as a function parameter--
+//setup
+const stats = {max: 56.78, min: -0.75};
+//def normal
+const half = (stats) => (stats.max + stats.min) / 2.0; 
+//definition using destructuring assignment
+const half = (stats) =>{
+    const{max,min} = stats;
+    return (max + min) / 2.0; 
+} 
+//definition reduced (no entire object)
+const half = ({max,min}) => (max + min) / 2.0; 
+}
+
+//use
+console.log(half(stats));
+
+
+//normal
+const getMousePosition = (x,y) => ({x: x, y: y});
+//object property shorthand
+const getMousePosition = (x, y) => ({x , y});
+
+¡ --regular expressions--
+://
+todo --match()--
+'string'.match(/regex/) ["instance1","instance2"]
+todo --test()--
+/regex/.test('string'); //true/false
+todo --OR--
+let petRegex = /dog|cat|bird|fish/
+todo --flags--
+/regex/ig;
+* ignore case flag
+ /regex/i
+* global flag  all the regex that coincide, not only one
+/regex/g
+*wild card character
+/./
+* character class
+[]
+* range of characters
+-
+//letters & numbers
+letter1-letter2number1-number2 Ej: /[a-c2-5]/ bórrame pronto
+
+*==fMAP========================================================-->
+
+
+
+?==iSINTAXIS===================================================-->
+    hoalaa
+
+?==fSINTAXIS===================================================-->
+todo==iTeoría==================================================-->
+
+*1. test() es un método de objetos tipo expresión regular, al que le pasamos como parámetro un string para ver si tiene un regex o no. 
+    * Devuelve true/false
+*2 Los regex son case sensitive
+*3 match() es un método que hacemos a un string, le pasamos un regex como argumento y devuelve un array una instancia
+*4 si ponemos a = /regex/g al hacer 'string'.match(a) match devolverá todas la instancias y no sólo 1.
+*5 las flags se pueden combinar /regex/gi
+*6 . es cualquier caracter
+*7 [] Significa cualquier de los aquí presentes
+*8 si hacemos un match de un string y colocamos un regex como argumento para el cual no se encuentra nada, match()
+  * devuelve "null"
+
+todo==fTeoría==================================================-->
+!=iSNIPPETS===================================================-->
+*1. Encuentra un regex dentro de un string y devulve un array con todas los ejemplos encontrados
+let extractStr = "Extract the word 'coding' from this string.";
+let codingRegex = /coding/; 
+let result = extractStr.match(codingRegex); 
+
+*2. Un programa que devuelva en un array, todas las vocales de un string en order.
+let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
+let  vowelRegex= /[aeiou]/ig; 
+let result = quoteSample.match(vowelRegex);
+
+!=fSNIPPETS===================================================-->
