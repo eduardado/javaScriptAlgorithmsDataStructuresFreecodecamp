@@ -371,8 +371,16 @@ test()
 \D
 \s
 \S
-{}
-{,}
+{min,max}
+{min,}
+{exact}
+(?=...)
+(?!...)
+(|)
+()/1
+/^()()$/
+replace(regex,"string")
+"string".replace(/(\w+)\s(\w+)/,"$2 $1"); 
 
  
 *==fMAP========================================================-->
@@ -500,6 +508,16 @@ let str2 = "piza";
 let regex = /piz{2,}a/;
 regex.test(str1); // true;
 regex.test(str2); // false;
+* optional character 
+?
+//eg
+const fav = "favorite";
+let favReg =  /favou?rite/;
+let result = favReg.test(fav);//true
+* mixed grouping
+(|)
+replace(regex,string)
+replace((\w+),"$1")
 
 
 
@@ -539,6 +557,38 @@ todo==iTeoría==================================================-->
 * 18 repeat() genera un nuevo string repitiendo un número de veces el string que invoca el método
 let str = "Edu";
 let resultado = str.repeat(3); //resultado = "EduEduEdu";
+* 19 lookaheads: se aseguran de que haya o no haya ciertos patrones en un string pero sin hacer match
+  * Positivo: ?=...
+  * Negativo ?!...
+  eg.
+  let kiss = "xo";
+  let nokiss = "xu";
+  let kissregex = /x(?= o)/;
+  let nokissregex = /x(?! o)/;
+  //no hacen match
+  kiss.match(kissregex); // ["q"]
+  nokiss.match(nokissregex); // ["q"]
+
+* 20 Los lookahead sirven también para comprobar si hay 1 o más patrones en un string
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/
+
+* 21 Edu, recuerdar, el match() lo hacen los strings y se pasa como argumento el regex
+* 22 Ejercicio de (capture groups
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+)\s\1\s\1$/; // Change this line
+let result = reRegex.test(repeatNum);
+¡analisis
+(\d+)-> cualquier número de 1 o más cifras metido en un grupo : 42
+\s-> espacio
+\1-> repetición 42
+\s ->espacio
+\1 -> repetición 42
+(42 42 42)
+Ahora, hay que decirle al regex que sólo mire la pauta que le hemos puesto (\d+)\s\1\s\1 42 42 42
+y para delimitarlo hay que poner ^ al comienzo y $ al final o seguirá buscando
+¡no sé porqué pero es así¡
+
 
 
 
@@ -617,10 +667,47 @@ Una solución es poner que tienen que ser al menos 2 números -> [0-9][0-9]+
 /^[a-z][a-z]+[0-9]*$|^[a-z][0-9][0-9]+$/i
 Bien!
 
-* Una expresión regular que sólo permite "ohh no" pero el número de h permitidas es de 3 a 6
+*6 Una expresión regular que sólo permite "ohh no" pero el número de h permitidas es de 3 a 6
 let ohStr = "Ohhh no";
 let ohRegex = /oh{3,6}\sno/i;
 ler result = ohRegex.test(ohStr);
 
+* 7 Análisis de ejercicio Regular Expressions: Positive and Negative Lookahead
+let sampleWord = "astronaut";
+let pwRegex = /(?=^\D\w{5,})(?=\w*\d{2})/; // Change this line
+let result = pwRegex.test(sampleWord);
+Use lookaheads in the pwRegex to match 
+//passwords that are greater than 5 characters long, do not begin with numbers, and have two consecutive digits.
+1. Lo primero que tenemos que tener en cuenta es que los lookahead que usemos deben valer para todo el string. Tenemos que crear los
+lookahead para que sean inclusivos de todos los casos permitidos y, al mismo tiempo, filtren aquellos casos que no queremos que entren.
+2. Los passwords deben ser mayores que 5 caracteres -> {5,}
+3. Los passwords no deben empezar por un número ^/D
+4. deben haber 2 números consecutivos /d{2}
+5. Cómo juntamos los 3 requerimientos?
+(?=^\D) -> no puede empezar por un dígito [x]
+(?=\w{5,})-> debe tener al menos 5 caracteres 
+(?=\w*\d{2}) -> este es el más díficil
+Si ponemos (?=\d{2}) estamos diciendo que en todo el string sólo hay 2 digitos, tenemos que poner que puede haber, además de dichos dígitos,
+un número indeterminado de caracteres o estaríamos filtrando aquellos passwords que, además de tener 2 dígitos tienen antes de 0 a un número
+indefinido de caracteres.
+
+* 8 Un programa que filtra permitiendo Franklin o Eleanor + Roosevelt y admite un nombre de pila entre ellos
+.*-> cualquier caracter de cero a infinitas veces (incluye las caracteres en blanco)
+
+let myString = "Eleanor Roosevelt";
+let myRegex = /(Franklin|Eleanor).*\sRoosevelt/;
+let result = myRegex.test(myString); 
+
+* 9 Un programa que elimina los espacios al principio y al final de los string
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g; // Change this line
+let result = hello.replace(wsRegex,""); // Change this line
+console.log(result);
+¡analisis¡
+Necesitamos un regex por el que cambiar un string vacío
+debe ser o un espacio al principio o un espacio al final (^\s|\s$)
+Puede haber más de un espacio al principio y al final (^\s+|\s$+)
+Para que no pare de buscar después de haber encontrado un match se hace global \g, porque si hay espacios al principio podría parar
+así que también hay que ponerlo al final.
 
 !=fSNIPPETS===================================================-->
