@@ -11,6 +11,9 @@ Notas:
 
 *==iMAP========================================================-->
 todo --class, getters & setters--
+class
+get
+set
 //class
 class ObjectName{
   constructor(x){
@@ -31,6 +34,13 @@ let temp = ObjectName.attribute; //getter use
 ObjectName.attribute = value; //setter use
 
 todo --promise--
+¡---
+Promise
+resolve
+reject
+then
+catch
+¡---
 const makeServerRequest = new Promise((resolve,reject) =>{
     if(condition){
         resolve("Promise fulfilled");
@@ -53,6 +63,13 @@ fulfilled()
 rejected()
 
 todo --import/export--
+¡---
+import
+export
+as
+from
+./
+¡---
 //file.js both in the same directory "./"
 export {function1,function2};
 import {function1,function2} from './index.js';
@@ -78,7 +95,12 @@ let
 
 
 todo --ternary conditional--
-condition ? code-true : code-false
+¡---
+?
+:
+
+¡---
+condition ? code-true : code-false;
 
 todo --loops--
 while(cond){}
@@ -89,13 +111,12 @@ if(){}else{}else return;
 
 todo --object
 var object = {att=value};
+{} -> object literal
 .
 ["']
-delete
+delete -> para borrar un atributo de un objeto
 
 
-todo --regex
-/ /
 
 todo --flux--
 if
@@ -141,6 +162,9 @@ Object.freeze()
 
 
 todo --methods of objects--
+
+//--string methods
+repeat()
 //--string + array methods
 hasOwnProperty(propname) 
 push()
@@ -239,7 +263,6 @@ ${}
 `` -> back ticks
 
 
-
 todo --Promise()--
 const makeServerRequest = new Promise((resolve,reject) =>{
     if(condition){
@@ -321,7 +344,6 @@ const half = (stats) =>{
 //definition reduced (no entire object)
 const half = ({max,min}) => (max + min) / 2.0; 
 }
-
 //use
 console.log(half(stats));
 
@@ -332,6 +354,41 @@ const getMousePosition = (x,y) => ({x: x, y: y});
 const getMousePosition = (x, y) => ({x , y});
 
 ¡ --regular expressions--
+match()
+test()
+|
+/regex/i
+/regex/g
+/./
+[x-y]
+[^regex]
+/x+/
+/x*/
+/x?/
+\W
+\w
+\d
+\D
+\s
+\S
+{}
+{,}
+
+ 
+*==fMAP========================================================-->
+
+¡---iDUDAS---->
+string ="<h1>Winter is coming</h1>"
+regex =/<.*?>/
+¿Por qué el regex encuentra <h1> en el string?
+.*?-> cualquier caracter que aparezca 0-infitas veces y además como es lazy, 
+
+¡--fDUDAS----->
+
+
+
+?==iSINTAXIS===================================================-->
+
 ://
 todo --match()--
 'string'.match(/regex/) ["instance1","instance2"]
@@ -345,21 +402,107 @@ todo --flags--
  /regex/i
 * global flag  all the regex that coincide, not only one
 /regex/g
+todo --other
 *wild card character
 /./
-* character class
+* character class/ character set
 []
 * range of characters
 -
-//letters & numbers
-letter1-letter2number1-number2 Ej: /[a-c2-5]/ bórrame pronto
+//letter & numbers in the same regex
+/[a-c2-5]/ 
+* negated character set (caret)
+[^regex]
+//e.g.
+/[^aeiou]/ig -> excluye vocales
+* starting patterns
+/^Start/
+//e.g.
+const eduString = "Edu es guapo";
+const eduRegex = /^Edu/;
+eduRegex.test(eduString); //true
+* ending patterns ($anchor character)
+/ending$/
+//e.g.
+const eduString = "Edu es guapo";
+const eduRegex = /guapo$/;
+eduRegex.test(eduString); //true
 
-*==fMAP========================================================-->
+* character that appear one or more times
++
+//e.g.
+/a+/g 
+  in "abc"  -> single match -> return ["a"]
+  in "aabc" -> single match -> return ["aa"]
+  in "abab" -> 2 matches    -> return ["a","a"]
+* zero or more times
+:*
+* greedy match (the longest possible part of a string that fits the regex)
+//e.g.
+/t[a-z]*i/ vs titanic = titani
+* lazy matching (la parte más pequeña de un string que satisface con el regex)
+-> ?
+//e.g. 0 caracteres ya satisfacen el regex porque * incluye de 0 a infinito
+/t[a-z]*?i/ vs titanic = ti
+//e.g. 2
+/e?le?/ vs "angel" = "el"
+/e?le?/ vs "angle" = "le"
+//e.g 3
+/goo?d/ vs god true; vs good true; vs goood true;
+todo --shorthand character classes
+* \w 
+[A-Za-z0-9_]
+//e.g. Un regex que cuenta el número de caracter alfanuméricos
+let example = "Esto es un ejemplo";
+let regexAlfabeto = /\w/g;
+let resultado = example.match(regexAlfabeto).length; // match devuelve un array con todas las coincidencias.
+* \W
+[^A-Za-z0-9_]
+//e.g.
+let regex = /\W/
+let numeros = 42%;
+let letras = "Edu!";
+letras.match(regex); //["!"]
+numeros.match(%);
+//e.g. contar los caracteres no alfanuméricos
+let eduString = "¡Me cago en la p$%#!";
+let noAlphaRegex = /\W/g;
+let resultado = eduString.match(noAlphaRegex).length;
+hola
+* \d
+[0-9]
+* \D
+[^0-9]
+* 2 o más 
+[a-z][a-z]+
+\d\d+
+* espacios en blanco
+\s == [ \r\t\f\n\v]
+incluye
+\r -> retorno de carro
+\t -> tabulador
+\f -> form feed/next page
+\n -> next line
+\v ->vertical tab
+* todo menos espacios en blanco 
+/S [^ \r\t\f\n\v]
+* quantity specifiers
+{}
+//Que a aparezca un mínimo de 3 veces y un máximo de 5
+miRegex= /a{3,5}h/;
+let prueba = "aah";
+let prueba2 = "aaah";
+miRegex.test(prueba); //false
+miRegex.test(prueba2); //true
+*  {,} (at least X)
+let str1 = "pizzza";
+let str2 = "piza";
+let regex = /piz{2,}a/;
+regex.test(str1); // true;
+regex.test(str2); // false;
 
 
 
-?==iSINTAXIS===================================================-->
-    hoalaa
 
 ?==fSINTAXIS===================================================-->
 todo==iTeoría==================================================-->
@@ -374,6 +517,30 @@ todo==iTeoría==================================================-->
 *7 [] Significa cualquier de los aquí presentes
 *8 si hacemos un match de un string y colocamos un regex como argumento para el cual no se encuentra nada, match()
   * devuelve "null"
+*9 Para incluir en un regex un rango de letras debemos usar primero corchetes y después un guión /[a-c]/
+*10 Si queremos incluir tanto un rango de letras como de número en la misma expresión, se ponen primero las letras y luego los números sin separar
+/[a-z0-1]/
+* 11 Si queremos excluir algo se pone el caret ^ /[^0-9]/g esto excluye todos los números
+* 12 Si queremos excluir varias expresiones hay que volver a poner el caret
+  Ej: Exclusión de vocales y números /[^aeiou^0-9]/
+* 13 Tanto * como + se usan con caracteres sueltos
+* 14 Cualquier caracter seguido de + tiene que aparecer al menos una vez mientras que sie está seguido de * no hace falta que aparezca
+  let frase = "ba zarra";
+  let regexMas      = /bah+/
+  let regexAsterico = /bah*/
+  regexMas.test(frase); // false
+  regexAsterisco.test(frase); //true
+* 15 /go*/ indica que coga "g" y "o" de 0 a infinitas veces, por lo que si hago un match con gooooooool devolverá
+  * [goooooooo]
+* 16 Recuerda, el que hace el test es el regex
+  regex.test('string');
+* 17 El que hace match o no es el string
+  string.match(regex);
+* 18 repeat() genera un nuevo string repitiendo un número de veces el string que invoca el método
+let str = "Edu";
+let resultado = str.repeat(3); //resultado = "EduEduEdu";
+
+
 
 todo==fTeoría==================================================-->
 !=iSNIPPETS===================================================-->
@@ -386,5 +553,74 @@ let result = extractStr.match(codingRegex);
 let quoteSample = "Beware of bugs in the above code; I have only proved it correct, not tried it.";
 let  vowelRegex= /[aeiou]/ig; 
 let result = quoteSample.match(vowelRegex);
+
+*3 Regex que encuentra si la s está escrita más de una vez seguida
+let difficultSpelling = "Mississippi";
+let myRegex = /s+/g;
+let result = difficultSpelling.match(myRegex);
+console.log(result); //[ 'ss', 'ss' ]
+
+*4 Un regex que devuelva solo <h1> de un <h1>Winter is coming</h1> sin usar h1
+¡la verdad es que no entiendo porqué
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*?>/; // 
+let result = text.match(myRegex);
+console.log(result);
+
+*5 Un programa que cuenta el número de caracteres alfanuméricos de un string usando regex y un 
+  * shorthand character class (\x)
+  //e.g. Un regex que cuenta el número de caracter alfanuméricos
+let example = "Esto es un ejemplo";
+let regexAlfabeto = /\w/g;
+let resultado = example.match(regexAlfabeto).length; // match devuelve un array con todas las coincidencias.
+
+* Reto de expresiones regulares. 
+1) Usernames can only use alpha-numeric characters.
+2) The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.
+3) Username letters can be lowercase and uppercase.
+4) Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+* SOLUCIÓN
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z][a-z]+\d*$|^[a-z]\d\d$/i;
+let result = userCheck.test(username);
+*ANÁLISIS
+// 1) Usernames can only use alpha-numeric characters.
+Conjunto de a-z y 0-1 y _ 
+// 2) The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.
+Si los números tienen que ir al final tenemos que distinguir letras de números.
+[a-z] letras
+[0-9] números
+Los números sólo pueden ir al final
+Sabemos que esto se hace poniendo $, luego la regex debe terminar así [0-9]$ o \n$
+Puede haber cero o más números al final \n*$
+El usuario no puede empezar por un número
+^[a-z][0-9]*$
+//3) Username letters can be lowercase and uppercase.
+luego hay que poner //i
+/^[a-z][0-9]*$/i
+Vemos que JACK no la coge, porqué? porque tiene que aceptar + de 1 letra
+/^[a-z]+[0-9]*$/i
+//4) Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+El usuario debe tener al menos dos caracteres
+Para escribir dos o más elementos :
+[x][x]+
+Si como mínimo son 2 caracteres y tiene que empezar por una letra tiene que ser o 2 letras o 1 letra y 1 número como mínimo
+
+Pero además nos dicen que si tiene dos caracteres tienen que ser letras  
+/^[a-z][a-z]+[0-9]*$|^[a-z][a-z]+[0-9]*$/i
+Aquí no entra Z97, porque en la segunda opción estamos diciendo que tiene que ser 2 o más letras, probemos quitándole una letra
+/^[a-z][a-z]+[0-9]*$|^[a-z][0-9]*$/i
+No nos deja porque el usuario J no debería entrar ya que tiene una letra y cero números,
+/^[a-z][a-z]+[0-9]*$|^[a-z][0-9][0-9]*$/i
+No nos deja porque A1 no lo debería coger, ya que si tiene 2 caracteres 2 tienen que ser letras
+Una solución es poner que tienen que ser al menos 2 números -> [0-9][0-9]+
+/^[a-z][a-z]+[0-9]*$|^[a-z][0-9][0-9]+$/i
+Bien!
+
+* Una expresión regular que sólo permite "ohh no" pero el número de h permitidas es de 3 a 6
+let ohStr = "Ohhh no";
+let ohRegex = /oh{3,6}\sno/i;
+ler result = ohRegex.test(ohStr);
+
 
 !=fSNIPPETS===================================================-->
