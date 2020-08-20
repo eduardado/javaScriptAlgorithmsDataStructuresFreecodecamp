@@ -1,7 +1,7 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## Regular Expressions
 Start:  16/08/2020
-Pomodoros:  
+Pomodoros:  19
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - MAP arrastrado de 02-ES6-Challenges.txt
