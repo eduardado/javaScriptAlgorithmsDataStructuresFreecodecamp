@@ -491,6 +491,56 @@ export const lowercaseString = (string) => {
 import {function1,function2} from './index.js';
 * import * as
 import * as stringFunctions from "./string_functions.js";
+*class getters setters
+//class
+class ObjectName{
+  constructor(x){
+    this._attribute = x;
+  }
+  //getter
+  get attribute(){
+    return  this._attribute;
+  }
+  //setter
+  set temperature(y){
+    this._temperature = y;
+  }
+}
+//use
+const ObjectName = new ObjectName(z); //constructor use
+let temp = ObjectName.attribute; //getter use
+ObjectName.attribute = value; //setter use
+* Promise
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+* Export/import
+
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
 
 
 
