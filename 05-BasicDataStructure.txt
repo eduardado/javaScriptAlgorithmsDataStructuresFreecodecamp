@@ -1,7 +1,7 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## Debugging
 Start:  22/08/2020
-Pomodoros:  
+Pomodoros:  10
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - Uso comentarios con colores 
@@ -9,7 +9,7 @@ Notas:
 ¡---------------------------------------------------------------->  
 //--------------------------------------------------------------->
 *==iMAP========================================================-->
-*==iMAP========================================================-->
+
 todo --class, getters & setters--
 class
 get
@@ -96,12 +96,14 @@ let
 
 
 todo --ternary conditional--
-¡---
-?
-:
+(condition) ? code-true : code-false;
 
-¡---
-condition ? code-true : code-false;
+todo --shorthanded ternary?
+// devuelve true si se cumple la condición y devuelve false si no se cumple la condición
+return (condition); 
+//ejemplo borrar pronto
+return arr.indexOf(elem) != -1;
+
 
 todo --loops--
 while(cond){}
@@ -397,11 +399,264 @@ NaN
 undefined
 null
 
+¡--05Data structure--¡
+
+todo --arrays--
+//array properties
+length
+//array methods
+push()
+unshift()
+pop()
+shift()
+splice(arg1,arg2)
+slice(arg1,arg2)
+indexOf()
+//spread operator
+[...arr]
+//array methods
+every()
+
+todo --object attribute adding
+//1
+object.property = 'value';
+//2
+object['property'] = 'value';
+//3
+let variable = 'property name';
+object[variable] = 'value';
+
+todo -- delete property
+delete object.prperty;
+
+todo- property checking
+//method
+hasOwnProperty(propertyName); //true/false
+//keyword
+in
+? 'propertyName' in objectName //true/false
+
+todo --iterate over an object keys
+for (let variableName in objectName){}
+//eg (borrar)
+for (let user in users) {console.log(user);}
+
+todo --methods
+Object.keys()
+
+
 *==fMAP========================================================-->
-*==iMAP========================================================-->
+
 ?==iSINTAXIS===================================================-->
+*1. array.length
+let arr = ["edu", false, undefined, null];
+console.log(arr.length); // 4
+* 2. Inicializar un array usando array literals []
+let yourArray; 
+yourArray = [];
+yourArray[0] = "edu";
+yourArray[1] = 36;
+yourArray[2] = false;
+* 3. splice(arg1,arg2,arg3)
+    * arg1 : dónde empieza a cortar
+    * arg2: cuántos elementos corta
+    * arg3: elto/s separados por comas que queremos añadir
+    htmlColorNames(['DarkGoldenRod', 'WhiteSmoke', 'LavenderBlush', 'PaleTurquoise', 'FireBrick']);
+    arr.splice(0,2,'DarkSalmon',"BlanchedAlmond"); // Elimina los 2 primeros y mete en dicho índice estos dos nuevos strings
+* 4 slice(arg1,arg2)
+    * arg1 : dónde empieza a cortar
+    * arg2: n-1 dónde termina de cortar
+    let forecast= ['cold', 'rainy', 'warm', 'sunny', 'cool', 'thunderstorms'];
+    let sliced =  arr.slice(2,4); // sliced = ['warm', 'sunny']. 
+    Primero corta e incluye el comienzo, después para y no incluye el elemnto final. El elemento nº 4 del array es 'cool' que no 
+    ha sido incluído
+* Copiar arrays usando spread operator
+//copiar un array al completo
+ let arr1 = ["edu", "mola"];
+ let arr2 = [...arr1]; //arr2 = ["edu", "mola"];
+ //copiar un array en medio de otro
+let fragment = ['to', 'code'];
+let sentence = ['learning',...fragment, 'is', 'fun']; // sentence = [ 'learning', 'to', 'code', 'is', 'fun' ];
+* Eliminar un key:value de un objeto
+delete objt.key;
+* every()
+['Alan', 'Jeff', 'Sarah', 'Ryan'].every(name => obj.hasOwnProperty(name)); //true/false
+* Object.keys()
+function getArrayOfUsers(obj) {
+  return Object.keys(obj);
+}
+// ['key1','key2']
 ?==fSINTAXIS===================================================-->
+
 todo==iTeoría==================================================-->
+* 1. En un array podemos almacenar booleans, undefined, null. Sólo los String llevan comillas.
+* 2. Los array tienen una propiedad llamada length por lo que para acceder a dicha información usamos
+* directamente la notación de punto. no hace falta usar un método ().
+* 3. Zeroth mean the position zero.
+* 4. Cuando se usa unshift() si pasamos 2 eltos como argumentos. Primero inserta el último elto y luego
+    * inserta el siguiente y así. Todos por la cabeza.
+    let romanNumerals = ['XXI', 'XXII']; 
+    romanNumerals.unshift('XIX', 'XX'); //// Primero insertará 'XX' y luego insertará 'XIX'-> ['XIX', 'XX', 'XXI', 'XXII']
+* 5. pop() y shift() no admiten argumentos y sólo pueden sacar un elemento de un array a la vez. 
+* 6. se pueden recoger los elementos eliminados con pop y shift en variables.
+* 7 splice() genera un nuevo array con los elementos sacados que podemos almacenar en alguna variable.
+* 8 slice() coge una rodaja de un array y crea otro nuevo el segundo argumento
+    let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+    let todaysWeather = weatherConditions.slice(1,3); 
+    -> todaysWeather = ['snow', 'sleet'];
+¡ duda 9: ¿Cómo funciona este trozo de código?
+
+    function quickCheck(arr, elem) {
+        return arr.indexOf(elem) != -1;
+    }
+    * 1. Devuelve true sólo si el resultado de arr.indexOf(elem) es distinto de -1.
+      * Es simplemente una condición, evaluará a true o false, que será devuelto por la función.
+* 9 Los elementos de los objetos se llaman propiedades
+* 10 Si tratamos de acceder al valor de una propiedad, y dicha propiedad no existe en un objeto
+  * se nos devolverá 'undefined'
+* 11 La notación [] para acceder a valores de propiedades de objetos es útil cuando no conocemos
+  * la estructura del objeto
+* 12 every()
+  * 1 Es un método que se usa en arrays, se le pasa como argumento una función, y éste
+    * método pasa como argumento a dicha función cada uno de los elementos del array.
+  * 2 Si todos los elementos del array pasan la prueba, devuelve true, de lo contrario,
+    * devuelve false.
+* 13 Los objetos no mantienen un orden de las keys, no hay índices como en los array
+
+
 todo==fTeoría==================================================-->
 !=iSNIPPETS===================================================-->
+*1. Una función que toma un array y un número y produce un nuevo array con un número de veces copiado dicho array
+//[[1][2][3]]-> las copias serán arrays dentro de otro array.
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
+    newArr.push([...arr]);
+    num--;
+  }
+  return newArr;
+}
+
+*2. Una función que checkea si un elemento existe en un array. Usa ternary y indexOf()
+function quickCheck(arr, elem) {
+  return arr.indexOf(elem) === -1 ? false : true;
+}
+
+*3. map(), foreach() y otros métodos usan otras funciones que se aplican a cada uno de los 
+  * elementos del array
+
+*4. objeto.atributo = "valor"; es una manera de añadir un atributo a un objeto
+*5. objeto['color pelo'] = 'azul';
+La notación de corchetes se usa cuando hay un espacio en el nombre del atributo
+o cuando necesitamos introducir una variable en lugar de un string
+* 6. Una función que, dado el argumento q se le pase, consulta información almacenada en un
+  * objeto
+  let foods = {
+  apples: 25,
+  oranges: 32,
+  plums: 28,
+  bananas: 13,
+  grapes: 35,
+  strawberries: 27
+};
+
+  function checkInventory(scannedItem) {
+    return foods[scannedItem];
+  }
+
+  console.log(checkInventory("apples"));
+
+* 7 Una función que, dado un objeto y una serie de nombres de propiedades, 
+  * devuelve true sólo si encuentra todas las propiedades.
+todo versión Edu
+//setup
+let users = {
+  Alan: {
+    age: 27,
+    online: true
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: true
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+//function
+function isEveryoneHere(obj) {
+  return ('Alan' in users &&
+    'Jeff' in users &&
+    'Sarah' in users &&
+    'Ryan' in users);
+}
+
+console.log(isEveryoneHere(users));
+
+todo -- versión usando every() + arrow function
+function isEveryoneHere(obj) {
+  return ['Alan', 'Jeff', 'Sarah', 'Ryan'].every(name => obj.hasOwnProperty(name));
+}
+
+* 8 Un programa que, al pasarle un objeto devuelve el nº de jugadores online
+//objeto muestra
+{
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+//lo más importante aquí, además de la notación del for es tener en cuenta que
+//al estar usando user como variable que va almacenando strings, cuando accedemos
+//al objeto usando dicha variable user vamos a necesitar usar la notación de []
+function countOnline(usersObj) {
+  let i = 0;
+  for(let user in usersObj){
+     if(usersObj[user]['online']) i++;
+  }
+  return i;
+}
+
+* Una función que añade un string a un array anidado en un objeto y luego devuelve dicho array
+//setup
+let user = {
+  name: 'Kenneth',
+  age: 28,
+  data: {
+    username: 'kennethCodesAllDay',
+    joinDate: 'March 26, 2016',
+    organization: 'freeCodeCamp',
+    friends: [
+      'Sam',
+      'Kira',
+      'Tomo'
+    ],
+    location: {
+      city: 'San Francisco',
+      state: 'CA',
+      country: 'USA'
+    }
+  }
+};
+//función
+function addFriend(userObj, friend) {
+  let arr = [];
+  userObj.data.friends.push(friend);
+  return userObj.data.friends;
+}
+
+console.log(addFriend(user, 'Pete'));
+
+
+
 !=fSNIPPETS===================================================-->
