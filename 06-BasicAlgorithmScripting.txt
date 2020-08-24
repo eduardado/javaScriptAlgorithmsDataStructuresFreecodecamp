@@ -178,12 +178,25 @@ match()
 splice()
 concat()
 tuUpperCase()
+//other string methods
+?produce un array con el string cortado letra a letra
+split('')
+?produce un array cuyos elementos son palabras separadas, el espacio separa una palabra de otra
+split(' ')
+join('')
+?une todos los caracteres de un array y forma un string
+//no se usaron
+split()
+join()
 
 //--array methods
 map()
 filter()
 reduce()
 slice()
+//--other array methods
+reverse()
+fill()
  
 //especiales
 call()
@@ -449,6 +462,187 @@ Object.keys()
 ?==iSINTAXIS===================================================-->
 ?==fSINTAXIS===================================================-->
 todo==iTeoría==================================================-->
+* 1. Se puede declarar más de una variable en la primera casilla de un for()
+//en este caso habría que declararla con var, para que el ámbito salga del bucle y
+//se pueda usar luego para devolver el string
+function reverseString(str) {
+  for (var reversedStr = "", i = str.length - 1; i >= 0; i--) {
+    reversedStr += str[i];
+  }
+  return reversedStr;
+}
+*2. Análisis de una bonita función
+  * 1. Se pueden separar en líneas distintas los métodos para darle más claridad
+  * 2. Hay que ponerle las comillas a split("") y a join("") para que lo hagan caracter a caracter.
+  * 3. El str pasa a ser array y de nuevo un string.
+  * 4. Nunca se muta el string, va cambiando el objeto asociado.
+function reverseString(str) {
+  return str
+    .split("")
+    .reverse()
+    .join("");
+}
+
+*3 tail recursion vs head recursion
+todo Head recursión más simple
+function recsum(x){
+  if (x === 1){
+    return 1;
+  }else{
+    return x + recsum(x - 1);
+  }
+}
+¿Qué hace el intérprete?
+
+recsum(3);
+3 + recsum(2);
+3 + 2 + recsum(1);
+3 + 2 + 1 = 6;
+Hasta que no se han ejecutado todas las veces la función no se suman los resultado
+
+todo tail recursion
+function tailrecsum(x, total = 0){
+  if (x === 0){
+    return total;
+  }else{
+    return tailrecsum(x-1, total + x);
+  }
+}
+Interprete si tailrecsum(3) == tailrecsum(3,0)
+tailrecsum(2, 3)
+tailrecsum(1, 5)
+tailrecsum(0, 5);-> 5
+En este caso en cada paso se va calculando el resultado, de tal manera que en el último
+ya sale. Implica menos operaciones y es más eficiente.
+
+*4 new Array(x) se puede crear un array usando el constructor
+new Array(x); siendo x el tamaño del array
+*5 reduce() ejecuta una función reductora sobre cada elto del array y devuelve un único valor 
+
+
+
+
 todo==fTeoría==================================================-->
 !=iSNIPPETS===================================================-->
+* 1. Un programa que recibe un string y devuelve el inverso
+todo solución Edu 
+function reverseString(str) {
+  console.log(str);
+  let long = str.length;
+  console.log(long);
+  let arr = [];
+  let arrReversed = [];
+  for (let i = 0; i < long; i++){
+    arr.unshift(str[i]);
+  }
+  str = "";
+  console.log(arr);
+  for (let i = 0; i < long; i++){
+    str += arr[i];
+  }
+  console.log(str);
+  return str;
+}
+
+reverseString("hello");
+
+todo solucion edu2
+function reverseString(str) {
+  let strCopy = str;
+  str ="";
+  for (let i = strCopy.length-1; i >=0; i--){
+    str += strCopy[i];
+    console.log(str);
+  }
+  return str;
+}
+
+reverseString("hello");
+
+¡solución campera
+
+function reverseString(str) {
+  return str
+    .split("")
+    .reverse()
+    .join("");
+}
+
+* 2. Una función que devuelve el factorial de un número que se le pasa por parámetro
+todo solución edu
+  function factorialize(num) {
+  if(num <= 0){
+    return 1;
+  }else{
+    return factorialize(num-1)*(num);
+  }
+}
+todo camp 1
+//1)inicializa y declara la variable  en el for
+//2)Hace un for() invertido, empieza por num y llega hasta 1 con > 0
+//3)Utiliza un *= para ir multiplicando sucesivamente
+function factorialize(num) {
+  for (var product = 1; num > 0; num--) {
+    product *= num;
+  }
+  return product;
+}
+
+todo camp2
+//1) Igual que mi solución pero el caso base es igual estricto a cero
+function factorialize(num) {
+  if (num === 0) {
+    return 1;
+  }
+  return num * factorialize(num - 1);
+}
+
+todo camp3
+//utiliza tail recursion en lugar de head recursion
+function factorialize(num, factorial = 1) {
+  if (num == 0) {
+    return factorial;
+  } else {
+    return factorialize(num - 1, factorial * num);
+  }
+}
+
+Paso de analizarlo por el momento
+
+* 3 Una función que devuelva el tamaño del string más largo encontrado.
+todo solución edu
+function findLongestWordLength(str) {
+  let word = "";
+  let max = 0;
+  let result = 0;
+  for(let i = 0; i < str.length; i++){
+    if(/\s/.test(str[i])){
+      word = "";
+      console.log('max ' + max);
+    }else{
+      word += str[i];
+      max = word.length;
+      if(max > result){
+        result = max;
+      }
+    }
+    
+
+  }
+  return result;
+}
+todo solución camp 
+function findLongestWordLength(str) {
+  var words = str.split(' ');
+  var maxLength = 0;
+
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].length > maxLength) {
+      maxLength = words[i].length;
+    }
+  }
+
+  return maxLength;
+}
+
 !=fSNIPPETS===================================================-->
