@@ -10,11 +10,44 @@ Notas:
 //--------------------------------------------------------------->
 *==iMAP========================================================-->
 
+todo --function constructora de objetos
+//función 
+function Person(age){
+  this.age = age;
+  this.getAge = function (){return 'My age is: ' + this.age}
+}
+//creación objeto
+const edu = new Person(36);
+//uso objeto 
+console.log(edu.getAge()); // "My age is: 36"
+console.log(edu.getAge);   // "My age is: 36"
+console.log(edu.age);      // 36
+
+
+todo --prototype
+¡--
+prototype
+¡--
+//declaración
+function Person(name,dni){
+  this.name = name;
+  this.dni = dni;
+}
+//uso
+let edu = new Person('Edu',4701106x);
+//Prototype para añadir propiedades
+Person.prototype.altura = 169;
+//prototype para añadir métodos a un objeto
+Person.prototype.full = function(){return this.name + this.dni + this.altura };
+
+
 todo --class, getters & setters--
+¡---
 class
 get
 set
 constructor
+¡---
 //class
 class ObjectName{
   constructor(x){
@@ -113,11 +146,12 @@ if(){}else{}else return;
 
 
 todo --object
-var object = {att=value};
+var object = {att:value,att2:value};
 {} -> object literal
 .
 ["']
 delete -> para borrar un atributo de un objeto
+?delete object.att
 
 
 
@@ -154,6 +188,8 @@ todo --memory structures--
 todo --methods of Global? Object--
 Math.min()
 Math.max()
+? arr =[1,2,3]
+?Math.max(...arr);
 Math.floor()
 Math.random()
 Math.round()
@@ -164,43 +200,97 @@ parseInt()
 Object.freeze()
 
 
-todo --methods of objects--
-
-//--string methods
-repeat()
-//--string + array methods
 hasOwnProperty(propname) 
+todo --methods--
+¡Object.prototype¡
+Object.freeze()
+
+
+¡--String.prototype--¡
+slice()
+splice()
+repeat()
 push()
 pop()
 shift()
 unshift()
 match()
-splice()
 concat()
 tuUpperCase()
-//other string methods
-?produce un array con el string cortado letra a letra
-split('')
-?produce un array cuyos elementos son palabras separadas, el espacio separa una palabra de otra
-split(' ')
-join('')
-?une todos los caracteres de un array y forma un string
-//no se usaron
 split()
-join()
+?str.split([separator[, limit]])
+// "e d".split('') //['e', ' ', 'd']
+//"e d".spli(' ') // ['e','d']
 
-//--array methods
+
+
+¡--Array.prototype--¡
+todo --usan callback functions--
+call()
+reduce()
+?arr.reduce(callback(acumulador, valorActual[, índice[, array]])[, valorInicial])
+//arr.reduce(function(){},value);
 map()
 filter()
-reduce()
+
+todo --otros--
+?var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
+//['perro','oso'].filter( word => word.length > 3 // ["perro"]
+
+splice()
+? array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+//['edu','blas','epi'].splice(1,1) // ['blas']
+//['edu','blas','epi'].splice(1,2) // ['blas', 'epi']
+//['edu','blas','epi'].splice(2) // ['blas', 'epi']
+
 slice()
-//--other array methods
+?arr.slice([start[, end]])
+//['ant','bison','camel'].slice(1) //['bison', 'camel']
+!ojo no incluye el elto de índice "end"
+//['ant','bison','camel'].slice(0,2) //['ant','bison']
+join()
+?arr.join([separator])
+//['a','b'].join() //"a,b"
+//['a','b'].join('') //"ab"
+//['a','b'].join(' ') //"a b"
 reverse()
 fill()
  
-//especiales
+
+¡--Function.prototype--¡
+¡--
 call()
 apply()
+bind()
+¡--
+
+apply()
+? apply(thisArg,[array]) -> aplica una función sobre un [array] usando como contexto thisArg
+* thisArg = null
+//const arr = [1,2,3];
+//Math.max.apply(null,arr) //3
+*con thisArg
+//const arr1 = ['a','b'];
+//const arr2 = [1,2,3];
+//console.log(arr1); // ["a", "b", 0, 1, 2]
+? liga una función a un objeto para que no se ejecute desde el ámbito global
+
+bind()
+?fun.bind(thisArg[, arg1[, arg2[, ...]]])
+//ejemplo
+const pepe = {
+  edad: 36,
+  getEdad: function(){
+    return this.edad;
+  }
+};
+//si no usamos bind
+const boundedGetAge = pepe.getEdad;
+console.log(boundedGetAge()); // undefined
+//si usamos bind
+const boundedGetAge = pepe.getEdad.bind(pepe);//36
+
+
 
 
 
@@ -370,6 +460,10 @@ const getMousePosition = (x,y) => ({x: x, y: y});
 const getMousePosition = (x, y) => ({x , y});
 
 ¡ --regular expressions--
+
+?RegExp(pattern[, flags]) -> constructor de objeto RegExp - Regular Expressions
+
+//métodos y patrones
 match()
 test()
 |
@@ -460,6 +554,15 @@ Object.keys()
 
 *==fMAP========================================================-->
 ?==iSINTAXIS===================================================-->
+*1. reduce()
+//setup
+const arr1 = [1,2,3,4];
+const reducer = (acumulador, valorActual) => acumulador + valorActual;
+//Si se invoca reduce pasándole como argumento sólamente la función el acumulador tomará el valor del elto 0 del array
+const result = arr.reduce(reducer); //result = 1 + 2 + 3 + 4 = 10 
+//2) Si se invoca reduce() pasándole un valor, éste es tomado por el acumulador y 
+const result = arr.reduce(reducer,5); // result = 5 + 1 + 2 + 3 + 4 = 15
+
 ?==fSINTAXIS===================================================-->
 todo==iTeoría==================================================-->
 * 1. Se puede declarar más de una variable en la primera casilla de un for()
@@ -518,6 +621,79 @@ ya sale. Implica menos operaciones y es más eficiente.
 *4 new Array(x) se puede crear un array usando el constructor
 new Array(x); siendo x el tamaño del array
 * 5 reduce() ejecuta una función reductora que le pasamos como argumento sobre cada elto del array y devuelve un único valor
+//setup
+const arr1 = [1,2,3,4];
+const reducer = (acumulador, valorActual) => acumulador + valorActual;
+//Si se invoca reduce pasándole como argumento sólamente la función el acumulador tomará el valor del elto 0 del array
+const result = arr.reduce(reducer); //result = 1 + 2 + 3 + 4 = 10 
+//2) Si se invoca reduce() pasándole un valor, éste es tomado por el acumulador y 
+const result = arr.reduce(reducer,5); // result = 5 + 1 + 2 + 3 + 4 = 15
+
+*6 Prototypes
+ * 1. Todos los objetos en JavaScript heredan propiedades y métodos de un prototype
+ * 2. No se pueden añadir propiedades al constructor de un objeto con notación de punto
+  Person.weight
+* 3. Todos los objetos de JavaScript heredan de un prototipo:
+  Objetos Date heradan de Date.prototype
+  Objetos Array heredan de Array.prototype
+* 4. Una vez creado un constructor de objeto se pueden añadir propiedaes usando la palabra clave prototype
+Person.prototype.nacionalidad = "Español";
+* 5. También se pueden añadir métodos
+
+* 7. apply() 
+//sin thisArg
+const arr = [1,2,3];
+Math.max.apply(null,arr) //3
+//con thisArg
+const arr1 = ['a','b'];
+const arr2 = [1,2,3];
+!queremos usar push pero si pasamos directamente un array a push mete un array dentro de un array
+arr1.push.apply(arr1,arr2);
+//para poder usar una función como push pero con un array usamos apply
+//arr1 sería el contexto
+//arr2 es el array que le pasamos a la función push
+console.log(arr1); // ["a", "b", 0, 1, 2]
+
+
+* 8: bind() 
+  *1 Para entender qué hace bind primero tenemos que entender este snippet 
+    const pepe = {
+  edad: 36,
+  getEdad: function(){
+    return this.edad;
+  }
+  };
+  //si no usamos bind
+  const boundedGetAge = pepe.getEdad;
+  console.log(boundedGetAge()); // undefined
+  //si usamos bind
+  const boundedGetAge = pepe.getEdad.bind(pepe);//36
+  *2 Otro ejemplo
+  this.x = 10; // este es el valor de x en el ámbito del this que es la ventana
+  //el objeto edu tiene un método getX que devuelve this.x
+  var edu = {
+    x: 36;
+    getX: function() {return this.x;}
+  };
+  //intentamos extraer el método del objeto edu por que es un método muy chulo
+  var blas = edu.getX;
+  blas();
+  //cuando ejecutamos blas en lugar de devolver 34, que es el valor del this.x del ámbito del objeto
+  //nos devuelve 10, que es el this.x del ámbito de la ventana. porque claro, estamos ejecutando la función
+  function() {return this.x;} en el ámbito global
+  //lo que hay que hacer es vincular (bind) la función, y especificar un ámbito desde el cual se ejecutará
+  var epi = edu.getX.bind(edu);
+  //o bien arreglar la función que está desvinculada
+  var epi = blas.bind(edu);
+  ahora sí al ejecutar blas(); dará 36
+
+* 9 ámbito del this
+si ponemos directamente:
+this.x = 9; this se refiere a la ventana en al que hemos ejecutado el código.
+Osea que x = 9 en la ventana. wow!
+* 10 apply()-> viene de Function.prototype.apply()
+?  func.apply(thisArg, [ argsArray])
+  1. thisArg = El valor del this, es decir el contexto
 
 
 
@@ -631,6 +807,7 @@ function findLongestWordLength(str) {
   return result;
 }
 todo solución camp 
+//uso de split con un espacio para separar cada palabra en un elto de un array
 function findLongestWordLength(str) {
   var words = str.split(' ');
   var maxLength = 0;
@@ -644,4 +821,265 @@ function findLongestWordLength(str) {
   return maxLength;
 }
 
+todo camp 2 usando reduce()
+//pasa el string a un array que separa elementos cuando encuentra espacios
+//usa reduce sobre el array para quedarse con el máximo las dos palabras que va comparando
+//x es el acumulador que pone a cero antes de que comience la fiesta
+// después va comparando dicho número con la longitud del elemento siguiente
+// usando la función Math.max se queda con el máximo de entre esos dos: el acumulador o el elto siguiente del array.
+let reducer = function (x,y){
+  return Math.max(x, y.length);
+}
+return s.split(' ').reduce(reducer,0);
+
+function findLongestWordLength(s) {
+  return s.split(' ')
+    .reduce(function(x, y) {
+      return Math.max(x, y.length)
+    }, 0);
+}
+
+todo camp 2 modificada con arrow function (Qué bonita!)
+function findLongestWordLength(str) {
+  return str
+    .split(' ')
+    .reduce((x,y) => Math.max(x,y.length),0);
+}
+
+todo camp 3 usando map()
+//de derecha a izquierda
+//a map() le llega un array en el que están todas las palabras del array una por elemento
+// esto se lo ha proporcionado el método split(" ") con una separación
+// map() lo que hace es aplicar una función a cada elto de un array y devolver otro array
+// en este caso lo que hace es simplemente medir la longitud de cada palabra y devolver su número
+// dicho array le llega al spread operator, que lo que hace es básicamente quitar los corchetes del array
+//por último Math.max elige, de entre todos los eltos el mayor y lo devuelve.
+function findLongestWordLength(str) {
+  return Math.max(...
+                   str
+                  .split(" ")
+                  .map(word => word.length));
+}
+
+* 4 Una función que devuelva un array con el mayor de los elementos del sub-array
+todo solución edu
+//setup éste es el tipo de array
+largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
+//función
+function largestOfFour(arr) {
+  return arr.map(x => Math.max(...x));
+}
+todo solucion camp (declarative approach)
+//usa map() sobre el array
+//le pasa una función que lo que hace es devolver un reduce()
+//el reduce usa una función con un condicional ternario que funciona:
+// si el actual es mayor al acumulador devuelve el actual, si no devuelve el acumulador
+// Por lo tanto lo que está ocurriendo es que se hace un map del array completo y cada
+// subarray 
+function largestOfFour(arr) {
+  return arr.map(function(group) {
+    return group.reduce(function(prev, current) {
+      return current > prev ? current : prev;
+    });
+  });
+}
+¡análisis
+todo anterior refactorizado con mis variables y arrow function
+function largestOfFour(arr) {
+  return arr.map( 
+    subArray => subArray.reduce(
+      (cur,prev) => cur > prev ? cur: prev 
+    )
+  )
+}
+todo solución camp 2 (apply & bind) un poquillo rebuscado y al final no lo he entendido muy bien
+//pero me ha servido para entender mejor como funciona apply y bind de Function así como prototype
+function largestOfFour(arr) {
+  return arr.map(Function.apply.bind(Math.max, null));
+}
+¡análisis!
+    *1. Si el array que le pasamos fuese un array simple tipo [1,2,3,4] ; con este snippet habríamos termiando
+    *2. Lo que estamos haciendo es usar apply-> que viene de Function.prototype.apply()
+    *3. El primer argumento thisArg es null porque Math.max no necesita contesto para el this
+    function largestOfFour(arr) {
+      return Math.max.apply(null,arr);
+    }
+    *4 Ahora bien, lo que queremos meter en la función es un array anidado [[1,2],[3,4]] por lo que tenemos primero que mapear
+      * antes de nada para quedarnos con los sub-arrays
+    function largestOfFour(arr) {
+      return 
+        arr
+        .map(Math.max.apply(null,arr)); // no vale
+    }  
+    *5 map() necesita que le pasemos una funcion no una expresión, así pues usamos Function.prototype.bind()
+    function largestOfFour(arr) {
+      return 
+        arr
+        .map(Function.apply.bind())
+    }
+    *6 como tanto apply() como bind() son métodos estáticos del mismo objeto Function los podemos encadenar
+    *7 ahora, el método bind, que se ejecuta primero necesita un ámbito o contexto, que se provee en el primer argumento (thisArg)
+    ? function.bind(thisArg[, arg1[, arg2[, ...]]])
+      * le pasamos como ámbito Math.max() para poder ganar su funcionalidad (ni idea) y como argumento 
+      * como segundo argumento no hace falta poner nada (no sé no entiendo realmente porqué)
+      * así que queda 
+    function largestOfFour(arr) {
+      return 
+        arr
+        .map(Function.apply.bind(Math.max,null));
+    }
+* 5 Declara una clase y usa el getter para mostrar un valor además de un método de dicho objeto
+class Personita{
+  constructor(age){
+    this._age = age;
+  }
+  get age(){
+    return this._age;
+  }
+  present (){
+    return 'My name is: ' + this._age;
+  }
+}
+console.log(new Personita(35).age) //35
+console.log(new Personita(35).present()) // "My name is: 35"
+
+*6 Una función que comprueba que un string termina en otro string o no
+todo solución edu
+//explicación
+* 1. utilizo el constructor de expresiones regulares para poder usar un patrón dinámico (para usar el valor que se le pasa
+  * como argumento "target") porque no me debaja usar el literal -> //
+* 2. utilizo la notación de template literal para generar un string
+* 3. uso ${} para poner la variable y le coloco detras $ que marca en regex si algo termina con una expresión
+* 4. uso el método test de RegExp() para comprobar si el patrón se da en el string que estamos recibiendo como argumento.
+function confirmEnding(str, target) {
+  let myRegex = new RegExp(`${target}$`);
+  return myRegex.test(str);
+}
+
+confirmEnding("Bastian", "n");
+
+todo solución camp 1
+//slice() extrae una sección del string y lo devuelve sin modificar el string original
+// Resta la longitud total de la longitud del string final
+// con lo que queda usa slice(x)
+// al tener un solo argumento lo que hace slice es cortar a partir del índice que le damos
+// después compara eso que ha cortado con el target
+? str.slice(beginIndex[, endIndex])
+function confirmEnding(str, target) {
+  return str.slice(str.length - target.length) === target;
+}
+
+todo solución camp2 usando constructor
+function confirmEnding(str, target) {
+  const myRegex = new RegExp(target + "$");
+  return myRegex.test(str);
+}
+
+todo solución camp 3 usa argumento negativo con slice
+function confirmEnding(str, target) {
+  return str.slice(-target.length) === target;
+}
+
+* 5 Una función que devuelve un str concatenado un número de veces
+todo solución edu
+function repeatStringNumTimes(str, num) {
+  const result = [];
+  if( num > 0){
+    for(let i = 0 ; i < num; i++){
+      result.push(str);
+    }
+    return result.join('');
+  }else{
+    return "";
+  }
+}
+todo solucion camp 1
+//accumulatedStr no puede ser const porque vamos a ir generando y asignando diferentes objetos string a la misma variable
+//recuerda que los string son inmutables
+function repeatStringNumTimes(str, num) {
+  var accumulatedStr = "";
+
+  while (num > 0) {
+    accumulatedStr += str;
+    num--;
+  }
+
+  return accumulatedStr;
+}
+
+todo solucion camp 2 recursiva
+function repeatStringNumTimes(str, num) {
+  if (num < 1) {
+    return "";
+  } else if (num === 1) {
+    return str;
+  } else {
+    return str + repeatStringNumTimes(str, num - 1);
+  }
+}
+todo solución camp 3 recursiva con ternario
+function repeatStringNumTimes(str, num) {
+  return num > 0 ? str + repeatStringNumTimes(str, num - 1) : '';
+}
+
+* 6 Una función que corta el sobrante de un string y le añade tres puntos. 
+todo version edu
+//paso el string a array para poder usar slice y luego lo uno con join
+function truncateString(str, num) {
+  return(str.length > num) ? str
+                            .split('')
+                            .slice(0,num)
+                            .join('') 
+                            + '...'
+    : str;
+}
+
+todo version camp
+//resulta que no es necesario pasar a array porque el String.prototype tb tiene el método slice()
+function truncateString(str, num) {
+  return str.length > num ? str.slice(0, num) + "..." : str;
+}
+
+todo version camp refactorizada edu
+function truncateString(str, num) {
+  return (str.length > num)
+    ? str.slice(0,num) + "..." 
+    : str;
+}
+
+* 7 Una función que al pasarle un array y una función nos devuelve el primer elemento del array que satisface
+  * test, si no, devuelve undefined  
+  todo solucion edu
+  //filter() devuelve un array vacío si ningún elto pasa el test, si intentamos acceder al primer elemento del 
+  // array vacío este devuelve undefined
+function findElement(arr, func) {
+  let num = arr.filter(func)[0];
+  return num;
+}
+todo solucion camp 1
+//usa un bucle for para iterar sobre el array, le pasa el valor del elto a la función 
+//y si devuelve true, devuelve el nº, si no devuelve undefined
+function findElement(arr, func) {
+  let num = 0;
+
+  for (var i = 0; i < arr.length; i++) {
+    num = arr[i];
+    if (func(num)) {
+      return num;
+    }
+  }
+
+  return undefined;
+}
+
+todo solucion camp 1 refactorizado edu
+function findElement(arr, func) {
+  let num = 0;
+  for(let i = 0; i <arr.length; i++){
+    if (func(arr[i])){
+      return arr[i];
+    }
+  }
+  return undefined;
+}
 !=fSNIPPETS===================================================-->
