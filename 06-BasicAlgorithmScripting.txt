@@ -517,8 +517,7 @@ ya sale. Implica menos operaciones y es más eficiente.
 
 *4 new Array(x) se puede crear un array usando el constructor
 new Array(x); siendo x el tamaño del array
-*5 reduce() ejecuta una función reductora sobre cada elto del array y devuelve un único valor 
-
+* 5 reduce() ejecuta una función reductora que le pasamos como argumento sobre cada elto del array y devuelve un único valor
 
 
 
