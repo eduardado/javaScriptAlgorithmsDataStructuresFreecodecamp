@@ -1192,7 +1192,7 @@ function titleCase(str) {
   for (var st in newTitle) {
     updatedTitle[st] = newTitle[st]
       .toLowerCase()
-      ¡seguir por aqui¡
+      ¡seguir por aqui¡¡¡
       .replaceAt(0, newTitle[st].charAt(0).toUpperCase());
   }
   return updatedTitle.join(" ");
