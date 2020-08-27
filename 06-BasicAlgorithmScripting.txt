@@ -23,20 +23,18 @@ console.log(edu.getAge()); // "My age is: 36"
 console.log(edu.getAge);   // "My age is: 36"
 console.log(edu.age);      // 36
 
+todo --constructor property--
+objectName.constructor
+//acceder al constructor de una clase
+  function Arbol(nombre){
+    this.nombre = nombre;
+  }
+  new Arbol().constructor //function Arbol(nombre){this.nombre = nombre;}
 
-todo --prototype
-¡--
-prototype
-¡--
-//declaración
-function Person(name,dni){
-  this.name = name;
-  this.dni = dni;
-}
-//uso
-let edu = new Person('Edu',4701106x);
-//Prototype para añadir propiedades
+todo --prototype property--
+//Añadir una propiedad a un constructor
 Person.prototype.altura = 169;
+
 //prototype para añadir métodos a un objeto
 Person.prototype.full = function(){return this.name + this.dni + this.altura };
 
@@ -144,6 +142,26 @@ for ([initialization]; [condition]; [final-expression]){}
 do{}while(condition);
 if(){}else{}else return;
 
+todo --for...in--
+? for (variable in object)
+variable = cambiar de nombre según el nombre de las propiedades de object
+object = objeto de cuyas propiedades se van iterando (deben ser iterables, no Symbol)
+// iterando sobre un objeto
+const object = {a:1, b:2}
+for (let propiedad in object){
+  console.log(propiedad + " vale " + object[propiedad])
+}
+imprime: "a vale 1" "b vale 2"
+//iterando sobre un String
+* el itreador "propiedad" en este caso devuelve el índice del String [borrame cuando me entiendas bien]
+* para acceder 
+const str = "Edu"
+for (let propiedad in str){
+  console.log(propiedad + " vale " + str[propiedad])
+}
+imprime: "0 vale E" "1 vale d" "2 vale u"
+
+
 
 todo --object
 var object = {att:value,att2:value};
@@ -207,6 +225,10 @@ Object.freeze()
 
 
 ¡--String.prototype--¡
+substr()
+?string.substr(start, length);
+// "Hello".substr(0,4) // "Hell"
+//eduardo.substr(3) //"ardo"
 slice()
 splice()
 repeat()
@@ -216,7 +238,8 @@ shift()
 unshift()
 match()
 concat()
-tuUpperCase()
+toUpperCase()
+toLowerCase()
 split()
 ?str.split([separator[, limit]])
 // "e d".split('') //['e', ' ', 'd']
@@ -232,8 +255,19 @@ reduce()
 //arr.reduce(function(){},value);
 map()
 filter()
+find()
+?arr.find(callback(element[, index[, array]])[, thisArg])
+//[1,2,3,4].find( element => element > 2 )// 3
+
 
 todo --otros--
+indexOf()
+? array.indexOf(searchElement[, fromIndex])
+// ['ant','bison'].indexOf('bison')  //   1
+// ['ant','bison'].indexOf('monkey') // -1
+
+
+filter()
 ?var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
 //['perro','oso'].filter( word => word.length > 3 // ["perro"]
 
@@ -291,15 +325,11 @@ console.log(boundedGetAge()); // undefined
 const boundedGetAge = pepe.getEdad.bind(pepe);//36
 
 
-
-
-
-
 todo --properties--
 'vale para strings y para arrays (borrame cuando me entiendas bien)
 .length 
 
-todo --tipos--
+todo --tipos primitivos--
 undefined 
 null
 boolean
@@ -324,6 +354,7 @@ todo --operators--
 :*=
 /=
 typeof
+// typeof true // 'boolean'
 
 todo --comparison operators--
 'ojo todos los comparadores devuelven true/false --> borrar esto cuando esté asimilado.
@@ -490,7 +521,9 @@ test()
 ()/1
 /^()()$/
 replace(regex,"string")
-"string".replace(/(\w+)\s(\w+)/,"$2 $1"); 
+str.replace(regexp|substr, newSubStr|function[, flags])
+//"sHoRt AnD sToUt".replace(/short/i,"Tall") // Tall AnD sToUt
+//"string".replace(/(\w+)\s(\w+)/,"$2 $1"); 
 
 ¡---04---debuggin¡
 console.log()
@@ -694,7 +727,9 @@ Osea que x = 9 en la ventana. wow!
 * 10 apply()-> viene de Function.prototype.apply()
 ?  func.apply(thisArg, [ argsArray])
   1. thisArg = El valor del this, es decir el contexto
-
+* 11 Title case: la primera letra de cada palabra en mayúscula
+* 12 JavaScript convierte directamente string primitivos en String objetos por lo que se 
+  * pueden usar los métodos de String con los string primitivos.
 
 
 todo==fTeoría==================================================-->
@@ -1082,4 +1117,85 @@ function findElement(arr, func) {
   }
   return undefined;
 }
+
+todo solucion camp 2 usando find()
+function findElement(arr, func) {
+  return arr.find(func);
+}
+
+todo solucion camp 3 
+// De dentro a afuera mapeamos todos los eltos usando la funcion "func"
+// al usar indexOf(true) devuelve el índice del primer elemento cuyo
+// arr.map(func) devuelve un array tal que así ['false', 'true', 'false']
+// xq las funciones que le pasamos devuelven true/false como esta
+// findElement([1, 2, 3, 4], num => num % 2 === 0);
+// arr[1]-> por ejemplo dará el valor de ése indice
+function findElement(arr, func) {
+  return arr[arr.map(func).indexOf(true)];
+}
+
+* 8 Una función que devuelve true/false si lo que se le pasa por argumento es o no un boolean
+todo edu
+function booWho(bool) {
+  return typeof(bool) === 'boolean';
+}
+todo camp1function booWho(bool) {
+//al ser typeof un operador no hace falta poner paréntesis como en los métodos/funciones
+  return typeof bool === 'boolean';
+}
+
+* 9 Una función que reciba un string y devuelva un string en el que todas las palabras empiezen por
+  * mayúscula y el resto en minúscula
+  todo edu solución
+  function titleCase(str) {
+  
+  return str.split(' ').concat()
+                          .map(word => word.split(''))
+                          .map(subArray => { var result = "";
+                                             for(let i = 0; i < subArray.length; i++){
+                                               if(i === 0){
+                                                 result += subArray[i].toUpperCase();
+                                               }else{
+                                                 result += subArray[i].toLowerCase();
+                                               }
+                                             }
+                                            return result;
+                                           }).join(' ')
+                          
+           ;
+}
+
+titleCase("I'm a little tea pot");
+
+todo solucion camp1
+¡análisis¡
+* 1. Añade una función al objeto String (cosa que no  está recomendada)
+* 2. La función recibe como parámetro un índice y un caracter que puede ser más de uno
+* 3. Devuelve un nuevo string que reemplaza que cambia el caracter del string por el/los
+  * caracter/es que le pasamos
+* 4. El truco es que al añadir este método al objeto String, todos los strings que creamos
+  * van a tener este método replaceAt(), que además podremos invocar desde el propio objeto
+* 5. Esto es posible porque JavaScript convierte los string primitivos en objetos String
+* 6. Tambien es posible gracias a que prototype permite añadir métodos a un constructor tal
+  * como se muestra en el código.
+* 7 se utiliza un bucle for...in para iterar sobre el array
+* 
+String.prototype.replaceAt = function(index, character) {
+  return (
+    this.substr(0, index) + character + this.substr(index + character.length)
+  );
+};
+
+function titleCase(str) {
+  var newTitle = str.split(" ");
+  var updatedTitle = [];
+  for (var st in newTitle) {
+    updatedTitle[st] = newTitle[st]
+      .toLowerCase()
+      ¡seguir por aqui¡
+      .replaceAt(0, newTitle[st].charAt(0).toUpperCase());
+  }
+  return updatedTitle.join(" ");
+}
+
 !=fSNIPPETS===================================================-->
