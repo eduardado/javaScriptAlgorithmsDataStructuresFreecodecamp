@@ -37,7 +37,7 @@ Person.prototype.altura = 169;
 
 //prototype para añadir métodos a un objeto
 Person.prototype.full = function(){return this.name + this.dni + this.altura };
-
+!no se puede usar notación arrow function aquí
 
 todo --class, getters & setters--
 ¡---
@@ -229,6 +229,9 @@ substr()
 ?string.substr(start, length);
 // "Hello".substr(0,4) // "Hell"
 //eduardo.substr(3) //"ardo"
+charAt()
+?let character = str.charAt(index)
+//"Eduardo".charAt(0) // "E"
 slice()
 splice()
 repeat()
@@ -237,6 +240,8 @@ pop()
 shift()
 unshift()
 match()
+?str.match(regexp)
+
 concat()
 toUpperCase()
 toLowerCase()
@@ -501,23 +506,43 @@ test()
 /regex/i
 /regex/g
 /./
+// /.du/
 [x-y]
+// /[a-z]/
+[abc]
+// /[oa]la/
+[x-y4-7]
+// /[h-s2-6]/gi
 [^regex]
+?negated
+// ningún número y ninguna vocal
+// /[^0-9^aeiou]/gi
 /x+/
+? 1-infinite
+/xx+/
+?2-infinite
 /x*/
+? 0-infinite
+// /<.*?>/
 /x?/
 \W
+? [^A-Za-z0-9_]
 \w
+? [A-Za-z0-9_]
 \d
 \D
 \s
 \S
+/^/
+?beggining
+// /^Cal/
 {min,max}
 {min,}
 {exact}
 (?=...)
 (?!...)
 (|)
+// /dog|cat|bird|fish/
 ()/1
 /^()()$/
 replace(regex,"string")
@@ -730,6 +755,8 @@ Osea que x = 9 en la ventana. wow!
 * 11 Title case: la primera letra de cada palabra en mayúscula
 * 12 JavaScript convierte directamente string primitivos en String objetos por lo que se 
   * pueden usar los métodos de String con los string primitivos.
+* 13 No se puede usar la notación de arrow Function cuando estamos añadiendo un método 
+  * al constructor de un objeto con prototype
 
 
 todo==fTeoría==================================================-->
@@ -1179,7 +1206,17 @@ todo solucion camp1
 * 6. Tambien es posible gracias a que prototype permite añadir métodos a un constructor tal
   * como se muestra en el código.
 * 7 se utiliza un bucle for...in para iterar sobre el array
-* 
+* 8 Guarda en newTitle el array de hacer split con el string, de manera que cada elto del string
+  * es una palabra
+* 9 Crear otra variable donde almacena un array nuevo
+* 10 usa un for...in para recorrer todos los eltos del array spliteado
+* 11 Ahora por cada palabra del array hace lo siguiente:
+  * 1. copia la palabra completa
+  * 2. la pasa toda a minúsculas
+  * 3. reemplaza la primera letra de cada palabra con la función antes creada
+  * 4. Para acceder a la letra que quiere usa el método charAt the String
+* 12 Una vez tiene el nuevo string con todas la palabras cambiadas las pasa a 
+  * un string con join(" ") con espacio. y lo devuelve.
 String.prototype.replaceAt = function(index, character) {
   return (
     this.substr(0, index) + character + this.substr(index + character.length)
@@ -1192,10 +1229,65 @@ function titleCase(str) {
   for (var st in newTitle) {
     updatedTitle[st] = newTitle[st]
       .toLowerCase()
-      ¡seguir por aqui¡¡¡
       .replaceAt(0, newTitle[st].charAt(0).toUpperCase());
   }
   return updatedTitle.join(" ");
 }
+todo solucion anterior refactorizada edu
+String.prototype.reemplazaEn = function(indice,letra) {
+  return this.substr(0,indice) + letra + this.substr(indice + letra.length);
+}
+
+function titleCase(str) {
+  const nuevoTitulo = str.split(" ");
+  const actualizado = [];
+  
+
+  for (let palabra in nuevoTitulo){
+    actualizado[palabra] = nuevoTitulo[palabra]
+                          .toLowerCase()
+                          .reemplazaEn(0,nuevoTitulo[palabra].charAt(0).toUpperCase())
+                          ;              
+  }
+  
+  return actualizado.join(" ");
+}
+
+titleCase("I'm a little tea pot");
+
+todo solucion camp 2
+¡análisis¡
+* 1. crea una función que en un paso convierte el string en minúsculas y luego 
+  * lo pasa a un array separado por espacios
+* 2. en otra variable almacena un array resultado de mapear el array anterior.
+* 3. Qué función se está mapeando
+  * 1. coge una palabra
+  * 2. usa replace() para cambiar la primera letra del String por la misma pero en mayúsculas
+* 4 Devuelve el join de dicho array
+// me gusta mucho esta solución porque es muy legible, ¿Por qué es tán legible?
+// 1 primero hace un par de pasos y los guarda poniendo un buen nombre de variable
+// 2 después usa ese resultado par hacer un mapeado
+// 3 es fácil de seguir es limpio sencillo hermoso, bello en sí mismo.
+function titleCase(str) {
+  var convertToArray = str.toLowerCase().split(" ");
+  var result = convertToArray.map(function(val) {
+    return val.replace(val.charAt(0), val.charAt(0).toUpperCase());
+  });
+  return result.join(" ");
+}
+
+titleCase("I'm a little tea pot");
+
+todo version anterior refactorizada edu
+function titleCase(str) {
+  const lowerCaseArray = str.toLowerCase().split(" ");
+  const result = lowerCaseArray.map(
+    function(valor){
+      return valor.replace(valor.charAt(0),valor.charAt(0).toUpperCase())
+    }
+  )
+  return result.join(" ");
+}
+
 
 !=fSNIPPETS===================================================-->
