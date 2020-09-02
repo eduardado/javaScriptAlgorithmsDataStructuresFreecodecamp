@@ -9,6 +9,58 @@ Notas:
 ¡---------------------------------------------------------------->  
 //--------------------------------------------------------------->
 *==iMAP========================================================-->
+todo --Output--
+//methods
+document.getElementById(id)
+#to access an html element
+//e.g
+  <html>
+    <p id="edu"></p>
+    <script>
+      document.getElementById(edu).innerHTML = "hola";
+    </script>
+  </html>
+
+document.write()
+#solo para hacer tests
+window.alert()
+#ventanita
+
+//En navegador -> <p>Hola</p>
+
+//properties
+innerHTML
+#define the content of an HTML element
+
+todo --boolean--
+//false values
+false
+//falsy values
+null
+undefined
+NaN
+0
+'' or "" (empty string)
+//truthy (rest)
+what is not falsy
+
+//OR and AND
+(a||b)
+  * if a is true -> returns a
+  * if a is not true -> returns b
+(a && b)
+  * both true -> return a
+  * if both are not true -> return b
+
+//Boolean(value) object (borrar lo que sobra)
+* Boolean es un objeto de javascript que se puede usar para evaluar falsy/truthy values.
+  * Devuelve false si le pasamos: 0, -0, "", false null, NaN. el resto de valores dan true/false valores boolean primitivos
+//uso
+console.log(Boolean("true")) // false (evalúa a false porque es un string no vacío :P)
+
+
+  
+
 
 todo --function constructora de objetos
 //función 
@@ -222,9 +274,14 @@ hasOwnProperty(propname)
 todo --methods--
 ¡Object.prototype¡
 Object.freeze()
+valueOf()
+# devuelve el "primitive value" de un objeto
+# si un objeto no tiene on valor primitivo valueOf() imprime el objeto en sí
+?object.valueOf()
 
 
 ¡--String.prototype--¡
+trim()
 substr()
 ?string.substr(start, length);
 // "Hello".substr(0,4) // "Hell"
@@ -241,7 +298,7 @@ shift()
 unshift()
 match()
 ?str.match(regexp)
-
+// hola."match"(/h/) //["h"]
 concat()
 toUpperCase()
 toLowerCase()
@@ -254,12 +311,38 @@ split()
 
 ¡--Array.prototype--¡
 todo --usan callback functions--
+slice()
+?arr.slice([start[, end]])
+// [1,2].slice() // [1,2]
+// [1,2].slice(1)   [2]
+// [1,2].slice(0,1) [1]
+
+h
+concat()
+#Devuelve un nuevo array con el resultado de unir otros dos arrays
+#Se le pueden pasar elementos y arrays
+#Se diferencia de push() entre otras cosas en que push sí que cambia el array original
+//array1.concat(array1)
+
+findIndex()
+# devuelve el índice del primer elemento que satisface la función que le pasamos
+# si no encuentra ninguno, devuelve -1
+# si no le pasamos una función ordena en unicode, donde el 10 va delante del 2 esta función
+?arr.findIndex(callback( element[, index[, array]] )[, thisArg])
+//arr.findIndex( element => element >= num )
+sort()
+?arr.sort([compareFunction])
+# sort sobreescribe el array sobre el que actúa
+# La funcion debe devolver nº neg si a < b, positivo si a > b o 0 si son iguales
+# Se puede abreviar a - b
+// [3,6,20,6,7,5].sort((a, b) => a - b)
 call()
 reduce()
 ?arr.reduce(callback(acumulador, valorActual[, índice[, array]])[, valorInicial])
 //arr.reduce(function(){},value);
 map()
 filter()
+#crea un nuevo array con los eltos que pasan el test dado como función por argumento
 find()
 ?arr.find(callback(element[, index[, array]])[, thisArg])
 //[1,2,3,4].find( element => element > 2 )// 3
@@ -276,13 +359,15 @@ filter()
 ?var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
 //['perro','oso'].filter( word => word.length > 3 // ["perro"]
 
-splice()
+splice() 
+!changes the original array
 ? array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
 //['edu','blas','epi'].splice(1,1) // ['blas']
 //['edu','blas','epi'].splice(1,2) // ['blas', 'epi']
 //['edu','blas','epi'].splice(2) // ['blas', 'epi']
 
 slice()
+!make a copy
 ?arr.slice([start[, end]])
 //['ant','bison','camel'].slice(1) //['bison', 'camel']
 !ojo no incluye el elto de índice "end"
@@ -495,14 +580,23 @@ const getMousePosition = (x,y) => ({x: x, y: y});
 //object property shorthand
 const getMousePosition = (x, y) => ({x , y});
 
-¡ --regular expressions--
+¡ --regex--
+todo --RegExp Object--
+?constructor
+/pattern/flags
+new RegExp(pattern[, flags])
+RegExp(pattern[, flags])
 
-?RegExp(pattern[, flags]) -> constructor de objeto RegExp - Regular Expressions
+//methods
+test()
+#true si el string que le pasamos como parámetro contiene el RegExp
+// /a/.test("hola")   //true
 
 //métodos y patrones
 match()
 test()
 |
+// /dog|cat|bird|fish/
 /regex/i
 /regex/g
 /./
@@ -532,23 +626,43 @@ test()
 \d
 \D
 \s
+?[\r\t\f\n\v]
 \S
+?[^\r\t\f\n\v]
 /^/
 ?beggining
 // /^Cal/
 {min,max}
+// /Oh{3,6} no/
 {min,}
+// /Haz{4,}ah/
 {exact}
+// /Tim{4}ber/
 (?=...)
 (?!...)
+todo capture group ()
 (|)
-// /dog|cat|bird|fish/
+// /P(engu|umpk)in/g
 ()/1
+?capture group
+  // let testString = "test test test";
+  // let reRegex = /(test)(\s)\1\2\1/;
+  // let result = reRegex.test(testString); //true
+¡/()X/¡ -> cuando queremos capturar el caracter que viene detrás de algo que se repeatStringNumTimes
+// "hola como estas".match(/(^)\D/g) // ['h']
+// los caracteres que no sean espacio que venga justo detrás de espacios
+// "sHoRt AnD sToUt".match(/(\s)\S/g) //["A", "s"]
+
 /^()()$/
-replace(regex,"string")
-str.replace(regexp|substr, newSubStr|function[, flags])
-//"sHoRt AnD sToUt".replace(/short/i,"Tall") // Tall AnD sToUt
-//"string".replace(/(\w+)\s(\w+)/,"$2 $1"); 
+//let repeatNum = "42 42 42";
+//let reRegex = /^(\d+)(\s)\1\2(\d+)$/; // Change this line
+//let result = reRegex.test(repeatNum);
+
+String.prototype.replace() + capture groups
+?const newStr = str.replace(regexp|substr, newSubstr|function)
+// "The sky is silver.".replace(/silver/, "blue") // "The sky is blue"
+String.prototype.replace() + capture groups + $x
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
 
 ¡---04---debuggin¡
 console.log()
@@ -757,8 +871,17 @@ Osea que x = 9 en la ventana. wow!
   * pueden usar los métodos de String con los string primitivos.
 * 13 No se puede usar la notación de arrow Function cuando estamos añadiendo un método 
   * al constructor de un objeto con prototype
-
-
+* 14 Del repaso, el caracter punto no está includio en \w por supuesto. Si queremos incluir
+  * cualquier caracter tenemos que poner .
+* 15 Repaso, cuando ponemos /(\d)/1/ esto significa que puede ser cualquier número pero debe ser
+  * el mismo
+* 16 Boolean:
+  * Las expresiones que se evalúan if(expresión) javascript las traduce forzadamente a boolean.
+    * Eso se llama implicit type coercion
+    if('hola'){console.log('coerced')} // "coerced"
+    * Todos los valores coerce a "true", salvo:
+    - NaN, null, undefined, 0, ''|"" y false que es un boolean-> se llaman falsy
+    - false evalúa a false y no es falsy, es false
 todo==fTeoría==================================================-->
 !=iSNIPPETS===================================================-->
 * 1. Un programa que recibe un string y devuelve el inverso
@@ -1289,5 +1412,278 @@ function titleCase(str) {
   return result.join(" ");
 }
 
+todo camp 3 regex solution
+function titleCase(str) {
+  return str.toLowerCase().replace(/(^|\s)\S/g, L => L.toUpperCase());
+}
+* 10 [repaso] 
+1) Usernames can only use alpha-numeric characters.
+2) The only numbers in the username have to be at the end.
+ There can be zero or more of them at the end. Username cannot start with the number.
+3) Username letters can be lowercase and uppercase.
+4) Usernames have to be at least two characters long.
+ A two-character username can only use alphabet letters as characters.
+todo edu
+let pass = ""
+let regex = /^[a-z][a-z]+\d*$|^[a-z]\d\d+$/i
+regex.test(pass)
+
+* 11 [repaso]
+Use lookaheads in the pwRegex to match passwords that are greater than 
+5 characters long, do not begin with numbers, and have two consecutive digits.
+/(?=^\D)(?=\w{5,})(?=\w*\d{2})/
+
+* 12 [repaso]
+let testString = "test test test";
+let reRegex = /(test)(\s)\1\2\1/;
+let result = reRegex.test(testString);
+¡analisis¡
+la traducción de del regex
+(test) = 1º
+(\s)   = 2º
+/(test)(\s)\1\2\1/ = test\s + (1º)(2º)(1) = test\s + test\s\test = test\stest\stest\ = test test test
+
+* 13 [repaso]
+let repeatNum = "42 42 42";
+let reRegex = /^(\d+)(\s)\1\2(\d+)$/;
+let result = reRegex.test(repeatNum);
+¡análisis¡
+* ¿Por qué éste regex /(\d+)(\s)\1\2\1/ deja pasar 42 42 42 42?
+
+Requerimiento 42\s42\s42
+Actual        42\s42\s42\s42
+¿Cumple Actual el requerimiento?
+Si lo cumple,  luego pasará el test
+Actual        42\s42\s42\s42\s42 también cumpliría y así
+¿Cómo nos aseguramos que sólo se repita tres veces?
+- Hacemos que:
+^(\d+) empiece por un número de 1 o más cifras
+(\s) tenga un espacio
+\1 se repita el mismo número
+\2 se repita el espacio
+(\d+)$ se vuelva a repetir el número pero que éste sea el último!!!  :D
+
+*Un regex que elimina espacios al comienzo y al final (similar a Stryng.prototype.trim())
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g;
+let result = hello.replace(wsRegex,""); 
+
+* 14. Una función que cambia un String a Title String (comienzo de palabras en mayúscula)
+todo solucion camp refactorizada edu
+¡analisis¡
+* 1 Explicación del regex
+  * 1. Cuando ponemos con capture group (//) seguido de cualquier expresion lo que hacemos es
+    * primero se filtran los caracteres del capture group y luego se eligen los caracteres que van detrás
+  * 2. Así al poner /(^)\w/ -> estamos diciendo coge todos los caracteres alfanuméricos que vayan detras de un espacio.
+  * 3. por eso /(^\s)\w/ -> significa
+    * a: primero filtra por caracteres que van detrás del comienzo del string o caracteres que vayan detras de un espacio
+    * b: quédate con cualquiera de los caracteres alfanuméricos que vayan detras de uno de los dos anteriores
+  * 4. Ahora pasa todos los caracteres a minúscula del string, todos.
+  * 5. de ellos usa replace con el regex y una función
+  * 6. esto hace como un map() de los regex y aplica la función a todos los caracteres que encuentra que hacen match con el regex
+  * 7 así lo que cambia son todos los caracteres por mayúscula. 
+function titleCase(str) {
+  const myRex = /(^|\s)\w/g
+  const myFunc = letter => letter.toUpperCase();
+  return(str
+        .toLowerCase()
+        .replace(myRex, myFunc));
+}
+
+titleCase("I'm a little tea pot");
+
+* 15. Inserta los eltos de un array en otro array en un lugar concreto
+
+You are given two arrays and an index.
+Copy each element of the first array into the second array, in order.
+Begin inserting elements at index n of the second array.
+Return the resulting array. The input arrays should remain the same after the function runs.
+todo solución edu
+function frankenSplice(arr1, arr2, n) {
+  const result = [...arr2];
+  result.splice(n,0,...arr1);
+  return result;
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+
+todo solucion camp 1
+//hace una copia del array con slice()
+// con un for copia elto a elto el otro array dentro
+// lo que va cambiando es el índice 
+function frankenSplice(arr1, arr2, n) {
+  // It's alive. It's alive!
+  let localArray = arr2.slice();
+  for (let i = 0; i < arr1.length; i++) {
+    localArray.splice(n, 0, arr1[i]);
+    n++;
+  }
+  return localArray;
+}
+todo solución camp2
+//primero hace una copia con slice
+// luego inserta con spread operator 
+function frankenSplice(arr1, arr2, n) {
+  // It's alive. It's alive!
+  let localArr = arr2.slice();
+  localArr.splice(n, 0, ...arr1);
+  return localArr;
+}
+
+* 16 Una función que elimina de un array todos los eltos que valgan "falsy"
+todo edu filter() 
+function bouncer(arr) {
+  return arr.filter( element =>{
+    if(element){return element;}
+  });
+}
+
+bouncer([7, "ate", "", false, 9]);
+todo camp1
+//simplemente recorre el array y guarda en otro los elementos truthy
+function bouncer(arr) {
+  let newArray = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) newArray.push(arr[i]);
+  }
+  return newArray;
+}
+
+todo camp2
+//filter está usando un objeto Boolean como si fuera una función para evaluar el valor de cada
+//uno de los elementos del array que se le están pasando
+function bouncer(arr) {
+  return arr.filter(Boolean);
+}
+
+* 17 Una función que recibe un array de números y devuelve el índice en el que habría
+  * que insertar un número en caso de que el array estuviese ordenado para que siguiese
+    * estándolo tras insertar el número
+
+todo solucion edu ( sort() + findIndex)
+function getIndexToIns(arr, num) {
+  let sorted = arr.sort((a,b) => a-b);
+  let result = sorted.findIndex( element => element >= num )
+  
+  return result < 0 ? sorted.length : result
+}
+todo solucion camp1
+//ordena con sort
+// recorre todo el array, devuelve el índice del elto que es o igual o mayor 
+// si no es igual o mayor devuelve la longitud del array
+// es igual que mi solución pero sin usar findIndex
+function getIndexToIns(arr, num) {
+  arr.sort(function(a, b) {
+    return a - b;
+  });
+
+  for (var a = 0; a < arr.length; a++) {
+    if (arr[a] >= num) return a;
+  }
+
+  return arr.length;
+}
+
+todo camp2
+//va contando el número de eltos que son mayores que el número en cuestion
+//ése sería su índice
+function getIndexToIns(arr, num) {
+  var times = arr.length; // runs the for loop once for each thing in the array
+  var count = 0;
+  for (var i = 0; i < times; i++) {
+    if (num > arr[i]) {
+      count++;
+    }
+  } // counts how many array numbers are smaller than num
+  return count; // the above equals num's position in a sorted array
+}
+todo refactor of camp2
+function getIndexToIns(arr, num) {
+  for(var i = 0, a = 0; i < arr.length; i++){
+    if(num > arr[i]) a++;
+  }
+  return a;
+}
+
+todo camp3
+//ordena
+//hasta que el número no sea mayor que el elto, sigue aumentando el índice
+//en otras palabras: se queda con el índice del primer elemento en el que 
+// el número es mayor al array
+function getIndexToIns(arr, num) {
+  arr.sort(function(a, b) {
+    return a - b;
+  });
+
+  var i = 0;
+  while (num > arr[i]) {
+    i++;
+  }
+
+  return i;
+}
+
+todo camp 4
+//dios mio cómo no he caído en esto
+//primero mete el número con push
+//luego ordena el array
+//después devuelve el índice del número
+function getIndexToIns(arr, num) {
+  arr.push(num);
+  arr.sort(function(a, b) {
+    return a - b;
+  });
+  return arr.indexOf(num);
+}
+
+todo camp5
+//esta solución es como la mía
+//la única diferencia es que usa -1 como especificación en lugar 
+//de < 0. es un poco mejor porque es más específico
+function getIndexToIns(arr, num) {
+  // sort and find right index
+  var index = arr
+    .sort((curr, next) => curr - next)
+    .findIndex(currNum => num <= currNum);
+  // Returns proper answer
+  return index === -1 ? arr.length : index;
+}
+
+todo camp6
+//qué elegante coño
+//CREA un nuevo array (vamos que ni modifica el original qué maravilla) añadiéndole el elto
+// lo ordena con un sort con su array function (si es que, que bonito)
+// devuelve el índice del elto con indexOf
+function getIndexToIns(arr, num) {
+  return arr
+    .concat(num)
+    .sort((a, b) => a - b)
+    .indexOf(num);
+}
+
+todo camp7
+// es igual que el método 2 pero con métodos
+function getIndexToIns(arr, num) {
+  return arr.filter(val => num > val).length;
+}
+
+* 18 Una función que, dado un array de dos elementos devuelva true si todas la letras del segundo existen en el primero
+  * de lo contrario devuelve false
+function mutation(arr) {
+  console.log(`/[${arr[0]}]/`)
+  const myRegex = new RegExp(`[${arr[0]}]`,'i') ;
+  console.log(myRegex)
+  
+  const arr2 = arr[1]
+              .split("")              
+              .filter( element => myRegex.test(element))
+              .join("");
+
+  return arr2.length == arr[1].length; 
+  
+  
+}
+
+mutation(["hello", "hey"]);
 
 !=fSNIPPETS===================================================-->
