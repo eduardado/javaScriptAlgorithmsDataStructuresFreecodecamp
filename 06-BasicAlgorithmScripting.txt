@@ -9,6 +9,7 @@ Notas:
 ¡---------------------------------------------------------------->  
 //--------------------------------------------------------------->
 *==iMAP========================================================-->
+
 todo --Output--
 //methods
 document.getElementById(id)
@@ -25,7 +26,6 @@ document.write()
 #solo para hacer tests
 window.alert()
 #ventanita
-
 //En navegador -> <p>Hola</p>
 
 //properties
@@ -57,9 +57,6 @@ what is not falsy
   * Devuelve false si le pasamos: 0, -0, "", false null, NaN. el resto de valores dan true/false valores boolean primitivos
 //uso
 console.log(Boolean("true")) // false (evalúa a false porque es un string no vacío :P)
-
-
-  
 
 
 todo --function constructora de objetos
@@ -263,7 +260,7 @@ todo --rest parameter--
 todo --memory structures--
 [[{}],[{}]]
 
-todo --methods of Global? Object--
+todo --methods of Global Object--
 Math.min()
 Math.max()
 ? arr =[1,2,3]
@@ -275,12 +272,12 @@ console.log()
 parseInt()
   :* parseInt("")
   :* parseInt ("", radix)
-Object.freeze()
 
 
-hasOwnProperty(propname) 
 todo --methods--
 ¡Object.prototype¡
+Object.freeze()
+hasOwnProperty(propname) 
 Object.freeze()
 valueOf()
 # devuelve el "primitive value" de un objeto
@@ -536,17 +533,6 @@ import * as myObject from './index.js';
 export default function(){}
 import variableName from "./index.js";
 
-todo --definición de funciones--  
-function myFunction(){}
-let/var/const = function(a,b){};
-x = Function()
-//arrow functions
-const x = () => {}
-const x = () => "value"
-const x = item => item * 2;
-const x = (item1, item2) => item1 * item2;
-//arrow function + object property shorthand
-const x = (item1, item2) => ({item1 , item2}); 
 
 todo --spread operator--
 ...
@@ -678,7 +664,7 @@ String.prototype.replace() + capture groups
 String.prototype.replace() + capture groups + $x
 "Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
 
-¡---04---debuggin¡
+¡---04---debugging¡
 console.log()
 console.clear()
 typeof()
