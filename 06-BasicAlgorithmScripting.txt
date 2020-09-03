@@ -1,7 +1,7 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## Basic Algorithm Scripting
 Start:  23/08/2020
-Pomodoros:  
+Pomodoros:  54 
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - Uso comentarios con colores 
@@ -234,6 +234,14 @@ case
 break
 default
 
+todo --estructuras if else--
+if(){code}else{code}
+if() 1_line_code;else{code} 
+if()code;else 1_line_code;
+() ? code : code;
+() ? code : null;
+simple_condition ? code : code;
+
 todo --definición de funciones--  
 function myFunction(){}
 let/var/const = function(a,b){};
@@ -311,11 +319,17 @@ split()
 
 ¡--Array.prototype--¡
 todo --usan callback functions--
+Array.of()
+? Array.of(element0[, element1[, ...[, elementN]]])
+//Array.of(1, 2, 3); // [1, 2, 3]
+includes()
+//[1,2].includes(2) --> true
+//"hola".includes("h") --> true
 slice()
 ?arr.slice([start[, end]])
-// [1,2].slice() // [1,2]
-// [1,2].slice(1)   [2]
-// [1,2].slice(0,1) [1]
+// [1,2].slice()    // [1,2]
+// [1,2,3].slice(1)   //  [2,3]
+// [1,2].slice(0,1) //  [1]
 
 h
 concat()
@@ -1669,6 +1683,7 @@ function getIndexToIns(arr, num) {
 
 * 18 Una función que, dado un array de dos elementos devuelva true si todas la letras del segundo existen en el primero
   * de lo contrario devuelve false
+todo  edu
 function mutation(arr) {
   console.log(`/[${arr[0]}]/`)
   const myRegex = new RegExp(`[${arr[0]}]`,'i') ;
@@ -1685,5 +1700,290 @@ function mutation(arr) {
 }
 
 mutation(["hello", "hey"]);
+
+todo camp 1 procedural
+//cambia ambos array a minúsculas y los almacena en otras variables
+// indexOf de cada una de los eltos del segundo elto del array contra el primero.
+// usa indexOf() de manera que cuando no encuentra nada, devuelve -1 -> false
+// si indexOf siempre encuentra un número positivo, no dará negativo, así que da uno
+//positivo
+function mutation(arr) {
+  var test = arr[1].toLowerCase();
+  var target = arr[0].toLowerCase();
+  for (var i = 0; i < test.length; i++) {
+    if (target.indexOf(test[i]) < 0) return false;
+  }
+  return true;
+}
+todo camp1 refactor ed
+function mutation(arr) {
+  const target   = arr[0].toLowerCase();
+  const test = arr[1].toLowerCase();
+
+  for(let i = 0; i < test.length; i++){
+    if (target.indexOf(test[i]) === -1) return false
+  }
+
+  return true;
+}
+
+todo camp2
+// le pasa arr1 (test) en minúsculas y lo splitea letra a letra en un array.
+// ese array que tiene letra a letra la segunda palabra le hace pasar un every()
+// la función de every es una condición:
+// existe dicha letra en el otro array? target
+// cómo le pregunto eso al otro array?
+// devuelve el otro String, en minúsuclas, indexOf ( en qué índice está esta letra)
+// si no encuentra alguna, dará negativo, y como every sólo da true si todos los elementos
+// pasan la prueba, pues ya estaría.
+function mutation(arr) {
+  return arr[1]
+    .toLowerCase()
+    .split("")
+    .every(function(letter) {
+      return arr[0].toLowerCase().indexOf(letter) != -1;
+    });
+}
+todo refactor edu
+function mutation(arr) {
+  return arr[1]
+         .toLowerCase()
+         .split("")
+         .every(element =>
+            arr[0].toLowerCase().indexOf(element) != -1
+         )
+  ;
+}
+
+mutation(["hello", "hey"]);
+
+todo camp 3 recursive
+¡analisis¡
+* 1. Define la función con dos argumentos: un array y un índice
+    * 1. El índice comienza valiendo cero, cosa que hace pasándole un valor en la definición de la función
+    * 2. El array tiene dos valores: target y test
+    * Me parece muy pero que muy guapo definir una función así para poder ir reutilizándola joder.
+* 2. Al estar usándolas como parámetros de la función las variables target y test no hace falta almacenarlas en variables
+  * dentro de la función. Esto también me encanta.
+  * Es gracioso que en cada recursión se intentará poner los strings en minúsculas pero sólamente en la capa más alta se hará algo
+  * esto es un poco ineficiente pero weno da igual.
+* 3. controla la recursión con el índice i ,como si fuera un while. En el momento que i alcanza a tener el mismo tamaño
+    * que la cadena test, que es la que estamos probando, se cierra la recursión.
+    * a-> true -> la función devuelve true
+    * b-> false Vuelve a hacer otra pregunta:
+* 4. ¿El molde (target) NO contiene la letra que corresponde a aquella que se encuentra en el lugar correspondiente por el que vamos?
+  * a-> true-> osea que no la tiene-> pues ya sabemos que el model no contiene todas las letras. La función devuelve false
+  * b-> false-> es decir, que sí que la tiene, por lo que se vuelve a iterar en la recursión
+    * -> se invoca a la función, a la que se le pasa el array con target y test, que vienen definidas de la primera capa
+      * y se pasan a la segunda
+    * -> el segundo parámetro es la i + 1 unidad
+  * Está muy bonito este problema
+
+function mutation([ target, test ], i = 0) {
+  target = target.toLowerCase();
+  test = test.toLowerCase();
+  return i >= test.length
+    ? true
+    : !target.includes(test[i])
+      ? false
+      : mutation([ target, test ], i + 1);
+}
+
+todo camp 3 recursive refactorizado edu
+//sin darme cuenta he implementado indexOf en lugar de includes y ha funcionado sin pensar
+//esto me llena de felicidad porque al haber entendido el algoritmo he podido adaptarlo 
+//"on the fly" con mis propias herramientas
+function mutation([target,test] ,  i = 0) {
+  target = target.toLowerCase();
+  test = test.toLowerCase();
+  return i >= test.length
+    ? true
+    : target.indexOf(test[i]) === -1
+      ? false
+      : mutation([target,test] , i + 1)  
+}
+
+mutation(["hello", "hey"]);
+
+* 19. Una función que recibe un array y un número devuelve un array de arrays cuyo tamaño es el número.
+  * resultado de cortar el array
+
+todo solución edu 1
+  function chunkArrayInGroups(arr, size, result = []) {
+
+  while(arr.length > 0){
+    result.push(arr.slice(0,size));
+     arr.splice(0,size);
+  }
+  return result;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
+todo sol camp 1
+// El módulo de dividir cualquier número entre otro que sea mayor que él es siempre el mismo número
+// 2 % 4 = 2; 2 % 5 = 2 etc.
+// Así cuando hacemos a % size !== -1 estamos diciendo
+// siempre que el índice sea distinto de del tamaño que queremos cortar menos 1
+// se copia el elemnto al array temporal
+// cuando el índice sea menor en una unidad al tamañao que queremos cortar, lo que hacemos es
+// se pasa el elto al aray temporal, dicho array temporal se mete en el array final
+// se vacía el array temporal 
+// Por qué tiene que ser size -1? porque el primer elemtno de un array es 0 y tenemos que
+// empezar por ahí. así que el elto final de cadad corte está marcado por size -1
+// al final se comprueba si ha sobrado algo, en temp, es decir si no se llega a 
+// abarcar el tamaño de corte pues va a sobrar un trozo, pues se pone el en array final y
+// luego se devuelve
+! if()code;else{} se puede poner un else despues de un if de una sola línea
+! if()code;else code;
+! () ? code : code;
+
+function chunkArrayInGroups(arr, size) {
+  var temp = [];
+  var result = [];
+
+  for (var a = 0; a < arr.length; a++) {
+    if (a % size !== size - 1) temp.push(arr[a]);
+    else {
+      temp.push(arr[a]);
+      result.push(temp);
+      temp = [];
+    }
+  }
+
+  if (temp.length !== 0) result.push(temp);
+  return result;
+}
+todo camp 1 refactor
+function chunkArrayInGroups(arr, size) {
+  let temp = [];
+  let result = [];
+
+  for ( let i = 0; i < arr.length; i++){
+    if(i % size !== size -1) temp.push(arr[i]);
+    else{
+        temp.push(arr[i]);
+        result.push(temp);
+        temp = [];
+    }
+  }
+
+  if(temp.length !==0) result.push(temp);
+  return result;
+}
+
+todo camp2
+//Esto es lo que yo intenté hacer la primera vez pero me salió un loop infinito
+// el índice va aumentando con el tamaño del trozo, eso sí lo pensé
+// joder era tan fácil como slice(i, i + size) cada vez.
+// el índice se va a mover
+// se hace un corte desde i hasta el size. es muy sencillo.
+function chunkArrayInGroups(arr, size) {
+  // Break it up.
+  var arr2 = [];
+  for (var i = 0; i < arr.length; i += size) {
+    arr2.push(arr.slice(i, i + size));
+  }
+  return arr2;
+}
+todo camp 2 refactor
+!fallo conceptual: en la tercera expresión del for hay que escribir un acumulador
+! recuerda que i++ es i+= 1 o i = i + 1
+! en este caso tendría que ser i += size o i = i + size
+! se tiene que referenciar la i a sí misma en una pequeña recursión
+! no valdría i + size como puse yo porque entonces siempre sería el mismo valor cte
+! por eso el bucle era infinito.
+function chunkArrayInGroups(arr, size) {
+  "use strict"
+  const arr2 = [];
+  for(let i = 0; i < arr.length; i += size){
+    console.log('i:'+ i)
+    arr2.push(arr.slice(i, i+size));
+  }
+
+  return arr2;
+}
+
+todo camp 3
+// crea un array vacío y un contador
+// en un bucle while, condicion: hasta que i llegue al tamaño del array
+// se pasa el trozo
+// se aumenta el contador en size
+function chunkArrayInGroups(arr, size) {
+  // Break it up.
+  var newArr = [];
+  var i = 0;
+
+  while (i < arr.length) {
+    newArr.push(arr.slice(i, i + size));
+    i += size;
+  }
+  return newArr;
+}
+
+todo camp4 refactor
+function chunkArrayInGroups(arr, size) {
+  "use strict"
+  let arr2 = [], i = 0;
+
+  while( i < arr.length){
+    arr2.push(arr.slice(i,i + size));
+    i += size;
+  }
+
+  return arr2;
+  
+}
+todo camp 5 recursiva
+//primero recordemos que slice(x) cuando se invoca así, devuelve un nuevo array
+// que abarca desde el número que le pasamos como argumento hasta el final.
+// El core de esta recursión es: 
+  * f(arr,size) función básica toma un array y un tamaño como parámetro
+  * Introducimos la recursión en el parámetro del array
+    * [arr.slice(0,size)] -> este trozo equivale al trozo del array que debemos cortar
+      * desde la izquierda
+    * [arr.slice(0,size)].concat() -> al ponerle seguido un concat lo que hacemos es que 
+      * así en cada recursión se irán concatenando dichos trozos de la izquierda. Pero con qué?
+        * arr.slice(size) con el trozo de la derecha
+      * Si lo pensamos bien:
+       !Trozo izquierdo: arr.slice(0,size)
+       !Trozo derecho arr.slice(size)
+      * El trozo izquierdo se va a procesar en esta iteración
+        return arr.slice(0,size)
+      * pero necesitamos que vaya dentro de un array
+      return [arr.slice(0,size)]
+      * el trozo derecho lo procesará la siguiente iteración, pero tiene que ir unido a este
+        * para cuando el stack se impiece a resolver desde el caso base
+      return [arr.slice(0,size)].concat()
+      * Piensa, Cómo le pasamos a la función "el trozo de la derecha que va quedando"?
+      f(arr.slice(size),size)
+      * la función se llama a sí misma
+      return [arr.slice(0,slice)].concat(f(arr.slice(size),size));
+      * Ahora, cuando se termina le recursión, cuando se cumple las condiciones para llegar al caso base?
+      [arr] 
+      * Este sería el caso base, que en nuestro caso es el trozo que queda porque la condición que cierra el loop es:
+      (arr.length <= size)
+      * Exacto, que el trozo que quede sea igual o menor que size
+      * Recordemos que cada vez que hacemos una recursión, le vamos pasando una copia del array original
+        * al que le faltan size elementos, por lo que cada vez es más pequeño
+        * Ahí está el punto que no era capaz de sacar, cómo hago que la función sea cada vez más pequeña, cómo iterar eso.
+        * pensé en hacer un splice pero no tenía sentido porque eso modifica el array original. 
+
+function chunkArrayInGroups(arr, size) {
+  if (arr.length <= size) {
+    return [arr];
+  } else {
+    return [arr.slice(0, size)].concat(
+      chunkArrayInGroups(arr.slice(size), size)
+    );
+  }
+}
+todo camp 4 refactor (igual pero usor Array.of() en lugar del literal [])
+function chunkArrayInGroups(arr, size) {
+  if (arr.length <= size) return Array.of(arr);
+  else return Array.of(arr.slice(0,size)).concat(chunkArrayInGroups(arr.slice(size),size));
+}
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2))
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
 
 !=fSNIPPETS===================================================-->
