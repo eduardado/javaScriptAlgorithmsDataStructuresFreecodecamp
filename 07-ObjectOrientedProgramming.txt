@@ -1,0 +1,750 @@
+# javaScriptAlgorithmsDataStructuresFreecodecamp
+## Object Oriented Programming
+Start:  03/09/2020
+Pomodoros:  
+Notas: 
+    - "Better Comments" ; Visual Studio Code
+    - Uso comentarios con colores 
+    
+¡---------------------------------------------------------------->  
+//--------------------------------------------------------------->
+*==iMAP========================================================-->
+¡--plantilla
+todo temática
+keyword
+# Explanation
+?sintaxis
+//ejemplo
+    codigo_ejemplo
+¡--plantilla
+
+
+todo --Output--
+//methods
+document.getElementById(id)
+#to access an html element
+//e.g
+  <html>
+    <p id="edu"></p>
+    <script>
+      document.getElementById(edu).innerHTML = "hola";
+    </script>
+  </html>
+
+document.write()
+#solo para hacer tests
+window.alert()
+#ventanita
+//En navegador -> <p>Hola</p>
+
+//properties
+innerHTML
+#define the content of an HTML element
+
+todo --boolean--
+//false values
+false
+//falsy values
+null
+undefined
+NaN
+0
+'' or "" (empty string)
+//truthy (rest)
+what is not falsy
+
+//OR and AND
+(a||b)
+  * if a is true -> returns a
+  * if a is not true -> returns b
+(a && b)
+  * both true -> return a
+  * if both are not true -> return b
+
+//Boolean(value) object (borrar lo que sobra)
+* Boolean es un objeto de javascript que se puede usar para evaluar falsy/truthy values.
+  * Devuelve false si le pasamos: 0, -0, "", false null, NaN. el resto de valores dan true/false valores boolean primitivos
+//uso
+console.log(Boolean("true")) // false (evalúa a false porque es un string no vacío :P)
+
+
+todo --function constructora de objetos
+//función 
+function Person(age){
+  this.age = age;
+  this.getAge = function (){return 'My age is: ' + this.age}
+}
+//creación objeto
+const edu = new Person(36);
+//uso objeto 
+console.log(edu.getAge()); // "My age is: 36"
+console.log(edu.getAge);   // "My age is: 36"
+console.log(edu.age);      // 36
+
+todo --constructor property--
+objectName.constructor
+//acceder al constructor de una clase
+  function Arbol(nombre){
+    this.nombre = nombre;
+  }
+  new Arbol().constructor //function Arbol(nombre){this.nombre = nombre;}
+
+todo --prototype property--
+//Añadir una propiedad a un constructor
+Person.prototype.altura = 169;
+
+//prototype para añadir métodos a un objeto
+Person.prototype.full = function(){return this.name + this.dni + this.altura };
+!no se puede usar notación arrow function aquí
+
+todo --class, getters & setters--
+¡---
+class
+get
+set
+constructor
+¡---
+//class
+class ObjectName{
+  constructor(x){
+    this._attribute = x;
+  }
+  get attribute(){
+    return  this._attribute;
+  }
+  set temperature(y){
+    this._temperature = y;
+  }
+}
+//use
+const ObjectName = new ObjectName(z); //constructor use
+let temp = ObjectName.attribute; //getter use
+ObjectName.attribute = value; //setter use
+
+todo --promise--
+¡---
+Promise
+resolve
+reject
+then
+catch
+¡---
+?syntax
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+?syntax
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+¡---
+import
+export
+as
+from
+./
+¡---
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+todo --built in Objects--
+Date()
+String()
+Number()
+Boolean()
+Array()
+RegExp()
+Function()
+
+
+todo --variables--
+const
+var
+let
+
+
+todo --ternary conditional--
+(condition) ? code-true : code-false;
+
+todo --shorthanded ternary?
+// devuelve true si se cumple la condición y devuelve false si no se cumple la condición
+return (condition); 
+//ejemplo borrar pronto
+return arr.indexOf(elem) != -1;
+
+
+todo --loops--
+while(cond){}
+for ([initialization]; [condition]; [final-expression]){}
+do{}while(condition);
+if(){}else{}else return;
+
+todo --for...in--
+? for (variable in object)
+variable = cambiar de nombre según el nombre de las propiedades de object
+object = objeto de cuyas propiedades se van iterando (deben ser iterables, no Symbol)
+// iterando sobre un objeto
+const object = {a:1, b:2}
+for (let propiedad in object){
+  console.log(propiedad + " vale " + object[propiedad])
+}
+imprime: "a vale 1" "b vale 2"
+//iterando sobre un String
+* el itreador "propiedad" en este caso devuelve el índice del String [borrame cuando me entiendas bien]
+* para acceder 
+const str = "Edu"
+for (let propiedad in str){
+  console.log(propiedad + " vale " + str[propiedad])
+}
+imprime: "0 vale E" "1 vale d" "2 vale u"
+
+
+
+todo --object
+var object = {att:value,att2:value};
+{} -> object literal
+.
+["']
+delete -> para borrar un atributo de un objeto
+?delete object.att
+
+
+
+todo --flux--
+if
+else if
+else
+switch
+case
+break
+default
+
+todo --estructuras if else--
+if(){code}else{code}
+if() 1_line_code;else{code} 
+if()code;else 1_line_code;
+() ? code : code;
+() ? code : null;
+simple_condition ? code : code;
+
+todo --definición de funciones--  
+function myFunction(){}
+let/var/const = function(a,b){};
+x = Function()
+//arrow functions
+const x = () => {}
+const x = () => "value"
+const x = item => item * 2;
+const x = (item1, item2) => item1 * item2;
+//arrow function + object property shorthand
+const x = (item1, item2) => ({item1 , item2}); 
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
+
+todo --memory structures--
+[[{}],[{}]]
+
+todo --methods of Global Object--
+Math.min()
+Math.max()
+? arr =[1,2,3]
+?Math.max(...arr);
+Math.floor()
+Math.random()
+Math.round()
+console.log()
+parseInt()
+  :* parseInt("")
+  :* parseInt ("", radix)
+
+
+todo --methods--
+¡Object.prototype¡
+Object.freeze()
+hasOwnProperty(propname) 
+Object.freeze()
+valueOf()
+# devuelve el "primitive value" de un objeto
+# si un objeto no tiene on valor primitivo valueOf() imprime el objeto en sí
+?object.valueOf()
+
+
+¡--String.prototype--¡
+trim()
+substr()
+?string.substr(start, length);
+// "Hello".substr(0,4) // "Hell"
+//eduardo.substr(3) //"ardo"
+charAt()
+?let character = str.charAt(index)
+//"Eduardo".charAt(0) // "E"
+slice()
+splice()
+repeat()
+push()
+pop()
+shift()
+unshift()
+match()
+?str.match(regexp)
+// hola."match"(/h/) //["h"]
+concat()
+toUpperCase()
+toLowerCase()
+split()
+?str.split([separator[, limit]])
+// "e d".split('') //['e', ' ', 'd']
+//"e d".spli(' ') // ['e','d']
+
+
+
+¡--Array.prototype--¡
+todo --usan callback functions--
+Array.of()
+? Array.of(element0[, element1[, ...[, elementN]]])
+//Array.of(1, 2, 3); // [1, 2, 3]
+includes()
+//[1,2].includes(2) --> true
+//"hola".includes("h") --> true
+slice()
+?arr.slice([start[, end]])
+// [1,2].slice()    // [1,2]
+// [1,2,3].slice(1)   //  [2,3]
+// [1,2].slice(0,1) //  [1]
+
+h
+concat()
+#Devuelve un nuevo array con el resultado de unir otros dos arrays
+#Se le pueden pasar elementos y arrays
+#Se diferencia de push() entre otras cosas en que push sí que cambia el array original
+//array1.concat(array1)
+
+findIndex()
+# devuelve el índice del primer elemento que satisface la función que le pasamos
+# si no encuentra ninguno, devuelve -1
+# si no le pasamos una función ordena en unicode, donde el 10 va delante del 2 esta función
+?arr.findIndex(callback( element[, index[, array]] )[, thisArg])
+//arr.findIndex( element => element >= num )
+sort()
+?arr.sort([compareFunction])
+# sort sobreescribe el array sobre el que actúa
+# La funcion debe devolver nº neg si a < b, positivo si a > b o 0 si son iguales
+# Se puede abreviar a - b
+// [3,6,20,6,7,5].sort((a, b) => a - b)
+call()
+reduce()
+?arr.reduce(callback(acumulador, valorActual[, índice[, array]])[, valorInicial])
+//arr.reduce(function(){},value);
+map()
+filter()
+#crea un nuevo array con los eltos que pasan el test dado como función por argumento
+find()
+?arr.find(callback(element[, index[, array]])[, thisArg])
+//[1,2,3,4].find( element => element > 2 )// 3
+
+
+todo --otros--
+indexOf()
+? array.indexOf(searchElement[, fromIndex])
+// ['ant','bison'].indexOf('bison')  //   1
+// ['ant','bison'].indexOf('monkey') // -1
+
+
+filter()
+?var newArray = arr.filter(callback(currentValue[, index[, array]])[, thisArg])
+//['perro','oso'].filter( word => word.length > 3 // ["perro"]
+
+splice() 
+!changes the original array
+? array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+//['edu','blas','epi'].splice(1,1) // ['blas']
+//['edu','blas','epi'].splice(1,2) // ['blas', 'epi']
+//['edu','blas','epi'].splice(2) // ['blas', 'epi']
+
+slice()
+!make a copy
+?arr.slice([start[, end]])
+//['ant','bison','camel'].slice(1) //['bison', 'camel']
+!ojo no incluye el elto de índice "end"
+//['ant','bison','camel'].slice(0,2) //['ant','bison']
+join()
+?arr.join([separator])
+//['a','b'].join() //"a,b"
+//['a','b'].join('') //"ab"
+//['a','b'].join(' ') //"a b"
+reverse()
+fill()
+ 
+
+¡--Function.prototype--¡
+¡--
+call()
+apply()
+bind()
+¡--
+
+apply()
+? apply(thisArg,[array]) -> aplica una función sobre un [array] usando como contexto thisArg
+* thisArg = null
+//const arr = [1,2,3];
+//Math.max.apply(null,arr) //3
+*con thisArg
+//const arr1 = ['a','b'];
+//const arr2 = [1,2,3];
+//console.log(arr1); // ["a", "b", 0, 1, 2]
+? liga una función a un objeto para que no se ejecute desde el ámbito global
+
+bind()
+?fun.bind(thisArg[, arg1[, arg2[, ...]]])
+//ejemplo
+const pepe = {
+  edad: 36,
+  getEdad: function(){
+    return this.edad;
+  }
+};
+//si no usamos bind
+const boundedGetAge = pepe.getEdad;
+console.log(boundedGetAge()); // undefined
+//si usamos bind
+const boundedGetAge = pepe.getEdad.bind(pepe);//36
+
+
+todo --properties--
+'vale para strings y para arrays (borrame cuando me entiendas bien)
+.length 
+
+todo --tipos primitivos--
+undefined 
+null
+boolean
+string
+symbol
+bigint
+number
+object 
+
+todo --operators--
+: ! -> not
+= -> asignación
++ -> adición/concatenation : number/string
+- -> substraction
+:* -> multiplication
+/ -> division
+++ -> increment
+-- -> decrement
+% -> remainder
++= -> 
+-=
+:*=
+/=
+typeof
+// typeof true // 'boolean'
+
+todo --comparison operators--
+'ojo todos los comparadores devuelven true/false --> borrar esto cuando esté asimilado.
+==
+=== [strict]
+:!=
+:!== [strict]
+>
+>=
+<
+<=
+
+
+todo --escape chracters--
+\"
+\'
+\\
+\n
+\r
+\t
+\b
+\f
+
+todo --postfix/prefix increment
+++i -> prefix increment
+i++ -> postfix increment
+--i -> prefix decrement
+i-- -> postfix decrement
+
+todo --logical operators--
+&&
+||
+
+¡ --ES6--
+
+todo --use strict--
+"use strict"
+
+todo --destructuring assignment
+const {key1,key2} = var
+todo --template literals--
+${}
+`` -> back ticks
+
+
+todo --Promise()--
+const makeServerRequest = new Promise((resolve,reject) =>{
+    if(condition){
+        resolve("Promise fulfilled");
+    }else{
+        reject("Promise rejected");
+    }
+  
+});
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+ServerRequest.catch(error =>{
+  console.log(error);
+})
+
+//estados de una promesa
+pending
+fulfilled()
+rejected()
+
+todo --import/export--
+//file.js both in the same directory "./"
+export {function1,function2};
+import {function1,function2} from './index.js';
+import * as myObject from './index.js';
+//default fallback
+export default function(){}
+import variableName from "./index.js";
+
+
+todo --spread operator--
+...
+
+todo --rest parameter--
+...
+
+todo --static reference/static object
+let
+const
+Object.freeze()
+let 
+"use strict"
+...
+// destructuring assignment
+const {key1,key2} = var
+// template literals
+${}
+`` ->template string
+./ 
+export
+import
+get
+set
+
+todo --Passing object as a function parameter--
+//setup
+const stats = {max: 56.78, min: -0.75};
+//def normal
+const half = (stats) => (stats.max + stats.min) / 2.0; 
+//definition using destructuring assignment
+const half = (stats) =>{
+    const{max,min} = stats;
+    return (max + min) / 2.0; 
+} 
+//definition reduced (no entire object)
+const half = ({max,min}) => (max + min) / 2.0; 
+}
+//use
+console.log(half(stats));
+
+
+//normal
+const getMousePosition = (x,y) => ({x: x, y: y});
+//object property shorthand
+const getMousePosition = (x, y) => ({x , y});
+
+¡ --regex--
+todo --RegExp Object--
+?constructor
+/pattern/flags
+new RegExp(pattern[, flags])
+RegExp(pattern[, flags])
+
+//methods
+test()
+#true si el string que le pasamos como parámetro contiene el RegExp
+// /a/.test("hola")   //true
+
+//métodos y patrones
+match()
+test()
+|
+// /dog|cat|bird|fish/
+/regex/i
+/regex/g
+/./
+// /.du/
+[x-y]
+// /[a-z]/
+[abc]
+// /[oa]la/
+[x-y4-7]
+// /[h-s2-6]/gi
+[^regex]
+?negated
+// ningún número y ninguna vocal
+// /[^0-9^aeiou]/gi
+/x+/
+? 1-infinite
+/xx+/
+?2-infinite
+/x*/
+? 0-infinite
+// /<.*?>/
+/x?/
+\W
+? [^A-Za-z0-9_]
+\w
+? [A-Za-z0-9_]
+\d
+\D
+\s
+?[\r\t\f\n\v]
+\S
+?[^\r\t\f\n\v]
+/^/
+?beggining
+// /^Cal/
+{min,max}
+// /Oh{3,6} no/
+{min,}
+// /Haz{4,}ah/
+{exact}
+// /Tim{4}ber/
+(?=...)
+(?!...)
+todo capture group ()
+(|)
+// /P(engu|umpk)in/g
+()/1
+?capture group
+  // let testString = "test test test";
+  // let reRegex = /(test)(\s)\1\2\1/;
+  // let result = reRegex.test(testString); //true
+¡/()X/¡ -> cuando queremos capturar el caracter que viene detrás de algo que se repeatStringNumTimes
+// "hola como estas".match(/(^)\D/g) // ['h']
+// los caracteres que no sean espacio que venga justo detrás de espacios
+// "sHoRt AnD sToUt".match(/(\s)\S/g) //["A", "s"]
+
+/^()()$/
+//let repeatNum = "42 42 42";
+//let reRegex = /^(\d+)(\s)\1\2(\d+)$/; // Change this line
+//let result = reRegex.test(repeatNum);
+
+String.prototype.replace() + capture groups
+?const newStr = str.replace(regexp|substr, newSubstr|function)
+// "The sky is silver.".replace(/silver/, "blue") // "The sky is blue"
+String.prototype.replace() + capture groups + $x
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+
+¡---04---debugging¡
+console.log()
+console.clear()
+typeof()
+
+todo --falsy values--
+//evalúan a false
+false
+0
+""
+NaN
+undefined
+null
+
+¡--05Data structure--¡
+
+todo --arrays--
+//array properties
+length
+//array methods
+push()
+unshift()
+pop()
+shift()
+splice(arg1,arg2)
+slice(arg1,arg2)
+indexOf()
+//spread operator
+[...arr]
+//array methods
+every()
+
+todo --object attribute adding
+//1
+object.property = 'value';
+//2
+object['property'] = 'value';
+//3
+let variable = 'property name';
+object[variable] = 'value';
+
+todo -- delete property
+delete object.prperty;
+
+todo- property checking
+//method
+hasOwnProperty(propertyName); //true/false
+//keyword
+in
+? 'propertyName' in objectName //true/false
+
+todo --iterate over an object keys
+for (let variableName in objectName){}
+//eg (borrar)
+for (let user in users) {console.log(user);}
+
+todo --methods
+Object.keys()
+
+¡--Object Oriented Programming--
+
+
+
+*==fMAP========================================================-->
+
+?==iSINTAXIS===================================================-->
+?==fSINTAXIS===================================================-->
+todo==iTeoría==================================================-->
+todo==fTeoría==================================================-->
+!=iSNIPPETS===================================================-->
+* 1 user story
+todo version
+//explanation
+code
+!=fSNIPPETS===================================================-->
