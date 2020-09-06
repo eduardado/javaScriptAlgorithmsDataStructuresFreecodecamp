@@ -1,7 +1,7 @@
 # javaScriptAlgorithmsDataStructuresFreecodecamp
 ## Object Oriented Programming
 Start:  03/09/2020
-Pomodoros:  
+Pomodoros:  14
 Notas: 
     - "Better Comments" ; Visual Studio Code
     - Uso comentarios con colores 
@@ -210,7 +210,7 @@ for (let propiedad in object){
   console.log(propiedad + " vale " + object[propiedad])
 }
 imprime: "a vale 1" "b vale 2"
-//iterando sobre un String
+//iterando sobre un String/array
 * el itreador "propiedad" en este caso devuelve el índice del String [borrame cuando me entiendas bien]
 * para acceder 
 const str = "Edu"
@@ -285,8 +285,11 @@ parseInt()
 
 todo --methods--
 ¡Object.prototype¡
+Object.create()
+isPrototypeOf()
 Object.freeze()
-hasOwnProperty(propname) 
+hasOwnProperty(propname)
+#Devuelve true si el objeto posee esa "own property" (la herencia no se tiene en cuenta)
 Object.freeze()
 valueOf()
 # devuelve el "primitive value" de un objeto
@@ -734,17 +737,499 @@ Object.keys()
 
 ¡--Object Oriented Programming--
 
+todo --constructor--
+function Animal(){}
+
+function Bird(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
+
+todo --Object Oriented Programming keywords
+instanceof (operator)
+#comprueba si un objeto es una instancia de un constructor
+//let crow = new Bird("Ed", "black"); crow instanceof Bird // true
+//let paloma = { name : "Harry", color : "white"};
+//paloma instance of Bird //false
+
+todo --prototype (property of objects in javascript)
+? Constructor.prototype.property = value;
+# Añade la propiedad numLegs a todas las instancias de Dog y les da el valor 4
+// Dog.prototype.numlegs = 4;
+
+!ojo al añadir un objeto al prototype de un constructor se pierde el atributo constructor
+?Constructor.prototype = {
+  ¡añadir contructor para que no se pierda
+  constructor : ConstructorName,
+  att1 : value1,
+  method1 : function(){ code;}
+  !ES6 notation
+  method2 (){code,}
+}
+
+isPrototypeOf()
+#comprueba si el prototype de object es Constructor. Devuelve boolean
+? ConstructorName.prototype.isPrototypeOf(object)
+// Dog.prototype.isPrototypeOf(beagle) // true
+
+
+todo --constructor (property of instances)
+//uso1
+#averiguar qué tipo de objeto es (se puede sobreescribir, mejor usar instanceof)
+? instanceName.constructor //[Function: ConstructorName]
+//felipe.constructor // [Function: Dog]
+
+//uso2
+? instanceName.constructor === Name // true/false
+// return felipe.constructor === Dog ? "es perro" : "no es perro"
+
+
+todo --instanceof (operator)
+?objectName instanceof Constructor //boolean
+
+todo --herencia a nivel de objeto
+Object.create(obj)
+# Creates a new object and sets obj as the new objects prototype
+# Alternative to new ConstructorName()
+//let animal = Object.create(Animal.prototype);
+
+todo --herencia a nivel de constructor
+#El prototype de Bird tendrá todos los atributos y métodos del supertype Animal
+#A partir de ahora todos los objeto creados con el constructor Bird() también tendrán métodos y atributos de Animal
+ChildObject.prototype = Object.create(ParentObject.prototype);
+
+todo --mixin añadir grupos de funciones a objetos de distintas clases
+
+//create de mixin
+let shootMixin = function (obj){
+  obj.shoot = function(){
+    console.log("boom");
+  }
+}
+
+//crear objetos
+let manolito = new Predator();
+let florecilla = new SpaceFlower();
+
+//agregar las funciones del mixin a cada objeto
+shootMixin(manolito);
+shootMixin(florecilla);
+
+//usar los métodos
+manolito.shoot();
+florecilla.shoot();
+
+todo closure
+//eg.
+!ojo el this se pone en la función y no en la variable, que raro!
+function Tarjeta(num){
+    let pin = this.num;
+    this.getPin = function(){return num}
+}
+
+//comprobar
+const visa = new Tarjeta(1234);
+console.log(visa.getPin()); //1234
+visa.pin = 4567;
+console.log(visa.getPin()); //1234!! no 4567
+
+todo --IIFE (Inmediately Invoked function expression)
+?(anonimus_function)();
+// (function(){console.log("hola edu")})();
+// (() => console.log("hola edu"))();
 
 
 *==fMAP========================================================-->
 
-?==iSINTAXIS===================================================-->
-?==fSINTAXIS===================================================-->
 todo==iTeoría==================================================-->
+* 1. Los datos son los atributos de los objetos
+* 2. Los métodos son los comportamientos de los objetos
+* 3. Los métodos son propiedades de los objetos. Son funciones.
+* 4. Los constructores son funciones que crean nuevos objetos
+    1. Comienzan por mayúsculas para diferenciarlos de las funciones
+    2. Usan "this" para establecer las propiedades del objeto
+    3. En lugar de devolver un valor como harían otras funciones, 
+        los constructores definen propiedades y comportamientos.
+* 5. Cuando se crea una instancia de un objeto se usa la palabra clave "new"
+* 6. Sin la palabra new, el operador this no apunta dentro del objeto y se
+    * causan problemas
+* 7. Si un objeto se ha creado sin usar un consctructor, instanceof dará false
+* 8. Las properties que hemos visto se llaman own properties. Porque cada objeto
+  * tiene una copia de ellas al crearse. Y se definen directamente en la instancia
+  * del objeto
+* 9 Código que extrae las properties de un objeto en un array
+  ¡análisis!
+  // Un for...in. property va adquiriendo el índice del iterable que en este caso son las properties del objeto
+  // Es importante destacar que los pares attributo:valor de un objeto no están ordenados, no tienen indice. 
+  // por lo que cuando hacemos un bucle for...in la variable adquiere directamente el nombre de la propiedad
+  // es distinto que cuando iteramos sobre un String o un array
+    let ownProps = [];
+
+    for (let property in duck) {
+      if(duck.hasOwnProperty(property)) {
+        ownProps.push(property);
+      }
+    }
+* 10. Prototype
+  * 1. Las properties del prototype se comparten entre todas las instancias de un objeto 
+  * 2. Usando esta sintaxis podemos añadir una propiedad al prototipe de un objeto
+    Constructor.prototype.property = value;
+  * 3. Todos los objetos tendrán de manera automática las propiedades del prototype
+  * 4. El prototipe forma parte del constructor del objeto
+  * 5. Al añadir una propiedad nueva con su valor al prototype o al modificar el valor
+    * de algunas de las propiedades del prototype. Inmediatamente todas las instancias del
+    * objeto van a cambiar.
+  * 11 Hay dos tipos de propiedades las own properties y las prototype properties
+  * 12 Object.hasOwnProperty() no devuelve true si le pasamos propiedades del prototype, 
+    * sólo devuelve true cuando le pasamos own properties (las que está definidas en el constructor)
+  * 13 Sin embargo, cuando hacemos un for...in para recorrer todas las propiedades de un objeto, las propiedades
+    * del prototype también se listan. Aunque son de otra categoría están ahí. Por eso se pueden separar con este trozo de 
+    * código
+  * 14 La propiedad constructor es poseida por todas las instancias. Aquí se guarda el nombre del constructor que se usó 
+    * para crear la instancia. Así, cuando accedemos a dicho valor, podemos saber qué tipo de objeto es.
+  * 15 Sin embargo, la propiedad constructor se puede sobreescribir, por lo que es recomendable usar instanceof para averiguar
+    * el tipo de objeto.
+  * 16 Se pueden añadir varios atributos y métodos a un prototype al mismo tiempo pasándole un objeto
+  * 17 El prototype de un objeto de en sí un objeto ( qué bien)
+  * 18 como el prototype de un objeto es un objeto.. pues resulta que tiene un prototype en sí. ¿Cuál es? Object.protytpe
+    Object.prototype.isPrototypeOf(Bird.prototype) // true
+    * Sale positivo porque el prototipo del prototipo de Bird es indeed Object.prototype
+  * 19 hasOwnProperty() es un método del prototypo de Object y se puede acceder a el por cualquier objeto gracias a la cadena de prototipos.
+    * El prototype 
+  * 20 Bird es un supertype of duck. Object es un supertype de Bird y de duck. Object es el supertype de todos los objetos en javascript
+  * 21 prototype no deja de ser un atributo de un objeto que es en sí un objeto. Si queremos acceder a él para cambiar algo accedemos como lo haríamos con
+    * cualquier atributo
+    Predator.prototype.constructor = Predator
+  * 22 Una FUNCIÓN CONSTRUCTORA que hereda su prototype del constructor de un supertype puede tener sus propios métodos además de los que ha heredado.
+  * 23 Un mixin no es más que un objeto que almacena una función a la cual se le pasa un objeto como argumento. Luego, dentro de la función, se usa 
+    * la notación de punto para introducir funciones dentro del objeto. Por lo tanto , un mixin no es más que una función que añade funciones a objetos.
+  * 24 Closure: 
+    * Las funciones siempre tienen acceso al todo el contexto en el que ella es creada.
+    * los eltos del constructor que empiezan por this o sin variables, son públicos y accesibles con notación de punto
+    * para que algo sea privado, usamos una variable de ámbito local "const o let"  
+    * se pueden usar arrow functions perfectamente en las definiciones de las funciones constructoras
+  * 25 Immediately Invoked Function Expression (IIFE). Es una manera de definir e invocar una función inmediatamente
+    *Tiene esta sintaxis-> (función_anónima)();
+  * Module: son agrupaciones de mixins. 
+    * un module es una función, que devuelve un objeto, que es un mixin.
+    //def
+  ? let xModule = (function(return{mixin1, mixin2}))();
+    //uso
+    xModule.mixin1(obj);
+    obj.method();
+    
 todo==fTeoría==================================================-->
 !=iSNIPPETS===================================================-->
 * 1 user story
 todo version
 //explanation
 code
+
+* 1. Instrucciones para extraer las own properties de un objeto a un array
+for( let prop in canary){
+  if(canary.hasOwnProperty(prop)) ownProps.push(prop);
+}
+* 2. Instrucciones para separar own properties de prototype properties y almacenarlas en distintos arrays
+  * (ejemplo con un objeto tipo Dog() llamado beagle)
+let ownProps = [];
+let prototypeProps = [];
+
+for (let prop in beagle){
+  if(beagle.hasOwnProperty(prop)) ownProps.push(prop);
+  else prototypeProps.push(prop);
+}
+
+* 3 Una función reciba un objeto y devuelva un boolean con el resultado de comprobar si el objeto
+  * es de tipo Dog o no
+  todo solución edu
+// constructor
+  function Dog(name) {
+    this.name = name;
+}
+//función
+function joinDogFraternity(candidate) {
+  return candidate.constructor === Dog
+    ? true
+    : false
+}
+
+* 4 Demuestra, mediante instrucciones, que el prototype de Object es el prototype del prototype de Dog
+function Dog(name) {
+  this.name = name;
+}
+let beagle = new Dog("Snoopy");
+Dog.prototype.isPrototypeOf(beagle);
+Object.prototype.isPrototypeOf(Dog.prototype); // está demostrado porque devuelve true
+
+* 5 Añade al supertype Animal, el método eat  para que el prototype de Cat y Bear no tenga que llevarlo y así ahorrar código DRY
+function Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat,
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear,
+};
+
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+
+};
+
+* 6. Crea dos objetos usando Object.Create, después asígnales el prototype de del supertype Animal.
+  * Comprueba después que duck ha heredado los métodos de Animal
+  * comprubea después qué tipo de objeto es beagle
+  * (Herencia a nivel de objeto)
+function Animal() { }
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+let duck = Object.create(Animal.prototype); 
+let beagle = Object.create(Animal.prototype);
+
+duck.eat() // nom nom nom
+
+console.log(beagle instanceof Animal) // true
+
+* 7. Demuestra que, la herencia a nivel de constructor
+
+//creamos el constructor del supertype Alien
+function Alien() {}
+
+//definimos el prototype del constructor Alien pasándole un objeto que incluye tanto atributos como métodos
+//le asignamos un constructor lo vamos a sobreescribir y, de no hacerlo, apuntaría al constructor de Object
+Alien.prototype = {
+  constructor: Alien,
+  abducir : function (){ console.log("yon yon yon")},
+  exterminate: function(){ console.log("boom boom blas!")}
+}
+
+//creamos el constructor la clase Predator
+function Predator(){}
+
+//En lugar de definir el prototype de Predator, le pasamos el constructor de Alien
+Predator.prototype = Object.create(Alien.prototype);
+
+//ahora creamos un objeto Predator
+const blas = new Predator();
+
+blas.exterminate(); // "boom boom blast!"
+
+* 8 Demuestra que sabes arreglar el constructor de una clase que hereda de otra
+// Al asignar al prototype de Predator el prototype de Alien (supertype) sobreescribimos todo incluso el constructor
+console.log(Predator.constructor) // function Alien (){}
+// Para arreglar esto tenemos que acceder  al atributo constructor, del objeto/prototype de Predator
+
+Predator.prototype.constructor = Predator;
+
+// Ahora, todos los objetos creados a partir del type Predator, tendrán su constructor bien descrito
+console.log(blas.constructor) // 
+
+// como curiosidad, aunque constructor estaba erróneamente asignado al supertype antes de corregirse
+// blas siempre fue un objeto de tipo Predator, y asu vez, un objeto de tipo Alien
+//esto se puede comprobar así
+
+console.log(blas instanceof Alien)    //true
+console.log(blas instanceof Predator) //true
+//esto daba true incluso antes de hacer la correción.
+
+* 9 Demuestra que entiendes cómo heredar comportamiento de una supertype y además agregar comportamiento singular a un constructor
+
+// Creación del constructor del supertype
+function Alien () {}
+// Añadimos un método al prototype de Alien llamado eat
+Alien.prototype.eat = function () {}
+
+//creación del constructor de Predator
+function Predator(){}
+//herencia del prototype de Alien
+Predator.prototype = Object.create(Alien.prototype);
+//corregimos el constructor sobreescrito de Predator
+Predator.prototype.constructor = Predator;
+
+//añadimos comportamiento único al prototype de la funcion constructora de Predator
+Predator.prototype.kill = function () {console.log("slash!")};
+
+const tobito = new Predator();
+
+tobito.kill(); -->> slash!!
+
+* 10. Crea un tipo de Alien diferente que herede el prototype de Alien. Entonces sobreescribe uno de los métodos heredados.
+
+//creamos un nuevo tipo de Alien
+function SpaceFlower(){}
+
+//herencia del prototype del supertype Alien
+SpaceFlower.prototype = Object.create(Alien.prototype);
+
+//Creación del objeto
+const margarita = new SpaceFlower();
+
+//sobreescritura del método
+SpaceFlower.prototype.eat = function(){console.log("Lo siento yo hago la fotosíntesis espacial")};
+
+* 11. Demuestra que entiendes como usar un mixin para añadir un grupo de funciones que compartan 
+  * varios objetos.
+//create de mixin
+let shootMixin = function (obj){
+  obj.shoot = function(){
+    console.log("boom");
+  }
+}
+
+//crear objetos
+let manolito = new Predator();
+let florecilla = new SpaceFlower();
+
+//agregar las funciones del mixin a cada objeto
+shootMixin(manolito);
+shootMixin(florecilla);
+
+//usar los métodos
+manolito.shoot();
+florecilla.shoot();
+
+* 12 Demuestra que entiendes toda la orientación a objetos de javascript que hemos dado mediante un ejemplo
+
+//creamos un supertype
+function Vegetal(){}
+//Asignamos prototipo con un comportamiento sencillo
+Vegetal.prototype.fotosintesis = () => console.log("chium cium brilla!");
+//creamos un objeto
+const planta = new Vegetal();
+//probamos el método del supertype
+planta.fotosintesis(); //"chium cium brilla!"
+//comprobamos el constructor del prototype de Vegetal()
+console.log(Vegetal.prototype.constructor) //function Vegetal(){}
+//comprobamos el constructor del objeto
+console.log(planta.constructor) //function Vegetal(){}
+
+//creamos un type que hereda comportamiento del supertype
+function Arbol(){}
+//le asignamos el prototype del supertype para que herede directamente el bluerpint
+Arbol.prototype = Object.create(Vegetal.prototype);
+//establecemos el verdadero constructor (quedó sobreescrito)
+Arbol.prototype.constructor = Arbol;
+//comprobamos el constructor del prototype
+console.log(Arbol.prototype.constructor)
+//creamos un objeto
+const abedul = new Arbol();
+//comprobamos el constructor del objeto
+console.log(abedul.constructor) // function Arbol(){}
+//probamos la herencia del método heredado
+abedul.fotosintesis();
+//usamos instanceof para comprobar herencias
+abedul instanceof Arbol //true
+abedul instanceof Vegetal //true
+//añadimos un método al constructor del subtype que sólo será de establecemos
+Arbol.prototype.ramas = function(){console.log("grow grow ramas!")};
+// comprobamos que podemos usarlo
+abedul.ramas() // "grow grow ramas"!
+// sobreescribimos un método heredada
+Arbol.prototype.fotosintesis = function (){console.log("soy un árbol especial que hace
+    una fotosíntesis especial")}
+// comprobamos que se ha sobreescrito correctamente.
+abedul.fotosintesis() // soy un árbol especial que hace una fotosíntesis especial
+
+//creamos dos objetos que no tienen relación
+const coche = {ruedas: 4}
+const perro = {patas: 4}
+
+//Creamos un mixin para poder asignar grupos de métodos a distintos objetos
+const movimientoMixin = function(obj){
+    obj.acelerar = function(){console.log("aumentando velocidad")},
+    obj.frenar = function(){console.log("reduciendo velocidad")}
+}
+
+//usamos el mixin para añadir los métodos de movimiento a ambos objetos
+movimientoMixin(coche);
+movimientoMixin(perro);
+//comprobamos que podemos usar los métodos
+coche.acelerar();
+coche.frenar();
+perro.acelerar();
+perro.frenar();
+
+//usar closure para proteger data de un constructor
+!ojo el this se pone en la función y no en la variable, que raro!
+function Tarjeta(num){
+    let pin = this.num;
+    this.getPin = function(){return num}
+}
+
+//comprobar
+const visa = new Tarjeta(1234);
+visa.getPin();
+visa.pin = 4567;
+
+//uso de IIFE
+(anonimous_function)();
+
+//usamos IIFE para crear un módulo
+
+//mixin 1
+const movimientoMixin = function(obj){
+    obj.acelerar = function(){console.log("aumentando velocidad")},
+    obj.frenar = function(){console.log("reduciendo velocidad")}
+}
+
+//mixin 2
+const saltoMixin = function(obj){
+    obj.jump = function (){"alehop!"};
+}
+
+//IIFFE+ MODULO
+const comportamientoModule = function(){
+    return{
+        movimientoMixin : function(obj){
+            obj.acelerar = function(){console.log("aumentando velocidad")},
+            obj.frenar = function(){console.log("reduciendo velocidad")}
+        },
+        saltoMixin = function(obj){
+            obj.jump = function (){"alehop!"};            
+        }
+    }
+}
+
+//usamos el mixin para otorgarle comportamiento a objetos
+const comportamientoModule = (function(){
+  return{
+    movimientoMixin : function(obj){
+      obj.acelerar = function(){console.log("acelerando...")},
+      obj.frenar = function(){console.log("frenando...")}
+    },
+    saltoMixin : function(obj){
+      obj.jump = function(){console.log("alehop!")}
+    }
+  }
+})();
+
+function Coche(){}
+const ferrari = new Coche();
+comportamientoModule.movimientoMixin(ferrari);
+console.log(ferrari.acelerar()) //acelerando...
+console.log(ferrari.frenar()) //frenando...
+comportamientoModule.saltoMixin(ferrari)
+console.log(ferrari.jump()) //alehoop!
+
+
+
 !=fSNIPPETS===================================================-->
